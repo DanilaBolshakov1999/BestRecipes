@@ -30,12 +30,13 @@ class OnboardingViewController: UIViewController {
         return imageView
     }()
 
-    private let pageControl: UIPageControl = {
+    private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.numberOfPages = 3
         pageControl.preferredIndicatorImage = UIImage(named: "inactivePageIndicator")
         pageControl.pageIndicatorTintColor = .white
         pageControl.currentPageIndicatorTintColor = .purple
+        pageControl.addTarget(self, action: #selector(pageControlIndicatorTapped(sender:)), for: .valueChanged)
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
     }()
@@ -55,6 +56,11 @@ class OnboardingViewController: UIViewController {
         setConstrints()
         setDelegates()
         buttonsTapped()
+    }
+    
+    @objc private func pageControlIndicatorTapped(sender: UIPageControl) {
+        let offsetX = view.bounds.width * CGFloat(pageControl.currentPage)
+        scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
     }
 
     private func setupViews() {
