@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIColor {
-    static let redText = UIColor(named: "redColor")
+    static let redButton = UIColor(named: "redColor")
     static let purpleText = UIColor(named: "whiteColor")
     static let yellowText = UIColor(named: "brownColor")
 }
