@@ -8,11 +8,13 @@
 import UIKit
 import SnapKit
 
-class OnboardingFirstViewController: UIViewController {
+ final class OnboardingFirstViewController: UIViewController {
+     
+     //MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "")
     }
 }
+
 
