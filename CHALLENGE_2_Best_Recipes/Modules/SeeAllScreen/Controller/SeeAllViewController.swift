@@ -10,8 +10,6 @@ import SnapKit
 
 final class SeeAllViewController: UIViewController {
     
-    private let data = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"]
-    
     private let trendingCellID = "trendingCellID"
     
     //  MARK: - UI Elements
@@ -66,15 +64,21 @@ final class SeeAllViewController: UIViewController {
 
 extension SeeAllViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: trendingCellID, for: indexPath) as! TrendingCell
         
-        cell.backGroundImage.image = UIImage(systemName: "heart.fill")
+        if let img = UIImage(named: "dishOne") {
+            cell.configure(with: img, describtion: "How to make yam\n& vegetable sauce at home", ingredients: "9 Ingredients", cookingTime: "25 min", rating: "5,0")
+        }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Selected row: \(indexPath.row)")
     }
     
 }
@@ -82,9 +86,12 @@ extension SeeAllViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension SeeAllViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width - 20, height: view.frame.height / 3)
+        return CGSize(width: collectionView.frame.width - 20, height: 200)
     }
+    
+    
 }
 
 
