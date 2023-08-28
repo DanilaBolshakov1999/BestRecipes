@@ -53,11 +53,7 @@ final class SeeAllViewController: UIViewController {
             make.edges.equalToSuperview()
         }
     }
-    
-    
-    
-    
-    
+       
 }
 
 // MARK: - UICollectionViewDataSource

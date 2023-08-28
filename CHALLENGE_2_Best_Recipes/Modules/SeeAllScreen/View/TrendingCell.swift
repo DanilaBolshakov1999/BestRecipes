@@ -133,13 +133,10 @@ class TrendingCell: UICollectionViewCell {
         blurView.frame = ratingStack.bounds
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        
         blurView.layer.cornerRadius = 5
         blurView.clipsToBounds = true
         
-        
         ratingStack.insertSubview(blurView, at: 0)
-        
         ratingStack.backgroundColor = .clear
         
         
