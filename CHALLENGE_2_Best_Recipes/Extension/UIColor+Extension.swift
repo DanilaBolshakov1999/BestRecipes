@@ -11,4 +11,5 @@ extension UIColor {
     static let redButton = UIColor(named: "redColor")
     static let purpleText = UIColor(named: "whiteColor")
     static let yellowText = UIColor(named: "brownColor")
+    static let blackText = UIColor(named: "blackColor")
 }

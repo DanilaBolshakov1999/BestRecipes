@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16FA36992A9CCE9500C9917C /* TrendingsNowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36982A9CCE9500C9917C /* TrendingsNowCell.swift */; };
 		37DFC3B72A9BA5E000C4951B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3B62A9BA5E000C4951B /* MainViewController.swift */; };
 		37DFC3BE2A9BA6CB00C4951B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3BD2A9BA6CB00C4951B /* ProfileViewController.swift */; };
 		37DFC3C02A9BA6D700C4951B /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3BF2A9BA6D700C4951B /* BellViewController.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16FA36982A9CCE9500C9917C /* TrendingsNowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingsNowCell.swift; sourceTree = "<group>"; };
 		37DFC3B62A9BA5E000C4951B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		37DFC3BD2A9BA6CB00C4951B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		37DFC3BF2A9BA6D700C4951B /* BellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16FA369A2A9CCE9A00C9917C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				16FA36982A9CCE9500C9917C /* TrendingsNowCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		37DFC3AD2A9BA22C00C4951B /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +120,7 @@
 		37DFC3B52A9BA5E000C4951B /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
+				16FA369A2A9CCE9A00C9917C /* Cells */,
 				37DFC3B62A9BA5E000C4951B /* MainViewController.swift */,
 			);
 			path = MainViewController;
@@ -345,6 +356,7 @@
 				37DFC3B72A9BA5E000C4951B /* MainViewController.swift in Sources */,
 				37DFC3C02A9BA6D700C4951B /* BellViewController.swift in Sources */,
 				44A877F42A9A880300241ED3 /* OnboardingFirstViewController.swift in Sources */,
+				16FA36992A9CCE9500C9917C /* TrendingsNowCell.swift in Sources */,
 				37DFC3C22A9BA6F100C4951B /* FavoriteViewController.swift in Sources */,
 				44A877F02A9A880300241ED3 /* AppDelegate.swift in Sources */,
 				44A877F22A9A880300241ED3 /* SceneDelegate.swift in Sources */,
