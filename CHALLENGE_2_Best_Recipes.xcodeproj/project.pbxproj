@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		16FA36992A9CCE9500C9917C /* TrendingsNowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36982A9CCE9500C9917C /* TrendingsNowCell.swift */; };
+		16FA369D2A9CE07400C9917C /* TrendingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA369C2A9CE07400C9917C /* TrendingsCell.swift */; };
 		37DFC3B72A9BA5E000C4951B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3B62A9BA5E000C4951B /* MainViewController.swift */; };
 		37DFC3BE2A9BA6CB00C4951B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3BD2A9BA6CB00C4951B /* ProfileViewController.swift */; };
 		37DFC3C02A9BA6D700C4951B /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3BF2A9BA6D700C4951B /* BellViewController.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		16FA36982A9CCE9500C9917C /* TrendingsNowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingsNowCell.swift; sourceTree = "<group>"; };
+		16FA369C2A9CE07400C9917C /* TrendingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingsCell.swift; sourceTree = "<group>"; };
 		37DFC3B62A9BA5E000C4951B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		37DFC3BD2A9BA6CB00C4951B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		37DFC3BF2A9BA6D700C4951B /* BellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		16FA369B2A9CE05000C9917C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				16FA369C2A9CE07400C9917C /* TrendingsCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		37DFC3AD2A9BA22C00C4951B /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +146,7 @@
 		37DFC3B92A9BA64800C4951B /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
+				16FA369B2A9CE05000C9917C /* Cells */,
 				37DFC3C32A9BA6FD00C4951B /* HomeViewController.swift */,
 			);
 			path = HomeScreen;
@@ -361,6 +372,7 @@
 				44A877F02A9A880300241ED3 /* AppDelegate.swift in Sources */,
 				44A877F22A9A880300241ED3 /* SceneDelegate.swift in Sources */,
 				37DFC3C62A9BAED100C4951B /* UIViewController+Utils.swift in Sources */,
+				16FA369D2A9CE07400C9917C /* TrendingsCell.swift in Sources */,
 				37DFC3C42A9BA6FD00C4951B /* HomeViewController.swift in Sources */,
 				444456E12A9AA042003BA976 /* Theme.swift in Sources */,
 				37DFC3BE2A9BA6CB00C4951B /* ProfileViewController.swift in Sources */,
