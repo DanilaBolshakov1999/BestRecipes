@@ -17,8 +17,8 @@ enum ListenSection {
     var items: [ListenItem] {
         switch self {
         case .sales(let items),
-                .category(let items),
-                .example(let items):
+             .category(let items),
+             .example(let items):
             return items
         }
     }
@@ -34,7 +34,7 @@ enum ListenSection {
         case .category(_):
             return "Instructions"
         case .example(_):
-            return "Instructions"
+            return "Ingredients"
         }
     }
     

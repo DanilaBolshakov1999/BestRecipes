@@ -45,4 +45,5 @@ enum Theme {
     static let popular = "PopularCollectionViewCell"
     static let instructions = "InstructionsCollectionViewCell"
     static let ingredients = "IngredientsCollectionViewCell"
+    static let header = "HeaderSupplementaryView"
 }

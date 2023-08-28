@@ -1,5 +1,5 @@
 //
-//  InstructionsCollectionViewCell.swift
+//  IngredientsCollectionViewCell.swift
 //  CHALLENGE_2_Best_Recipes
 //
 //  Created by iOS - Developer on 28.08.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class InstructionsCollectionViewCell: UICollectionViewCell {
+class IngredientsCollectionViewCell: UICollectionViewCell {
     
     //MARK: - UI
     
@@ -39,25 +39,22 @@ class InstructionsCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-        
+    
     private func setViews() {
-        backgroundColor = .blue
+        //backgroundColor = .blue
         addSubview(categoryImageView)
         addSubview(categoryLabel)
-        
-        
     }
     
     //MARK: - Configure Cell
     
-    func configureCell(categoryName: String, imageName: String) {
-        categoryLabel.text = categoryName
+    func configureCell(imageName: String) {
         categoryImageView.image = UIImage (named: imageName)
     }
 }
 
-extension InstructionsCollectionViewCell {
-     func setConstrains() {
+extension IngredientsCollectionViewCell {
+    private func setConstrains() {
         NSLayoutConstraint.activate([
             categoryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
             categoryLabel.trailingAnchor.constraint (equalTo: trailingAnchor, constant: -5),

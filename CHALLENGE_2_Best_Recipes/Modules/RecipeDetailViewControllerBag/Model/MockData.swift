@@ -18,7 +18,10 @@ struct MockData {
     }()
     
     private let category: ListenSection = {
-        .category([.init(title: "", image: "")])
+        .category([.init(title: "Fish", image: Theme.fishRecipeDetail),
+                   .init(title: "Ginger", image: Theme.fishRecipeDetail),
+                   .init(title: "VegetableOil", image: Theme.fishRecipeDetail),
+                   .init(title: "Salt", image: Theme.fishRecipeDetail)])
     }()
     
     private let example: ListenSection = {
