@@ -33,6 +33,12 @@ final class SeeAllViewController: UIViewController {
     
     private func setUpView() {
         
+        let fontDescriptor = UIFontDescriptor(name: "Poppins", size: 24).withSymbolicTraits(.traitBold)!
+        let customFont = UIFont(descriptor: fontDescriptor, size: 24)
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: customFont]
+        self.title = "Trending Now"
+        
         setUpCollectionView()
     }
     
@@ -77,7 +83,7 @@ extension SeeAllViewController: UICollectionViewDataSource {
 
 extension SeeAllViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width - 20, height: 50)
+        return CGSize(width: collectionView.frame.width - 20, height: view.frame.height / 3)
     }
 }
 
