@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import UIKit
+
+extension UILabel {
+    convenience init(title: String, backgroundColor: UIColor?) {
+        self.init()
+        self.text = title
+        self.backgroundColor = backgroundColor
+    }
+}

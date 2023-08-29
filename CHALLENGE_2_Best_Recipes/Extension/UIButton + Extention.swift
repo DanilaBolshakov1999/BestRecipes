@@ -6,14 +6,14 @@
 //
 
 import Foundation
+import UIKit
 
 extension UIButton {
     convenience init(titleColor: UIColor?, backgroundColor: UIColor? = .clear, cornerRadius: CGFloat) {
         self.init(type: .system)
-        self.titleLabel?.font = .systemFont(ofSize: 30)
+        self.titleLabel?.font =  .systemFont(ofSize: 25)
         self.setTitleColor(titleColor, for: .normal)
         self.backgroundColor = backgroundColor
         self.layer.cornerRadius = cornerRadius
-        self.translatesAutoresizingMaskIntoConstraints = false
     }
 }

@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowSene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowSene)
         #warning("Update UINavigationController(rootViewController: MainViewController())")
-        let welcomeVC = UINavigationController(rootViewController: MainViewController())
+        let welcomeVC = UINavigationController(rootViewController: RecipeViewControllerScreen())
         window?.rootViewController = welcomeVC
         window?.makeKeyAndVisible()
     }

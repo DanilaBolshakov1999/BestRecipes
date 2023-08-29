@@ -10,55 +10,64 @@ import SnapKit
 
 final class RecipeViewControllerScreen: UIViewController {
     
-    //MARK: - UI
+    //MARK: - UI + Extension
     
-     var playButton: UIButton = {
-        var button = UIButton(type: .system)
-        button.titleLabel?.font = .systemFont(ofSize: 25)
-        button.layer.cornerRadius = 35
-        button.setTitle("Запустить", for: .normal)
-        button.setTitleColor(.yellow, for: .normal)
-        button.layer.borderWidth = 2
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private var labelHeaderOne = UILabel(title: "Instructions", backgroundColor: .blue)
+    private var labelHeaderTwo = UILabel(title: "Instructions", backgroundColor: .blue)
 
+//    private lazy var labelHeader: UILabel = {
+//        let label = UILabel()
+//        label.text = "Instructions"
+//        label.backgroundColor = .brown
+//        label.font = UIFont.systemFont(ofSize: 25)
+//        return label
+//    }()
+//
+    //MARK: - UI
+
+    private lazy var imageView: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: Theme.videoScreen)
+        return image
+    }()
+    
+    private lazy var textView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = .blue
+        textView.text = Theme.textViewText
+        textView.font = UIFont.systemFont(ofSize: 18)
+        textView.isScrollEnabled = false
+        textView.backgroundColor = .brown
+        return textView
+    }()
+    
     //MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavController()
         setViews()
         setConstrains()
         view.backgroundColor = .cyan
-        playButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        
+        //MARK: - Scroll View
         
     }
     
+    //MARK: - @objc private func
+    
     @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.pushViewController(SeeAllViewController(), animated: true)
     }
     
     @objc private func buttonTapped() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.pushViewController(SeeAllViewController(), animated: true)
     }
-    
-    //MARK: SetViews
-    
-    private func setViews() {
-        view.addSubview(playButton)
-    }
-    
-    //MARK:  Set Constrains
-    
-    private func setConstrains() {
-        playButton.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
-    
 }
 
 extension RecipeViewControllerScreen {
+    
+    //MARK: - Configure Nav Controller
     
     private func configureNavController() {
         
@@ -69,26 +78,65 @@ extension RecipeViewControllerScreen {
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25, weight: .bold),
             NSAttributedString.Key.foregroundColor: UIColor(named: "purpleText") ?? .black
         ]
-
+        
+        let appearanceTwo = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25, weight: .bold),
+            NSAttributedString.Key.foregroundColor: UIColor(named: "purpleText") ?? .black
+        ]
+        
         let leftBarButtonItem = UIBarButtonItem(
-            image: UIImage(named: "backSwipe"),
+            image: UIImage(named: Theme.backSwipe),
             style: .done, target: self,
             action: #selector(backButtonTapped)
         )
-
+        
         let rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(named: "dishOne"),
+            image: UIImage(named: Theme.moreSwipe),
             style: .done, target: self,
             action: #selector(buttonTapped)
         )
-
+        
         leftBarButtonItem.tintColor = .black
         rightBarButtonItem.tintColor = .black
-
-        navigationItem.leftBarButtonItem = rightBarButtonItem
-        navigationController?.navigationBar.standardAppearance = appearance
+        
         navigationItem.leftBarButtonItem = leftBarButtonItem
         navigationController?.navigationBar.standardAppearance = appearance
-
-           }
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        navigationController?.navigationBar.standardAppearance = appearanceTwo
     }
+    
+    //MARK: - Set Views
+    
+    private func setViews() {
+        view.addSubview(imageView)
+        view.addSubview(labelHeaderOne)
+        view.addSubview(textView)
+        view.addSubview(labelHeaderTwo)
+    }
+    
+    //MARK: - Set Constrains
+    
+    private func setConstrains() {
+        imageView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        
+        labelHeaderOne.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalTo(imageView).inset(-20)
+        }
+        
+        textView.snp.makeConstraints { make in
+            make.bottom.equalTo(imageView).inset(-350)
+            make.leading.trailing.equalToSuperview().inset(10)
+        }
+        
+        labelHeaderTwo.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalTo(textView).inset(-20)
+        }
+        
+    }
+}

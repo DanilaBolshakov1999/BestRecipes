@@ -12,6 +12,7 @@ enum Theme {
     //MARK: Images
     static let backgroundImageFirst = "firstImage"
     static let fishRecipeDetail = "fishRecipeDetail"
+    static let videoScreen = "videoScreen"
     
     //MARK: Font
     enum Fonts {
@@ -46,4 +47,25 @@ enum Theme {
     static let instructions = "InstructionsCollectionViewCell"
     static let ingredients = "IngredientsCollectionViewCell"
     static let header = "HeaderSupplementaryView"
+    
+    //MARK:  UINavBar
+    static let backSwipe = "backSwipe"
+    static let moreSwipe = "moreSwipe"
+    
+    //MARK: Custom Text Filed
+    static let textViewText = """
+                        1. Place eggs in a saucepan and cover
+                            with cold water. Bring water to a
+                            boil andimmediately remove from heat.
+                            Cover and let eggs stand in hot water
+                            for 10 to 12 minutes. Remove from hot
+                            water, cool, peel, and chop.
+                        2. Place chopped eggs in a bowl.
+                        3. Add chopped tomatoes, corns, lettuce,
+                            and any other vegitable of your choice.
+                        4. Stir in mayonnaise, green onion, and
+                            mustard. Season with paprika, salt, and
+                            pepper.
+                            Stir and serve on your favorite bread or crackers.
+                        """
 }

@@ -11,30 +11,24 @@ class TrendingCell: UICollectionViewCell {
     
     private let backGroundImage: UIImageView = {
         let img = UIImageView()
-        
         img.contentMode = .scaleAspectFill
         img.clipsToBounds = true
         img.layer.cornerRadius = 10
-        
         return img
     }()
     
     private let ratingStack: UIStackView = {
-        let stck = UIStackView()
-        
-        stck.distribution = .fillEqually
-        stck.axis = .horizontal
-        stck.spacing = 2
-        
-        return stck
+        let stackView = UIStackView()
+        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
+        stackView.spacing = 2
+        return stackView
     }()
     
     private let starImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "star.fill"))
-        
         imageView.tintColor = .black
         imageView.contentMode = .scaleAspectFit
-        
         return imageView
     }()
     
@@ -43,9 +37,7 @@ class TrendingCell: UICollectionViewCell {
         
         lbl.text = ""
         lbl.textColor = .purpleText
-        
-        lbl.font = .poppins20()
-        
+        //lbl.font = .poppins20()
         lbl.numberOfLines = 0
         lbl.lineBreakMode = .byWordWrapping
         lbl.textAlignment = .left
@@ -59,25 +51,18 @@ class TrendingCell: UICollectionViewCell {
         
         lbl.text = ""
         lbl.textColor = .purpleText
-        
-        lbl.font = .poppins16()
-        
+        //lbl.font = .poppins16()
         lbl.numberOfLines = 0
         lbl.lineBreakMode = .byWordWrapping
         lbl.textAlignment = .left
-        
-        
         return lbl
     }()
     
     private let cookingTimeAndIngredientsLabel: UILabel = {
         let lbl = UILabel()
-        
         lbl.text = ""
         lbl.textColor = .purpleText
-        
-        lbl.font = .poppins16()
-        
+        //lbl.font = .poppins16()
         lbl.numberOfLines = 0
         lbl.lineBreakMode = .byWordWrapping
         lbl.textAlignment = .left
