@@ -35,6 +35,7 @@
 		37DFC3EA2A9BB13100C4951B /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37DFC3D82A9BB13100C4951B /* Poppins-ExtraLightItalic.ttf */; };
 		37DFC3EB2A9BB13100C4951B /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37DFC3D92A9BB13100C4951B /* Poppins-ExtraLight.ttf */; };
 		37DFC3ED2A9BE15100C4951B /* OnboardingScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3EC2A9BE15100C4951B /* OnboardingScreens.swift */; };
+		37DFC3EF2A9E8FD200C4951B /* InitialOnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3EE2A9E8FD200C4951B /* InitialOnboardingScreen.swift */; };
 		444456E12A9AA042003BA976 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444456E02A9AA042003BA976 /* Theme.swift */; };
 		444457042A9DC931003BA976 /* README_CHALLENGE_2.md in Resources */ = {isa = PBXBuildFile; fileRef = 444457032A9DC931003BA976 /* README_CHALLENGE_2.md */; };
 		444457072A9DCA96003BA976 /* RecipeViewControllerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444457062A9DCA96003BA976 /* RecipeViewControllerScreen.swift */; };
@@ -76,6 +77,7 @@
 		37DFC3D82A9BB13100C4951B /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		37DFC3D92A9BB13100C4951B /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		37DFC3EC2A9BE15100C4951B /* OnboardingScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreens.swift; sourceTree = "<group>"; };
+		37DFC3EE2A9E8FD200C4951B /* InitialOnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialOnboardingScreen.swift; sourceTree = "<group>"; };
 		444456E02A9AA042003BA976 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		444457032A9DC931003BA976 /* README_CHALLENGE_2.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README_CHALLENGE_2.md; sourceTree = "<group>"; };
 		444457062A9DCA96003BA976 /* RecipeViewControllerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewControllerScreen.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				44A877F32A9A880300241ED3 /* OnboardingViewController.swift */,
 				37DFC3EC2A9BE15100C4951B /* OnboardingScreens.swift */,
+				37DFC3EE2A9E8FD200C4951B /* InitialOnboardingScreen.swift */,
 			);
 			path = OnboardingScreen;
 			sourceTree = "<group>";
@@ -413,8 +416,7 @@
 				37DFC3C42A9BA6FD00C4951B /* HomeViewController.swift in Sources */,
 				444456E12A9AA042003BA976 /* Theme.swift in Sources */,
 				37DFC3BE2A9BA6CB00C4951B /* ProfileViewController.swift in Sources */,
-				16FA36922A9C739F00C9917C /* TrendingCell.swift in Sources */,
-				16FA36942A9C935A00C9917C /* UIFont + Extension.swift in Sources */,
+				37DFC3EF2A9E8FD200C4951B /* InitialOnboardingScreen.swift in Sources */,
 				44E53FCA2A9A91CC00B6BBBE /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
