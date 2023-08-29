@@ -34,8 +34,8 @@ class OnboardingViewController: UIViewController {
         let pageControl = UIPageControl()
         pageControl.numberOfPages = 3
         pageControl.preferredIndicatorImage = UIImage(named: "inactivePageIndicator")
-        pageControl.pageIndicatorTintColor = .white
-        pageControl.currentPageIndicatorTintColor = .purple
+        pageControl.pageIndicatorTintColor = .inactiveIndicator
+        pageControl.currentPageIndicatorTintColor = .activeIndicator
         pageControl.addTarget(self, action: #selector(pageControlIndicatorTapped(sender:)), for: .valueChanged)
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
@@ -74,18 +74,33 @@ class OnboardingViewController: UIViewController {
     private func setDelegates() {
         scrollView.delegate = self
     }
-
+    
+   private func makeText(text1: String, text2: String) -> NSAttributedString {
+        var orangeAttribute = [NSAttributedString.Key: AnyObject]()
+        orangeAttribute[.foregroundColor] = UIColor.attributedTextColor
+        
+        var whiteAttribute = [NSAttributedString.Key: AnyObject]()
+        whiteAttribute[.foregroundColor] = UIColor.white
+        
+        let text = NSMutableAttributedString(string: text1, attributes: whiteAttribute)
+        text.append(NSAttributedString(string: text2, attributes: orangeAttribute))
+        
+        return text
+    }
+    
     private func createSlides() -> [OnboardingScreens] {
-        firstOnboardingScreen.setPageLabelText(text: "Recipes from all over the World")
-        firstOnboardingScreen.hideDoneButton()
 
-        secondOnboardingScreen.setPageLabelText(text: "Recipes with each and every detail")
-        secondOnboardingScreen.hideDoneButton()
-        secondOnboardingScreen.setLabelColor()
+        
+//        firstOnboardingScreen.setPageLabelText(text: "Recipes from all over the World")
+        firstOnboardingScreen.setPageLabelText(text: makeText(text1: "Recipes from all ", text2: "over the world!"))
 
-        thirdOnboardingScreen.setPageLabelText(text: "Cook it now or save it for later")
-        thirdOnboardingScreen.hideSkipButton()
-        thirdOnboardingScreen.setLabelColor()
+//        firstOnboardingScreen.hideDoneButton()
+
+        secondOnboardingScreen.setPageLabelText(text: makeText(text1: "Recipes with ", text2: "each and every detail"))
+//        secondOnboardingScreen.hideDoneButton()
+
+        thirdOnboardingScreen.setPageLabelText(text: makeText(text1: "Cook it now or ", text2: "save it for later"))
+//        thirdOnboardingScreen.hideSkipButton()
 
         return [firstOnboardingScreen, secondOnboardingScreen, thirdOnboardingScreen]
     }
@@ -174,7 +189,7 @@ extension OnboardingViewController {
             backgroundImageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
             backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
 
-            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -122),
             pageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             pageControl.heightAnchor.constraint(equalToConstant: 50)
