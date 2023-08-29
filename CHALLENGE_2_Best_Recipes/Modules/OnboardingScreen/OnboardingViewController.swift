@@ -7,12 +7,13 @@
 
 import UIKit
 
-class OnboardingViewController: UIViewController {
-
+final class OnboardingViewController: UIViewController {
+    
+    //MARK: - Elements
     private let firstOnboardingScreen = OnboardingScreens()
     private let secondOnboardingScreen = OnboardingScreens()
     private let thirdOnboardingScreen = OnboardingScreens()
-
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
@@ -21,7 +22,7 @@ class OnboardingViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-
+    
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "onboardingBackImage")
@@ -29,7 +30,7 @@ class OnboardingViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-
+    
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.numberOfPages = 3
@@ -40,16 +41,17 @@ class OnboardingViewController: UIViewController {
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
     }()
-
+    
     private var slides = [OnboardingScreens]()
-
+    
+    //MARK: - Life Cycle
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         slides = createSlides()
         setupSlidesScrollView(slides: slides)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -58,11 +60,12 @@ class OnboardingViewController: UIViewController {
         buttonsTapped()
     }
     
+    //MARK: - Private Methods
     @objc private func pageControlIndicatorTapped(sender: UIPageControl) {
         let offsetX = view.bounds.width * CGFloat(pageControl.currentPage)
         scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
     }
-
+    
     private func setupViews() {
         view.backgroundColor = .red
         navigationController?.isNavigationBarHidden = true
@@ -70,12 +73,12 @@ class OnboardingViewController: UIViewController {
         scrollView.addSubview(backgroundImageView)
         view.addSubview(pageControl)
     }
-
+    
     private func setDelegates() {
         scrollView.delegate = self
     }
     
-   private func makeText(text1: String, text2: String) -> NSAttributedString {
+    private func makeText(text1: String, text2: String) -> NSAttributedString {
         var orangeAttribute = [NSAttributedString.Key: AnyObject]()
         orangeAttribute[.foregroundColor] = UIColor.attributedTextColor
         
@@ -89,26 +92,22 @@ class OnboardingViewController: UIViewController {
     }
     
     private func createSlides() -> [OnboardingScreens] {
-
-        
-//        firstOnboardingScreen.setPageLabelText(text: "Recipes from all over the World")
         firstOnboardingScreen.setPageLabelText(text: makeText(text1: "Recipes from all ", text2: "over the world!"))
-
-//        firstOnboardingScreen.hideDoneButton()
-
+        firstOnboardingScreen.hideContinueButton()
+        
         secondOnboardingScreen.setPageLabelText(text: makeText(text1: "Recipes with ", text2: "each and every detail"))
-//        secondOnboardingScreen.hideDoneButton()
-
+        secondOnboardingScreen.hideContinueButton()
+        
         thirdOnboardingScreen.setPageLabelText(text: makeText(text1: "Cook it now or ", text2: "save it for later"))
-//        thirdOnboardingScreen.hideSkipButton()
-
+        thirdOnboardingScreen.hideSkipButton()
+        
         return [firstOnboardingScreen, secondOnboardingScreen, thirdOnboardingScreen]
     }
-
+    
     private func setupSlidesScrollView(slides: [OnboardingScreens]) {
         scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count),
                                         height: view.frame.height)
-
+        
         for i in 0..<slides.count {
             slides[i].frame = CGRect(x: view.frame.width * CGFloat(i),
                                      y: 0,
@@ -117,36 +116,26 @@ class OnboardingViewController: UIViewController {
             scrollView.addSubview(slides[i])
         }
     }
-
+    
     func buttonsTapped() {
         firstOnboardingScreen.skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
         secondOnboardingScreen.skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
-        thirdOnboardingScreen.doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .primaryActionTriggered)
+        thirdOnboardingScreen.continueButton.addTarget(self, action: #selector(continueButtonTapped(_:)), for: .primaryActionTriggered)
     }
-
+    
     @objc func skipButtonTapped() {
-//        secondOnboardingScreen.showAnimation {
-            //go straight to login screen
-//            let mainTabBarController = MainTabBarViewController()
-//            if let navigator = self.navigationController {
-//                navigator.pushViewController(MainViewController(), animated: true)
-//            }
-//        }
+        let vc = MainViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
-
-    @objc func doneButtonTapped(_ sender: UIButton) {
-//        sender.showAnimation {
-//            //go straight to login screen
-////            let mainTabBarController = MainTabBarViewController()
-//            if let navigator = self.navigationController {
-//                navigator.pushViewController(MainViewController(), animated: true)
-//            }
-//        }
+    
+    @objc func continueButtonTapped(_ sender: UIButton) {
+        let vc = MainViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
+
 //MARK: - UIScrollViewDelegate
 extension OnboardingViewController: UIScrollViewDelegate, UIPageViewControllerDelegate {
-
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x / view.frame.width)
         pageControl.currentPage = Int(pageIndex)
@@ -157,18 +146,15 @@ extension OnboardingViewController: UIScrollViewDelegate, UIPageViewControllerDe
         if percentHOffset <= 0.5 {
             let firstTransformation = CGAffineTransform(scaleX: (0.5 - percentHOffset) / 0.5,
                                                         y: (0.5 - percentHOffset) / 0.5)
-            
             let secondTransformation = CGAffineTransform(scaleX: percentHOffset / 0.5,
                                                          y: percentHOffset / 0.5)
-            
             slides[0].setPageLabelTransformWith(transform: firstTransformation)
             slides[1].setPageLabelTransformWith(transform: secondTransformation)
         } else {
             let secondTransformation = CGAffineTransform(scaleX: (1 - percentHOffset) / 0.5,
-                                                          y: (1 - percentHOffset) / 0.5)
+                                                         y: (1 - percentHOffset) / 0.5)
             let thirdTransformation = CGAffineTransform(scaleX: percentHOffset,
                                                         y: percentHOffset)
-            
             slides[1].setPageLabelTransformWith(transform: secondTransformation)
             slides[2].setPageLabelTransformWith(transform: thirdTransformation)
         }
@@ -183,13 +169,13 @@ extension OnboardingViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-
+            
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             backgroundImageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
             backgroundImageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
             backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-
-            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -122),
+            
+            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
             pageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             pageControl.heightAnchor.constraint(equalToConstant: 50)

@@ -7,8 +7,9 @@
 
 import UIKit
 
-class OnboardingScreens: UIView {
-
+final class OnboardingScreens: UIView {
+    
+    //MARK: - Elements
     private lazy var pageLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -18,18 +19,18 @@ class OnboardingScreens: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
-    lazy var doneButton: UIButton = {
+    
+    lazy var continueButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 20
-        button.layer.backgroundColor = UIColor.red.cgColor
-        button.setTitle("Continue", for: .normal)
+        button.layer.backgroundColor = UIColor.redButton?.cgColor
+        button.setTitle("Start Cooking", for: .normal)
         button.titleLabel?.font = UIFont(name: Theme.Fonts.boldFont, size: 20)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
-     lazy var skipButton: UIButton = {
+    
+    lazy var skipButton: UIButton = {
         let button = UIButton()
         button.layer.backgroundColor = .none
         button.setTitle("Skip", for: .normal)
@@ -37,19 +38,21 @@ class OnboardingScreens: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    
+    //MARK: - Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(pageLabel)
-        addSubview(doneButton)
+        addSubview(continueButton)
         addSubview(skipButton)
         setConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+   
+    //MARK: - Public Methods
     public func setPageLabelText(text: NSAttributedString) {
         pageLabel.attributedText = text
     }
@@ -57,35 +60,32 @@ class OnboardingScreens: UIView {
     public func setPageLabelTransformWith(transform: CGAffineTransform) {
         pageLabel.transform = transform
     }
-
-//    public func setPageImage(image: UIImage) {
-//        pageImage.image = image
-//    }
-
-    public func hideDoneButton() {
-        doneButton.isHidden = true
+    
+    public func hideContinueButton() {
+        continueButton.isHidden = true
     }
-
+    
     public func hideSkipButton() {
         skipButton.isHidden = true
     }
-
+    
+    //MARK: - Constraints
     private func setConstraints() {
         NSLayoutConstraint.activate([
             pageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 21),
             pageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -21),
-            pageLabel.bottomAnchor.constraint(equalTo: doneButton.topAnchor, constant: -72),
+            pageLabel.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -72),
             pageLabel.heightAnchor.constraint(equalToConstant: 144),
             
-            skipButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            skipButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -5),
             skipButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             skipButton.widthAnchor.constraint(equalToConstant: 100),
             skipButton.heightAnchor.constraint(equalToConstant: 30),
-
-            doneButton.bottomAnchor.constraint(equalTo: skipButton.topAnchor, constant: -12),
-            doneButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            doneButton.widthAnchor.constraint(equalToConstant: 193),
-            doneButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            continueButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -5),
+            continueButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            continueButton.widthAnchor.constraint(equalToConstant: 193),
+            continueButton.heightAnchor.constraint(equalToConstant: 44),
         ])
     }
 }
