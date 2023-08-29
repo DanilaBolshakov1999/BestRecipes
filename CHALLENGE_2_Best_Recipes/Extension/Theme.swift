@@ -8,9 +8,10 @@
 import UIKit
 
 enum Theme {
+    
     //MARK: Images
     static let backgroundImageFirst = "firstImage"
-    
+    static let fishRecipeDetail = "fishRecipeDetail"
     
     //MARK: Font
     enum Fonts {
@@ -40,5 +41,9 @@ enum Theme {
     static let profile = "Profile"
     static let favorite = "Favorites"
     
-    
+    //MARK: Cell Identifier
+    static let popular = "PopularCollectionViewCell"
+    static let instructions = "InstructionsCollectionViewCell"
+    static let ingredients = "IngredientsCollectionViewCell"
+    static let header = "HeaderSupplementaryView"
 }
