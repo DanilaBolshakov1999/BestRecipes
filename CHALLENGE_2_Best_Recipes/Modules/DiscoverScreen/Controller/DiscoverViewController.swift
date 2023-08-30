@@ -15,7 +15,7 @@ final class DiscoverViewController: UIViewController {
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.text = "Saved recipes"
-        titleLabel.font = UIFont(name: Theme.Fonts.extraBoldFont, size: 24)
+        titleLabel.font = UIFont(name: Theme.Fonts.boldFont, size: 24)
         titleLabel.textAlignment = .left
         return titleLabel
     }()

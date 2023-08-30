@@ -56,7 +56,7 @@ class SavedDishCollectionCell: UICollectionViewCell {
     
     private let dishTitle: UILabel = {
         let dishTitle = UILabel()
-        dishTitle.font = UIFont(name: Theme.Fonts.semiBoldFont, size: 16)
+        dishTitle.font = UIFont(name: Theme.Fonts.appFont, size: 16)
         dishTitle.textColor = .purpleText
         dishTitle.numberOfLines = 0
         dishTitle.lineBreakMode = .byWordWrapping
