@@ -12,8 +12,27 @@ final class SeeAllViewController: UIViewController {
     
     //  MARK: - UI
     
-    private let trendingCellIdentifier = "trendingCellID"
-    private var trendingNowCollectoinView: UICollectionView!
+    private lazy var trendingNowCollectoinView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.backgroundColor = .white
+        return collectionView
+    }()
+    
+    private lazy var backButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(named: "BackArrow"), style: .done, target: self, action: #selector(backButtonTapped))
+        button.tintColor = .black
+        return button
+    }()
+    
+    private lazy var moreButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(named: "More"), style: .plain, target: self, action: #selector(moreButtonTapped))
+        button.tintColor = .black
+        return button
+    }()
     
     //MARK: - Life Cycle
     
@@ -25,22 +44,10 @@ final class SeeAllViewController: UIViewController {
     // MARK: - UI Setup
     
     private func setupUI() {
-        setupCollectionView()
         setupNavigationBar()
-    }
-    
-    private func setupCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        trendingNowCollectoinView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        trendingNowCollectoinView.register(SeeAllTrendingCell.self, forCellWithReuseIdentifier: trendingCellIdentifier)
-        trendingNowCollectoinView.dataSource = self
-        trendingNowCollectoinView.delegate = self
-        trendingNowCollectoinView.backgroundColor = .white
-        
-        view.addSubview(trendingNowCollectoinView)
-        trendingNowCollectoinView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        addViews()
+        registerCells()
+        setConstrains()
     }
     
     private func setupNavigationBar() {
@@ -52,19 +59,14 @@ final class SeeAllViewController: UIViewController {
             .foregroundColor: UIColor(named: "purpleText") ?? .black
         ]
         
-        let backButton = UIBarButtonItem(image: UIImage(named: "BackArrow"), style: .done, target: self, action: #selector(backButtonTapped))
-        backButton.tintColor = .black
         navigationItem.leftBarButtonItem = backButton
-        
-        let moreButton = UIBarButtonItem(image: UIImage(named: "More"), style: .plain, target: self, action: #selector(moreButtonTapped))
-        moreButton.tintColor = .black
         navigationItem.rightBarButtonItem = moreButton
         
         navigationController?.navigationBar.standardAppearance = navigationAppearance
     }
     
     @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.pushViewController(RecipeViewControllerScreen(), animated: true)
     }
     
     @objc private func moreButtonTapped() {
@@ -73,20 +75,38 @@ final class SeeAllViewController: UIViewController {
     
 }
 
+extension SeeAllViewController {
+    
+    private func addViews() {
+        view.addSubview(trendingNowCollectoinView)
+    }
+    
+    private func setConstrains() {
+        trendingNowCollectoinView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private func registerCells() {
+        trendingNowCollectoinView.register(SeeAllTrendingCell.self, forCellWithReuseIdentifier: Theme.trending)
+    }
+}
+
 extension SeeAllViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: trendingCellIdentifier, for: indexPath) as! SeeAllTrendingCell
+        guard let trendingCell = collectionView.dequeueReusableCell(withReuseIdentifier: Theme.trending, for: indexPath) as? SeeAllTrendingCell else { return UICollectionViewCell() }
         
         if let dishImage = UIImage(named: "dishOne") {
-            cell.configureCollectionCell(with: dishImage, describtion: "How to make yam\n& vegetable sauce at home", ingredients: "9 Ingredients", cookingTime: "25 min", rating: "5,0")
+            trendingCell.configureCollectionCell(with: dishImage, describtion: "How to make yam\n& vegetable sauce at home", ingredients: "9 Ingredients", cookingTime: "25 min", rating: "5,0")
         }
         
-        return cell
+        return trendingCell
     }
+    
 }
 
 extension SeeAllViewController: UICollectionViewDelegateFlowLayout {
