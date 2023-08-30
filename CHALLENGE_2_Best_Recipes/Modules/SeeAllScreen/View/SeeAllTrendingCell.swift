@@ -94,7 +94,7 @@ extension SeeAllTrendingCell {
         applyBlurEffect(to: ratingOfDishStack)
     }
     
-    fileprivate func applyBlurEffect(to view: UIView) {
+    private func applyBlurEffect(to view: UIView) {
         let blurEffect = UIBlurEffect(style: .light)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = view.bounds

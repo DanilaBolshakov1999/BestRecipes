@@ -23,13 +23,23 @@ final class SeeAllViewController: UIViewController {
     }()
     
     private lazy var backButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(named: "BackArrow"), style: .done, target: self, action: #selector(backButtonTapped))
+        let button = UIBarButtonItem(
+            image: UIImage(named: "BackArrow"),
+            style: .done,
+            target: self,
+            action: #selector(backButtonTapped)
+        )
         button.tintColor = .black
         return button
     }()
     
     private lazy var moreButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(named: "More"), style: .plain, target: self, action: #selector(moreButtonTapped))
+        let button = UIBarButtonItem(
+            image: UIImage(named: "More"),
+            style: .plain,
+            target: self,
+            action: #selector(moreButtonTapped)
+        )
         button.tintColor = .black
         return button
     }()
@@ -100,9 +110,9 @@ extension SeeAllViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let trendingCell = collectionView.dequeueReusableCell(withReuseIdentifier: Theme.trending, for: indexPath) as? SeeAllTrendingCell else { return UICollectionViewCell() }
         
-        if let dishImage = UIImage(named: "dishOne") {
-            trendingCell.configureCollectionCell(with: dishImage, describtion: "vegetable sauce at home", ingredients: "9 Ingredients", cookingTime: 25, rating: 5.0)
-        }
+        guard let dishImage = UIImage(named: "dishOne") else { return UICollectionViewCell() }
+        
+        trendingCell.configureCollectionCell(with: dishImage, describtion: "vegetable sauce at home", ingredients: "9 Ingredients", cookingTime: 25, rating: 5.0)
         
         return trendingCell
     }
@@ -110,9 +120,8 @@ extension SeeAllViewController: UICollectionViewDataSource {
 }
 
 extension SeeAllViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width - 20, height: 200)
     }
 }
-
-
