@@ -46,5 +46,5 @@ enum Theme {
     static let instructions = "InstructionsCollectionViewCell"
     static let ingredients = "IngredientsCollectionViewCell"
     static let header = "HeaderSupplementaryView"
-    static let trending = "trendingCollectionViewCell"
+    static let trending = "TrendingCollectionViewCell"
 }

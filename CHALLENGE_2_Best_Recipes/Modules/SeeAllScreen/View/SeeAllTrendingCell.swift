@@ -46,11 +46,12 @@ class SeeAllTrendingCell: UICollectionViewCell {
         return UILabel(textColor: .purpleText ?? .white, font: UIFont(name: Theme.Fonts.appFont, size: 16) ?? .systemFont(ofSize: 16))
     }()
     
-    func configureCollectionCell(with image: UIImage, describtion: String, ingredients: String, cookingTime: String, rating: String) {
+    func configureCollectionCell(with image: UIImage, describtion: String, ingredients: String, cookingTime: Int, rating: Double) {
+        let formattedRating = String(format: "%.1f", rating).replacingOccurrences(of: ".", with: ",")
         backGroundDishImage.image = image
-        describtionOfDishLabel.text = describtion
+        describtionOfDishLabel.text = "How to make yam\n& \(describtion)"
         timeAndIngredientsLabel.text = "\(ingredients) | \(cookingTime)"
-        markOfDishLabel.text = rating
+        markOfDishLabel.text = formattedRating
         ratingOfDishStack.addArrangedSubview(starImageView)
         ratingOfDishStack.addArrangedSubview(markOfDishLabel)
         

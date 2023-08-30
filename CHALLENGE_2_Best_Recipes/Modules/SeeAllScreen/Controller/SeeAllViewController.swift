@@ -55,7 +55,7 @@ final class SeeAllViewController: UIViewController {
         
         let navigationAppearance = UINavigationBarAppearance()
         navigationAppearance.titleTextAttributes = [
-            .font: UIFont.systemFont(ofSize: 25, weight: .bold),
+            .font: UIFont(name: Theme.Fonts.semiBoldFont, size: 25) ?? UIFont.systemFont(ofSize: 25, weight: .bold),
             .foregroundColor: UIColor(named: "purpleText") ?? .black
         ]
         
@@ -101,7 +101,7 @@ extension SeeAllViewController: UICollectionViewDataSource {
         guard let trendingCell = collectionView.dequeueReusableCell(withReuseIdentifier: Theme.trending, for: indexPath) as? SeeAllTrendingCell else { return UICollectionViewCell() }
         
         if let dishImage = UIImage(named: "dishOne") {
-            trendingCell.configureCollectionCell(with: dishImage, describtion: "How to make yam\n& vegetable sauce at home", ingredients: "9 Ingredients", cookingTime: "25 min", rating: "5,0")
+            trendingCell.configureCollectionCell(with: dishImage, describtion: "vegetable sauce at home", ingredients: "9 Ingredients", cookingTime: 25, rating: 5.0)
         }
         
         return trendingCell
