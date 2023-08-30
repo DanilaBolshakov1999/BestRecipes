@@ -11,15 +11,7 @@ import SnapKit
 final class DiscoverViewController: UIViewController {
     
     //MARK: - UI
-    
-    private let titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.text = "Saved recipes"
-        titleLabel.font = UIFont(name: Theme.Fonts.boldFont, size: 24)
-        titleLabel.textAlignment = .left
-        return titleLabel
-    }()
-    
+        
     private lazy var savedDishesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -43,26 +35,31 @@ final class DiscoverViewController: UIViewController {
 extension DiscoverViewController {
     
     private func setUpUI() {
-        view.backgroundColor = .white
+        setNavigationbar()
         addSubviews()
         setConstraints()
         registerCells()
     }
     
+    private func setNavigationbar() {
+        title = "Saved Recipes"
+        let navigationAppearance = UINavigationBarAppearance()
+        navigationAppearance.titleTextAttributes = [
+            .font: UIFont(name: Theme.Fonts.semiBoldFont, size: 25) ?? UIFont.systemFont(ofSize: 25, weight: .bold),
+            .foregroundColor: UIColor(named: "purpleText") ?? .black
+        ]
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.standardAppearance = navigationAppearance
+    }
+    
     private func addSubviews() {
-        view.addSubview(titleLabel)
         view.addSubview(savedDishesCollectionView)
     }
     
     private func setConstraints() {
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(-30)
-            make.leading.equalToSuperview().inset(20)
-        }
-        
         savedDishesCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(20)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.top.leading.trailing.bottom.equalToSuperview()
         }
     }
     
