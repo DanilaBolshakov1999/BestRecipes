@@ -10,53 +10,97 @@ import SnapKit
 
 final class SeeAllViewController: UIViewController {
     
-    private let trendingCellID = "trendingCellID"
+    //  MARK: - UI
     
-    //  MARK: - UI Elements
+    private lazy var trendingNowCollectoinView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.backgroundColor = .white
+        return collectionView
+    }()
     
-    private var collectionView: UICollectionView!
+    private lazy var backButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            image: UIImage(named: "BackArrow"),
+            style: .done,
+            target: self,
+            action: #selector(backButtonTapped)
+        )
+        button.tintColor = .black
+        return button
+    }()
     
-    // MARK: - LifeCycle Methods
+    private lazy var moreButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            image: UIImage(named: "More"),
+            style: .plain,
+            target: self,
+            action: #selector(moreButtonTapped)
+        )
+        button.tintColor = .black
+        return button
+    }()
     
+    //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setUpView()
-        
+        setupUI()
     }
     
-    //  MARK: - Configure UI
+    // MARK: - UI Setup
     
-    
-    private func setUpView() {
-        
-        let fontDescriptor = UIFontDescriptor(name: "Poppins", size: 24).withSymbolicTraits(.traitBold)!
-        let customFont = UIFont(descriptor: fontDescriptor, size: 24)
-        
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: customFont]
-        self.title = "Trending Now"
-        
-        setUpCollectionView()
+    private func setupUI() {
+        setupNavigationBar()
+        addViews()
+        registerCells()
+        setConstrains()
     }
     
-    private func setUpCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(TrendingCell.self, forCellWithReuseIdentifier: trendingCellID)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.backgroundColor = .white
+    private func setupNavigationBar() {
+        title = "Trending Now"
         
-        view.addSubview(collectionView)
-        collectionView.snp.makeConstraints { make in
+        let navigationAppearance = UINavigationBarAppearance()
+        navigationAppearance.titleTextAttributes = [
+            .font: UIFont(name: Theme.Fonts.semiBoldFont, size: 25) ?? UIFont.systemFont(ofSize: 25, weight: .bold),
+            .foregroundColor: UIColor(named: "purpleText") ?? .black
+        ]
+        
+        navigationItem.leftBarButtonItem = backButton
+        navigationItem.rightBarButtonItem = moreButton
+        
+        navigationController?.navigationBar.standardAppearance = navigationAppearance
+    }
+    
+    @objc private func backButtonTapped() {
+        navigationController?.pushViewController(RecipeViewControllerScreen(), animated: true)
+    }
+    
+    @objc private func moreButtonTapped() {
+        // Need Action
+    }
+    
+}
+
+extension SeeAllViewController {
+    
+    private func addViews() {
+        view.addSubview(trendingNowCollectoinView)
+    }
+    
+    private func setConstrains() {
+        trendingNowCollectoinView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-       
+    
+    private func registerCells() {
+        trendingNowCollectoinView.register(SeeAllTrendingCell.self, forCellWithReuseIdentifier: Theme.trending)
+    }
 }
-
-// MARK: - UICollectionViewDataSource
 
 extension SeeAllViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -64,36 +108,20 @@ extension SeeAllViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: trendingCellID, for: indexPath) as! TrendingCell
+        guard let trendingCell = collectionView.dequeueReusableCell(withReuseIdentifier: Theme.trending, for: indexPath) as? SeeAllTrendingCell else { return UICollectionViewCell() }
         
-        if let img = UIImage(named: "dishOne") {
-            cell.configure(with: img, describtion: "How to make yam\n& vegetable sauce at home", ingredients: "9 Ingredients", cookingTime: "25 min", rating: "5,0")
-        }
+        guard let dishImage = UIImage(named: "dishOne") else { return UICollectionViewCell() }
         
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected row: \(indexPath.row)")
+        trendingCell.configureCollectionCell(with: dishImage, describtion: "vegetable sauce at home", ingredients: "9 Ingredients", cookingTime: 25, rating: 5.0)
+        
+        return trendingCell
     }
     
 }
-
-// MARK: - UICollectionViewDelegateFlowLayout
 
 extension SeeAllViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width - 20, height: 200)
     }
-    
-    
 }
-
-
-
-
-
-
-
-

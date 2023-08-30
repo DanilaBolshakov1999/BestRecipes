@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		169BA6922A9F4F3E00C0AB4B /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169BA6912A9F4F3E00C0AB4B /* UILabel+Extension.swift */; };
 		16FA368D2A9C6DC400C9917C /* SeeAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA368C2A9C6DC400C9917C /* SeeAllViewController.swift */; };
-		16FA36922A9C739F00C9917C /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36912A9C739F00C9917C /* TrendingCell.swift */; };
+		16FA36922A9C739F00C9917C /* SeeAllTrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36912A9C739F00C9917C /* SeeAllTrendingCell.swift */; };
 		16FA36942A9C935A00C9917C /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36932A9C935A00C9917C /* UIFont + Extension.swift */; };
 		37DFC3B72A9BA5E000C4951B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3B62A9BA5E000C4951B /* MainViewController.swift */; };
 		37DFC3BE2A9BA6CB00C4951B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3BD2A9BA6CB00C4951B /* ProfileViewController.swift */; };
@@ -49,8 +50,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		169BA6912A9F4F3E00C0AB4B /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		16FA368C2A9C6DC400C9917C /* SeeAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllViewController.swift; sourceTree = "<group>"; };
-		16FA36912A9C739F00C9917C /* TrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
+		16FA36912A9C739F00C9917C /* SeeAllTrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllTrendingCell.swift; sourceTree = "<group>"; };
 		16FA36932A9C935A00C9917C /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		37DFC3B62A9BA5E000C4951B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		37DFC3BD2A9BA6CB00C4951B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -116,7 +118,7 @@
 		16FA368E2A9C734500C9917C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				16FA36912A9C739F00C9917C /* TrendingCell.swift */,
+				16FA36912A9C739F00C9917C /* SeeAllTrendingCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -305,6 +307,7 @@
 				44E53FC92A9A91CC00B6BBBE /* UIColor+Extension.swift */,
 				37DFC3C52A9BAED100C4951B /* UIViewController+Utils.swift */,
 				16FA36932A9C935A00C9917C /* UIFont + Extension.swift */,
+				169BA6912A9F4F3E00C0AB4B /* UILabel+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				44A877F02A9A880300241ED3 /* AppDelegate.swift in Sources */,
 				44A877F22A9A880300241ED3 /* SceneDelegate.swift in Sources */,
 				16FA368D2A9C6DC400C9917C /* SeeAllViewController.swift in Sources */,
+				169BA6922A9F4F3E00C0AB4B /* UILabel+Extension.swift in Sources */,
 				37DFC3C62A9BAED100C4951B /* UIViewController+Utils.swift in Sources */,
 				37DFC3C42A9BA6FD00C4951B /* HomeViewController.swift in Sources */,
 				444456E12A9AA042003BA976 /* Theme.swift in Sources */,
