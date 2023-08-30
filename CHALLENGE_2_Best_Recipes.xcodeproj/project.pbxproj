@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		169BA6982A9F6B1D00C0AB4B /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169BA6972A9F6B1D00C0AB4B /* DiscoverViewController.swift */; };
 		16FA368D2A9C6DC400C9917C /* SeeAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA368C2A9C6DC400C9917C /* SeeAllViewController.swift */; };
 		16FA36922A9C739F00C9917C /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36912A9C739F00C9917C /* TrendingCell.swift */; };
 		16FA36942A9C935A00C9917C /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36932A9C935A00C9917C /* UIFont + Extension.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		169BA6972A9F6B1D00C0AB4B /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		16FA368C2A9C6DC400C9917C /* SeeAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllViewController.swift; sourceTree = "<group>"; };
 		16FA36912A9C739F00C9917C /* TrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
 		16FA36932A9C935A00C9917C /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
@@ -99,6 +101,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		169BA6932A9F6AD100C0AB4B /* DiscoverScreen */ = {
+			isa = PBXGroup;
+			children = (
+				169BA6962A9F6B0800C0AB4B /* Model */,
+				169BA6952A9F6B0000C0AB4B /* View */,
+				169BA6942A9F6AF700C0AB4B /* Controller */,
+			);
+			path = DiscoverScreen;
+			sourceTree = "<group>";
+		};
+		169BA6942A9F6AF700C0AB4B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				169BA6972A9F6B1D00C0AB4B /* DiscoverViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		169BA6952A9F6B0000C0AB4B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		169BA6962A9F6B0800C0AB4B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		16FA368B2A9C6DA100C9917C /* SeeAllScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				444457052A9DC9CF003BA976 /* RecipeViewControllerScreen */,
+				169BA6932A9F6AD100C0AB4B /* DiscoverScreen */,
 				16FA368B2A9C6DA100C9917C /* SeeAllScreen */,
 				37DFC3BC2A9BA6AA00C4951B /* ProfileScreen */,
 				37DFC3BB2A9BA66700C4951B /* BellScreen */,
@@ -403,6 +438,7 @@
 				44A877F42A9A880300241ED3 /* OnboardingFirstViewController.swift in Sources */,
 				444457072A9DCA96003BA976 /* RecipeViewControllerScreen.swift in Sources */,
 				37DFC3C22A9BA6F100C4951B /* FavoriteViewController.swift in Sources */,
+				169BA6982A9F6B1D00C0AB4B /* DiscoverViewController.swift in Sources */,
 				44A877F02A9A880300241ED3 /* AppDelegate.swift in Sources */,
 				44A877F22A9A880300241ED3 /* SceneDelegate.swift in Sources */,
 				16FA368D2A9C6DC400C9917C /* SeeAllViewController.swift in Sources */,
