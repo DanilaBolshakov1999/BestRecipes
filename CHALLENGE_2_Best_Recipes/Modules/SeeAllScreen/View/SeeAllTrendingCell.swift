@@ -35,36 +35,15 @@ class SeeAllTrendingCell: UICollectionViewCell {
     }()
     
     private let markOfDishLabel: UILabel = {
-        let markOfDishLabel = UILabel()
-        markOfDishLabel.text = ""
-        markOfDishLabel.textColor = .purpleText
-        markOfDishLabel.font = .poppins20()
-        markOfDishLabel.numberOfLines = 0
-        markOfDishLabel.lineBreakMode = .byWordWrapping
-        markOfDishLabel.textAlignment = .left
-        return markOfDishLabel
+        return UILabel(textColor: .purpleText ?? .white, font: UIFont(name: Theme.Fonts.appFont, size: 20) ?? .systemFont(ofSize: 20))
     }()
     
     private let describtionOfDishLabel: UILabel = {
-        let describtionOfDishLabel = UILabel()
-        describtionOfDishLabel.text = ""
-        describtionOfDishLabel.textColor = .purpleText
-        describtionOfDishLabel.font = .poppins16()
-        describtionOfDishLabel.numberOfLines = 0
-        describtionOfDishLabel.lineBreakMode = .byWordWrapping
-        describtionOfDishLabel.textAlignment = .left
-        return describtionOfDishLabel
+        return UILabel(textColor: .purpleText ?? .white, font: UIFont(name: Theme.Fonts.extraBoldFont, size: 16) ?? .systemFont(ofSize: 16))
     }()
     
     private let timeAndIngredientsLabel: UILabel = {
-        let timeAndIngredientsLabel = UILabel()
-        timeAndIngredientsLabel.text = ""
-        timeAndIngredientsLabel.textColor = .purpleText
-        timeAndIngredientsLabel.font = .poppins16()
-        timeAndIngredientsLabel.numberOfLines = 0
-        timeAndIngredientsLabel.lineBreakMode = .byWordWrapping
-        timeAndIngredientsLabel.textAlignment = .left
-        return timeAndIngredientsLabel
+        return UILabel(textColor: .purpleText ?? .white, font: UIFont(name: Theme.Fonts.appFont, size: 16) ?? .systemFont(ofSize: 16))
     }()
     
     func configureCollectionCell(with image: UIImage, describtion: String, ingredients: String, cookingTime: String, rating: String) {
@@ -75,29 +54,36 @@ class SeeAllTrendingCell: UICollectionViewCell {
         ratingOfDishStack.addArrangedSubview(starImageView)
         ratingOfDishStack.addArrangedSubview(markOfDishLabel)
         
-        self.setUpCell()
+        addCellSubViews()
+        setCellConstrains()
     }
     
-    private func setUpCell() {
-        
+}
+
+extension SeeAllTrendingCell {
+    
+    private func addCellSubViews() {
         addSubview(backGroundDishImage)
+        addSubview(timeAndIngredientsLabel)
+        addSubview(describtionOfDishLabel)
+        addSubview(ratingOfDishStack)
+    }
+    
+    private func setCellConstrains() {
         backGroundDishImage.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        addSubview(timeAndIngredientsLabel)
         timeAndIngredientsLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(10)
         }
         
-        addSubview(describtionOfDishLabel)
         describtionOfDishLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
             make.bottom.equalTo(timeAndIngredientsLabel).inset(25)
         }
         
-        addSubview(ratingOfDishStack)
         ratingOfDishStack.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(10)
             make.leading.equalToSuperview().inset(20)
@@ -105,10 +91,9 @@ class SeeAllTrendingCell: UICollectionViewCell {
             make.width.equalTo(68)
         }
         applyBlurEffect(to: ratingOfDishStack)
-        
     }
     
-    private func applyBlurEffect(to view: UIView) {
+    fileprivate func applyBlurEffect(to view: UIView) {
         let blurEffect = UIBlurEffect(style: .light)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = view.bounds
