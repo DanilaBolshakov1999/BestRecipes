@@ -15,7 +15,7 @@ final class DiscoverViewController: UIViewController {
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.text = "Saved recipes"
-        titleLabel.font = UIFont(name: Theme.Fonts.extraBoldFont, size: 36)
+        titleLabel.font = UIFont(name: Theme.Fonts.extraBoldFont, size: 24)
         titleLabel.textAlignment = .left
         return titleLabel
     }()
@@ -46,6 +46,7 @@ extension DiscoverViewController {
         view.backgroundColor = .white
         addSubviews()
         setConstraints()
+        registerCells()
     }
     
     private func addSubviews() {
@@ -55,7 +56,7 @@ extension DiscoverViewController {
     
     private func setConstraints() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(40)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(-30)
             make.leading.equalToSuperview().inset(20)
         }
         
@@ -63,6 +64,10 @@ extension DiscoverViewController {
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.leading.trailing.bottom.equalToSuperview()
         }
+    }
+    
+    private func registerCells() {
+        savedDishesCollectionView.register(SavedDishCollectionCell.self, forCellWithReuseIdentifier: Theme.savedDish)
     }
     
 }
@@ -76,6 +81,10 @@ extension DiscoverViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let savedDishCell = collectionView.dequeueReusableCell(withReuseIdentifier: Theme.savedDish, for: indexPath) as? SavedDishCollectionCell else { return UICollectionViewCell() }
         
+        if let img = UIImage(named: "dishOne") {
+            savedDishCell.configure(with: img, title: "How to make sharwama at home", rating: "5,0")
+        }
+        
         
         return savedDishCell
     }
@@ -85,6 +94,6 @@ extension DiscoverViewController: UICollectionViewDataSource {
 extension DiscoverViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width - 20, height: 200)
+        return CGSize(width: collectionView.frame.width - 20, height: 282)
     }
 }
