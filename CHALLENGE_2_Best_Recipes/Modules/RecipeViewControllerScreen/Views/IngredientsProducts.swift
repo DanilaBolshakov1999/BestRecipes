@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IngredientsProducts: UITableViewCell {
+class MessageCell: UITableViewCell {
     
     //MARK: - Element
     
@@ -24,14 +24,14 @@ class IngredientsProducts: UITableViewCell {
     
     private lazy var leftImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: K.youAvatar)
+        view.image = UIImage(named: "ingredientsFive")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
    
     private lazy var rightImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: K.meAvatar)
+        view.image = UIImage(named: "ingredientsFive")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -54,6 +54,7 @@ class IngredientsProducts: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         messageView.layoutIfNeeded()
+        messageView.frame = contentView.bounds
         messageView.layer.cornerRadius = messageView.frame.size.height / 4
     }
     //MARK: - Init
@@ -75,13 +76,14 @@ class IngredientsProducts: UITableViewCell {
         case .me:
             leftImageView.isHidden = true
             rightImageView.isHidden = false
-            messageView.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
-            messageLabel.textColor = UIColor(named: K.BrandColors.purple)
+            messageView.backgroundColor = UIColor(named: Theme.brownColor)
+            messageLabel.textColor = UIColor(named: Theme.brownColor)
+            
         case .you:
-            leftImageView.isHidden = false
-            rightImageView.isHidden = true
-            messageView.backgroundColor = UIColor(named: K.BrandColors.purple)
-            messageLabel.textColor = UIColor(named: K.BrandColors.lightPurple)
+            leftImageView.isHidden = true
+            rightImageView.isHidden = false
+            messageView.backgroundColor = UIColor(named: Theme.brownColor)
+            messageLabel.textColor = UIColor(named: Theme.brownColor)
         }
         messageLabel.text = model.body
     }
@@ -98,7 +100,7 @@ class IngredientsProducts: UITableViewCell {
 
 //MARK: - Setup Constrains
 
-extension IngredientsProducts {
+extension MessageCell {
     private func setupConstrains() {
         mainStackViews.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(10)

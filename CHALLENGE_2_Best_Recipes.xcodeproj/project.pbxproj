@@ -38,6 +38,9 @@
 		444457072A9DCA96003BA976 /* RecipeViewControllerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444457062A9DCA96003BA976 /* RecipeViewControllerScreen.swift */; };
 		4444573E2A9E62F9003BA976 /* UIButton + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4444573D2A9E62F9003BA976 /* UIButton + Extention.swift */; };
 		444457402A9E9DD5003BA976 /* UILabel + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4444573F2A9E9DD5003BA976 /* UILabel + Extention.swift */; };
+		444457442A9EC3FA003BA976 /* IngredientsProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444457432A9EC3FA003BA976 /* IngredientsProducts.swift */; };
+		444457472A9F25F9003BA976 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444457462A9F25F9003BA976 /* Message.swift */; };
+		444457542A9F85C5003BA976 /* UITextView + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444457532A9F85C5003BA976 /* UITextView + Extention.swift */; };
 		44A877F02A9A880300241ED3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A877EF2A9A880300241ED3 /* AppDelegate.swift */; };
 		44A877F22A9A880300241ED3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A877F12A9A880300241ED3 /* SceneDelegate.swift */; };
 		44A877F42A9A880300241ED3 /* OnboardingFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A877F32A9A880300241ED3 /* OnboardingFirstViewController.swift */; };
@@ -79,6 +82,9 @@
 		444457062A9DCA96003BA976 /* RecipeViewControllerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewControllerScreen.swift; sourceTree = "<group>"; };
 		4444573D2A9E62F9003BA976 /* UIButton + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extention.swift"; sourceTree = "<group>"; };
 		4444573F2A9E9DD5003BA976 /* UILabel + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extention.swift"; sourceTree = "<group>"; };
+		444457432A9EC3FA003BA976 /* IngredientsProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsProducts.swift; sourceTree = "<group>"; };
+		444457462A9F25F9003BA976 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		444457532A9F85C5003BA976 /* UITextView + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView + Extention.swift"; sourceTree = "<group>"; };
 		44A877EC2A9A880300241ED3 /* CHALLENGE_2_Best_Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHALLENGE_2_Best_Recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44A877EF2A9A880300241ED3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44A877F12A9A880300241ED3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +113,7 @@
 				16FA368F2A9C735200C9917C /* Model */,
 				16FA368E2A9C734500C9917C /* View */,
 				16FA36902A9C735800C9917C /* Controller */,
+				37DFC3BC2A9BA6AA00C4951B /* ProfileScreen */,
 			);
 			path = SeeAllScreen;
 			sourceTree = "<group>";
@@ -227,9 +234,35 @@
 		444457052A9DC9CF003BA976 /* RecipeViewControllerScreen */ = {
 			isa = PBXGroup;
 			children = (
-				444457062A9DCA96003BA976 /* RecipeViewControllerScreen.swift */,
+				444457452A9F24D2003BA976 /* Model */,
+				444457412A9EC3BF003BA976 /* Views */,
+				444457422A9EC3EB003BA976 /* Controllers */,
 			);
 			path = RecipeViewControllerScreen;
+			sourceTree = "<group>";
+		};
+		444457412A9EC3BF003BA976 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				444457432A9EC3FA003BA976 /* IngredientsProducts.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		444457422A9EC3EB003BA976 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				444457062A9DCA96003BA976 /* RecipeViewControllerScreen.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		444457452A9F24D2003BA976 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				444457462A9F25F9003BA976 /* Message.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		44A877E32A9A880300241ED3 = {
@@ -275,7 +308,6 @@
 			children = (
 				444457052A9DC9CF003BA976 /* RecipeViewControllerScreen */,
 				16FA368B2A9C6DA100C9917C /* SeeAllScreen */,
-				37DFC3BC2A9BA6AA00C4951B /* ProfileScreen */,
 				37DFC3BB2A9BA66700C4951B /* BellScreen */,
 				37DFC3BA2A9BA65400C4951B /* FavoriteScreen */,
 				37DFC3B92A9BA64800C4951B /* HomeScreen */,
@@ -302,6 +334,7 @@
 				37DFC3C52A9BAED100C4951B /* UIViewController + Utils.swift */,
 				4444573D2A9E62F9003BA976 /* UIButton + Extention.swift */,
 				4444573F2A9E9DD5003BA976 /* UILabel + Extention.swift */,
+				444457532A9F85C5003BA976 /* UITextView + Extention.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -404,8 +437,10 @@
 				37DFC3B72A9BA5E000C4951B /* MainViewController.swift in Sources */,
 				37DFC3C02A9BA6D700C4951B /* BellViewController.swift in Sources */,
 				44A877F42A9A880300241ED3 /* OnboardingFirstViewController.swift in Sources */,
+				444457472A9F25F9003BA976 /* Message.swift in Sources */,
 				444457072A9DCA96003BA976 /* RecipeViewControllerScreen.swift in Sources */,
 				37DFC3C22A9BA6F100C4951B /* FavoriteViewController.swift in Sources */,
+				444457442A9EC3FA003BA976 /* IngredientsProducts.swift in Sources */,
 				44A877F02A9A880300241ED3 /* AppDelegate.swift in Sources */,
 				44A877F22A9A880300241ED3 /* SceneDelegate.swift in Sources */,
 				16FA368D2A9C6DC400C9917C /* SeeAllViewController.swift in Sources */,
@@ -416,6 +451,7 @@
 				444456E12A9AA042003BA976 /* Theme.swift in Sources */,
 				37DFC3BE2A9BA6CB00C4951B /* ProfileViewController.swift in Sources */,
 				16FA36922A9C739F00C9917C /* TrendingCell.swift in Sources */,
+				444457542A9F85C5003BA976 /* UITextView + Extention.swift in Sources */,
 				44E53FCA2A9A91CC00B6BBBE /* UIColor + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

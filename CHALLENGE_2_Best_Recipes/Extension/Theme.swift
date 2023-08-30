@@ -14,6 +14,14 @@ enum Theme {
     static let fishRecipeDetail = "fishRecipeDetail"
     static let videoScreen = "videoScreen"
     
+    //MARK: - cellIdentifier
+    static let cellIdentifier = "MessageCell"
+    
+    //MARK: - Color
+    static let redColor = "redColor"
+    static let brownColor = "brownColor"
+    static let whiteColor = "whiteColor"
+    
     //MARK: Font
     enum Fonts {
         static let appFont: String = "Poppins-Regular"
@@ -55,17 +63,23 @@ enum Theme {
     //MARK: Custom Text Filed
     static let textViewText = """
                         1. Place eggs in a saucepan and cover
-                            with cold water. Bring water to a
-                            boil andimmediately remove from heat.
-                            Cover and let eggs stand in hot water
-                            for 10 to 12 minutes. Remove from hot
-                            water, cool, peel, and chop.
+                        with cold water. Bring water to a
+                        boil andimmediately remove from heat.
+                        Cover and let eggs stand in hot water
+                        for 10 to 12 minutes. Remove from hot
+                        water, cool, peel, and chop.
                         2. Place chopped eggs in a bowl.
                         3. Add chopped tomatoes, corns, lettuce,
-                            and any other vegitable of your choice.
+                        and any other vegitable of your choice.
                         4. Stir in mayonnaise, green onion, and
-                            mustard. Season with paprika, salt, and
-                            pepper.
-                            Stir and serve on your favorite bread or crackers.
+                        mustard. Season with paprika, salt, and
+                        pepper.
+                        Stir and serve on your favorite bread or
+                        crackers.
+                        """
+    
+    static let mainView = """
+                        How to make Tasty Fish
+                        (point & Kill)
                         """
 }
