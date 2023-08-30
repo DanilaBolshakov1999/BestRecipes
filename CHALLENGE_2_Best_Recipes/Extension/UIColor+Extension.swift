@@ -11,4 +11,10 @@ extension UIColor {
     static let redButton = UIColor(named: "redColor")
     static let purpleText = UIColor(named: "whiteColor")
     static let yellowText = UIColor(named: "brownColor")
+    
+    static let activeIndicator = UIColor(named: "activeIndicator")
+    static let inactiveIndicator = UIColor(named: "inactiveIndicator")
+    
+    static let attributedTextColor = UIColor(named: "attributedTextColor")
+    
 }
