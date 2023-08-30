@@ -14,7 +14,7 @@ import SnapKit
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .purpleButton
+        
     }
 }
 
