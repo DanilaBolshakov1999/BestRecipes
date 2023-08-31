@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SeeAllTrendingCell: UICollectionViewCell {
+final class SeeAllTrendingCell: UICollectionViewCell {
     
     //  MARK: UI
     
