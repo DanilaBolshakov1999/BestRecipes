@@ -19,7 +19,14 @@ extension UILabel {
             self.lineBreakMode = lineBreakMode
             self.textAlignment = textAlignment
         }
-        
     
-    
+    convenience init(title: String, backgroundColor: UIColor?) {
+        self.init()
+        self.text = title
+        self.backgroundColor = backgroundColor
+        self.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle(rawValue: Theme.Fonts.appFont))
+        self.font = UIFont.systemFont(ofSize: 25)
+    }
 }
+
+
