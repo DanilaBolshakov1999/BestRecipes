@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class SeeAllViewController: UIViewController {
-    
+    #warning ("change me with actuat code + add 2 cell files")
     private let trendingCellID = "trendingCellID"
     
     //  MARK: - UI Elements
@@ -53,7 +53,6 @@ final class SeeAllViewController: UIViewController {
             make.edges.equalToSuperview()
         }
     }
-       
 }
 
 // MARK: - UICollectionViewDataSource
@@ -76,7 +75,6 @@ extension SeeAllViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Selected row: \(indexPath.row)")
     }
-    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -86,14 +84,4 @@ extension SeeAllViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width - 20, height: 200)
     }
-    
-    
 }
-
-
-
-
-
-
-
-

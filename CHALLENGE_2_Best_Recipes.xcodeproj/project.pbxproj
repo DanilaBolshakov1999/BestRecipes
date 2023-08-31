@@ -34,6 +34,7 @@
 		37DFC3EB2A9BB13100C4951B /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37DFC3D92A9BB13100C4951B /* Poppins-ExtraLight.ttf */; };
 		37DFC3ED2A9BE15100C4951B /* OnboardingScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3EC2A9BE15100C4951B /* OnboardingScreens.swift */; };
 		37DFC3EF2A9E8FD200C4951B /* InitialOnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3EE2A9E8FD200C4951B /* InitialOnboardingScreen.swift */; };
+		37EB05C02AA11D5B00AF33A5 /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36912A9C739F00C9917C /* TrendingCell.swift */; };
 		444456E12A9AA042003BA976 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444456E02A9AA042003BA976 /* Theme.swift */; };
 		444457042A9DC931003BA976 /* README_CHALLENGE_2.md in Resources */ = {isa = PBXBuildFile; fileRef = 444457032A9DC931003BA976 /* README_CHALLENGE_2.md */; };
 		44A877F02A9A880300241ED3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A877EF2A9A880300241ED3 /* AppDelegate.swift */; };
@@ -103,7 +104,6 @@
 		16FA368B2A9C6DA100C9917C /* SeeAllScreen */ = {
 			isa = PBXGroup;
 			children = (
-				16FA368F2A9C735200C9917C /* Model */,
 				16FA368E2A9C734500C9917C /* View */,
 				16FA36902A9C735800C9917C /* Controller */,
 			);
@@ -116,13 +116,6 @@
 				16FA36912A9C739F00C9917C /* TrendingCell.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		16FA368F2A9C735200C9917C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		16FA36902A9C735800C9917C /* Controller */ = {
@@ -159,13 +152,6 @@
 				37DFC3B62A9BA5E000C4951B /* MainViewController.swift */,
 			);
 			path = MainViewController;
-			sourceTree = "<group>";
-		};
-		37DFC3B82A9BA62E00C4951B /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		37DFC3B92A9BA64800C4951B /* HomeScreen */ = {
@@ -254,7 +240,6 @@
 			isa = PBXGroup;
 			children = (
 				37DFC3AD2A9BA22C00C4951B /* App */,
-				37DFC3B82A9BA62E00C4951B /* Model */,
 				44A878042A9A88F800241ED3 /* Modules */,
 				44E53FC82A9A91BC00B6BBBE /* Extension */,
 				44A878032A9A88D400241ED3 /* Resources */,
@@ -403,6 +388,7 @@
 			files = (
 				37DFC3B72A9BA5E000C4951B /* MainViewController.swift in Sources */,
 				37DFC3C02A9BA6D700C4951B /* BellViewController.swift in Sources */,
+				37EB05C02AA11D5B00AF33A5 /* TrendingCell.swift in Sources */,
 				44A877F42A9A880300241ED3 /* OnboardingViewController.swift in Sources */,
 				37DFC3C22A9BA6F100C4951B /* FavoriteViewController.swift in Sources */,
 				37DFC3ED2A9BE15100C4951B /* OnboardingScreens.swift in Sources */,

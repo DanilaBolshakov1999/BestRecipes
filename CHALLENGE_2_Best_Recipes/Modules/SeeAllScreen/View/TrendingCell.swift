@@ -8,7 +8,7 @@
 import UIKit
 
 class TrendingCell: UICollectionViewCell {
-    
+    #warning ("delete me")
     private let backGroundImage: UIImageView = {
         let img = UIImageView()
         
@@ -44,7 +44,7 @@ class TrendingCell: UICollectionViewCell {
         lbl.text = ""
         lbl.textColor = .purpleText
         
-        lbl.font = .poppins20()
+//        lbl.font = .poppins20()
         
         lbl.numberOfLines = 0
         lbl.lineBreakMode = .byWordWrapping
@@ -60,7 +60,7 @@ class TrendingCell: UICollectionViewCell {
         lbl.text = ""
         lbl.textColor = .purpleText
         
-        lbl.font = .poppins16()
+//        lbl.font = .poppins16()
         
         lbl.numberOfLines = 0
         lbl.lineBreakMode = .byWordWrapping
@@ -76,7 +76,7 @@ class TrendingCell: UICollectionViewCell {
         lbl.text = ""
         lbl.textColor = .purpleText
         
-        lbl.font = .poppins16()
+//        lbl.font = .poppins16()
         
         lbl.numberOfLines = 0
         lbl.lineBreakMode = .byWordWrapping
