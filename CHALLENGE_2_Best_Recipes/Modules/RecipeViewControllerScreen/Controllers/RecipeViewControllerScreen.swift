@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class RecipeViewControllerScreen: UIViewController {
+final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     
     //MARK: - Table View
     
@@ -20,15 +20,24 @@ final class RecipeViewControllerScreen: UIViewController {
     
     //MARK: - UI Private Properties + Extension
     
+    //MARK:  Label
     private var labelHeaderOne = UILabel(title: "Instructions", backgroundColor: .clear)
-    private var labelHeader = UITextView(title: Theme.textViewText, backgroundColor: .cyan)
-    private var labelHeaderTwo = UILabel(title: "Instructions", backgroundColor: .clear)
-
+    private var labelHeaderStack = UILabel(title: "Ingredients", backgroundColor: .clear)
+    private var labelHeaderStackItem = UILabel(title: "5 items", backgroundColor: .clear)
+    
+    //MARK:  Image
+    private var imageOne = UIImage(named: "ingredientsOne")
+    
+    //MARK:  Stack
+    private var stackMainView = UIStackView(backgroundColor: .clear)
+    private var stackViewHeader = UIStackView(ingredient: .clear)
+    private var stackViewOneCell = UIStackView(ingredient: .darkGray)
+    
     //MARK: - UI
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .brown
+        scrollView.backgroundColor = .cyan
         scrollView.contentSize = contentCize
         scrollView.frame = view.bounds
         return scrollView
@@ -36,17 +45,9 @@ final class RecipeViewControllerScreen: UIViewController {
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .clear
+        contentView.backgroundColor = .brown
         contentView.frame.size = contentCize
         return contentView
-    }()
-    
-    private let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .leading
-        stackView.spacing = 10
-        return stackView
     }()
     
     private lazy var mainLabel: UILabel = {
@@ -73,6 +74,14 @@ final class RecipeViewControllerScreen: UIViewController {
         return label
     }()
     
+    private lazy var textView: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 20)
+        textView.text = Theme.textViewText
+        textView.textColor = .black
+        textView.isScrollEnabled = false
+        return textView
+    }()
     
     //MARK: - Private Property
     
@@ -98,16 +107,27 @@ final class RecipeViewControllerScreen: UIViewController {
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         
+        //MARK: - Content Size
         scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + 1000)
         
+        //MARK:  Add Main View
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(stackView)
-        stackView.addArrangedSubview(mainLabel)
-        stackView.addArrangedSubview(imageView)
-        stackView.addArrangedSubview(labelHeaderOne)
-        stackView.addArrangedSubview(label)
-        stackView.addArrangedSubview(labelHeaderTwo)
+        contentView.addSubview(stackMainView)
+        
+        //MARK: - Stack Main View
+        stackMainView.addArrangedSubview(mainLabel)
+        stackMainView.addArrangedSubview(imageView)
+        stackMainView.addArrangedSubview(labelHeaderOne)
+        stackMainView.addArrangedSubview(textView)
+        stackMainView.addArrangedSubview(stackViewHeader)
+        stackMainView.addArrangedSubview(stackViewOneCell)
+        
+        //MARK: - Stack Label
+        stackViewHeader.addArrangedSubview(labelHeaderStack)
+        stackViewHeader.addArrangedSubview(labelHeaderStackItem)
+        
+        stackViewOneCell.addArrangedSubview(imageView)
     }
     
     //MARK: - Set Delegates
@@ -194,7 +214,7 @@ extension RecipeViewControllerScreen {
             make.edges.equalToSuperview()
         }
         
-        stackView.snp.makeConstraints { make in
+        stackMainView.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(contentView)
         }
         
@@ -210,12 +230,16 @@ extension RecipeViewControllerScreen {
             make.leading.trailing.equalToSuperview()
         }
         
-//        label.snp.makeConstraints { make in
-//            make.leading.trailing.equalToSuperview()
-//        }
-//
-//        labelHeaderTwo.snp.makeConstraints { make in
-//            make.leading.trailing.equalToSuperview()
-//        }
+        textView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+        }
+    
+        stackViewHeader.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        stackViewOneCell.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+        }
     }
 }
