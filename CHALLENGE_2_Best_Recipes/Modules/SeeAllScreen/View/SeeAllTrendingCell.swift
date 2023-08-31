@@ -55,13 +55,17 @@ class SeeAllTrendingCell: UICollectionViewCell {
         ratingOfDishStack.addArrangedSubview(starImageView)
         ratingOfDishStack.addArrangedSubview(markOfDishLabel)
         
-        addCellSubViews()
-        setCellConstrains()
+        setUpCell()
     }
     
 }
 
 extension SeeAllTrendingCell {
+    
+    private func setUpCell() {
+        addCellSubViews()
+        setCellConstrains()
+    }
     
     private func addCellSubViews() {
         addSubview(backGroundDishImage)

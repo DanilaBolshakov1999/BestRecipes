@@ -15,8 +15,6 @@ final class SeeAllViewController: UIViewController {
     private lazy var trendingNowCollectoinView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.dataSource = self
-        collectionView.delegate = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .white
         return collectionView
@@ -56,9 +54,24 @@ final class SeeAllViewController: UIViewController {
     private func setupUI() {
         setupNavigationBar()
         addViews()
+        setDelegates()
         registerCells()
         setConstrains()
     }
+    
+    //MARK: - @objc Private Func
+    
+    @objc private func backButtonTapped() {
+        navigationController?.pushViewController(RecipeViewControllerScreen(), animated: true)
+    }
+    
+    @objc private func moreButtonTapped() {
+        // Need Action
+    }
+    
+}
+
+extension SeeAllViewController {
     
     private func setupNavigationBar() {
         title = "Trending Now"
@@ -75,18 +88,6 @@ final class SeeAllViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = navigationAppearance
     }
     
-    @objc private func backButtonTapped() {
-        navigationController?.pushViewController(RecipeViewControllerScreen(), animated: true)
-    }
-    
-    @objc private func moreButtonTapped() {
-        // Need Action
-    }
-    
-}
-
-extension SeeAllViewController {
-    
     private func addViews() {
         view.addSubview(trendingNowCollectoinView)
     }
@@ -95,6 +96,11 @@ extension SeeAllViewController {
         trendingNowCollectoinView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    private func setDelegates() {
+        trendingNowCollectoinView.dataSource = self
+        trendingNowCollectoinView.delegate = self
     }
     
     private func registerCells() {
