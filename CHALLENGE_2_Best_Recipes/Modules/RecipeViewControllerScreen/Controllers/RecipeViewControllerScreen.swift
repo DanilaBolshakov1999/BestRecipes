@@ -26,10 +26,10 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     private var labelHeaderStackItem = UILabel(title: "5 items", backgroundColor: .clear)
     
     //MARK:  Image
-    private var imageOne = UIImage(named: "ingredientsOne")
+    //private var imageViewOne = UIImage(backgroundColor: Theme.moreSwipe)
     
     //MARK:  Stack
-    private var stackMainView = UIStackView(backgroundColor: .clear)
+    private var stackMainView = UIStackView(backgroundColor: .gray)
     private var stackViewHeader = UIStackView(ingredient: .clear)
     private var stackViewOneCell = UIStackView(ingredient: .darkGray)
     
@@ -61,7 +61,7 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: Theme.videoScreen)
+        image.image = UIImage(named: "Video")
         return image
     }()
     
@@ -82,7 +82,7 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
         textView.isScrollEnabled = false
         return textView
     }()
-    
+
     //MARK: - Private Property
     
     private var contentCize: CGSize {
@@ -127,7 +127,7 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
         stackViewHeader.addArrangedSubview(labelHeaderStack)
         stackViewHeader.addArrangedSubview(labelHeaderStackItem)
         
-        stackViewOneCell.addArrangedSubview(imageView)
+       // stackViewOneCell.addArrangedSubview(<#T##view: UIView##UIView#>)
     }
     
     //MARK: - Set Delegates

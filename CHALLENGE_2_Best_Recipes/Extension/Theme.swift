@@ -55,6 +55,7 @@ enum Theme {
     static let instructions = "InstructionsCollectionViewCell"
     static let ingredients = "IngredientsCollectionViewCell"
     static let header = "HeaderSupplementaryView"
+    static let trending = "TrendingCollectionViewCell"
     
     //MARK:  UINavBar
     static let backSwipe = "backSwipe"

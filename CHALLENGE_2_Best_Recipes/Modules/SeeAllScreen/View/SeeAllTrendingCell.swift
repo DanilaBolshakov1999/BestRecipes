@@ -35,15 +35,24 @@ final class SeeAllTrendingCell: UICollectionViewCell {
     }()
     
     private let markOfDishLabel: UILabel = {
-        return UILabel(textColor: .purpleText ?? .white, font: UIFont(name: Theme.Fonts.appFont, size: 20) ?? .systemFont(ofSize: 20))
+        let label = UILabel()
+        label.textColor = .purpleText ?? .white
+        label.font = UIFont(name: Theme.Fonts.appFont, size: 16) ?? .systemFont(ofSize: 16)
+        return label
     }()
-    
+
     private let describtionOfDishLabel: UILabel = {
-        return UILabel(textColor: .purpleText ?? .white, font: UIFont(name: Theme.Fonts.extraBoldFont, size: 16) ?? .systemFont(ofSize: 16))
+        let label = UILabel()
+        label.textColor = .purpleText ?? .white
+        label.font = UIFont(name: Theme.Fonts.appFont, size: 16) ?? .systemFont(ofSize: 16)
+        return label
     }()
     
     private let timeAndIngredientsLabel: UILabel = {
-        return UILabel(textColor: .purpleText ?? .white, font: UIFont(name: Theme.Fonts.appFont, size: 16) ?? .systemFont(ofSize: 16))
+        let label = UILabel()
+        label.textColor = .purpleText ?? .white
+        label.font = UIFont(name: Theme.Fonts.appFont, size: 16) ?? .systemFont(ofSize: 16)
+        return label
     }()
     
     func configureCollectionCell(with image: UIImage, describtion: String, ingredients: String, cookingTime: Int, rating: Double) {
