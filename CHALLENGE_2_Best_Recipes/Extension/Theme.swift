@@ -12,6 +12,8 @@ enum Theme {
     //MARK: Images
     static let backgroundImageFirst = "firstImage"
     static let fishRecipeDetail = "fishRecipeDetail"
+    static let more = "More"
+    static let star = "Star"
     
     //MARK: Font
     enum Fonts {

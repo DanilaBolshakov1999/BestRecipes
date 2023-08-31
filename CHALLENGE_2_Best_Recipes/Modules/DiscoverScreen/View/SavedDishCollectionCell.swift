@@ -26,7 +26,7 @@ class SavedDishCollectionCell: UICollectionViewCell {
     }()
     
     private let starImageView: UIImageView = {
-        let starImageView = UIImageView(image: UIImage(systemName: "star.fill"))
+        let starImageView = UIImageView(image: UIImage(named: Theme.star))
         starImageView.tintColor = .black
         starImageView.contentMode = .scaleAspectFit
         return starImageView
@@ -63,6 +63,19 @@ class SavedDishCollectionCell: UICollectionViewCell {
         return dishTitle
     }()
     
+    private lazy var moreButton: UIButton = { [weak self] in
+        guard let self = self else {
+            fatalError("Self is nil in moreButton SavedDishCollectionCell")
+        }
+        
+        let moreButton = UIButton(type: .system)
+        moreButton.setImage(UIImage(named: Theme.more), for: .normal)
+        moreButton.tintColor = .black
+        moreButton.addTarget(self, action: #selector(self.moreButtonTapped), for: .touchUpInside)
+        return moreButton
+    }()
+
+    
     public func configure(with image: UIImage, title: String, rating: String) {
         dishBackGroundImage.image = image
         dishTitle.text = title
@@ -73,6 +86,11 @@ class SavedDishCollectionCell: UICollectionViewCell {
         setUpCell()
     }
     
+    //  MARK: - @objc private Func
+    
+    @objc private func moreButtonTapped() {
+        print("moreButtonTapped taped")
+    }
     
 }
 
@@ -88,6 +106,7 @@ extension SavedDishCollectionCell {
         addSubview(ratingOfDishStack)
         addSubview(saveButton)
         addSubview(dishTitle)
+        addSubview(moreButton)
     }
     
     private func setUpConstrains() {
@@ -116,6 +135,11 @@ extension SavedDishCollectionCell {
         dishTitle.snp.makeConstraints { make in
             make.top.equalTo(dishBackGroundImage.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview()
+        }
+        
+        moreButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+            make.centerY.equalTo(dishTitle.snp.centerY)
         }
     }
     
