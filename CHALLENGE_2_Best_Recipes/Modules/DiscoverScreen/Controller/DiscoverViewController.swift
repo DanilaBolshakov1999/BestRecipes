@@ -15,8 +15,6 @@ final class DiscoverViewController: UIViewController {
     private lazy var savedDishesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.dataSource = self
-        collectionView.delegate = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .white
         return collectionView
@@ -34,6 +32,7 @@ final class DiscoverViewController: UIViewController {
     private func setUpUI() {
         setNavigationbar()
         addSubviews()
+        setDelegates()
         setConstraints()
         registerCells()
     }
@@ -56,6 +55,11 @@ extension DiscoverViewController {
     
     private func addSubviews() {
         view.addSubview(savedDishesCollectionView)
+    }
+    
+    private func setDelegates() {
+        savedDishesCollectionView.dataSource = self
+        savedDishesCollectionView.delegate = self
     }
     
     private func setConstraints() {
