@@ -29,10 +29,7 @@ final class DiscoverViewController: UIViewController {
         setUpUI()
     }
     
-    
-}
-
-extension DiscoverViewController {
+    //  MARK: - Set UI
     
     private func setUpUI() {
         setNavigationbar()
@@ -40,6 +37,10 @@ extension DiscoverViewController {
         setConstraints()
         registerCells()
     }
+    
+}
+
+extension DiscoverViewController {
     
     private func setNavigationbar() {
         title = "Saved Recipes"
