@@ -48,9 +48,8 @@ class SavedDishCollectionCell: UICollectionViewCell {
         saveButton.backgroundColor = .white
         saveButton.layer.cornerRadius = saveButton.frame.height / 2
         saveButton.clipsToBounds = true
-        let image = UIImage(named: Theme.favorite)
-        saveButton.setImage(image, for: .normal)
-        saveButton.tintColor = .red
+        let image = UIImage(named: Theme.favoritesActive)
+        saveButton.setBackgroundImage(image, for: .normal)
         return saveButton
     }()
     

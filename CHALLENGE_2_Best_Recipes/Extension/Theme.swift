@@ -40,6 +40,7 @@ enum Theme {
     static let home = "Home"
     static let profile = "Profile"
     static let favorite = "Favorites"
+    static let favoritesActive = "FavoritesActive"
     
     //MARK: Cell Identifier
     static let popular = "PopularCollectionViewCell"
