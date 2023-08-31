@@ -11,5 +11,6 @@ class RecipeViewControllerScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .brown
     }
 }
