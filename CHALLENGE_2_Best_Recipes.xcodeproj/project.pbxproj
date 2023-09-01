@@ -49,9 +49,7 @@
 		44CFC7152AA1215B0065717C /* SeeAllTrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7132AA1215B0065717C /* SeeAllTrendingCell.swift */; };
 		44CFC7162AA1215B0065717C /* TrendingNowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7142AA1215B0065717C /* TrendingNowCell.swift */; };
 		44CFC7182AA1225F0065717C /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7172AA1225F0065717C /* UILabel+Extension.swift */; };
-		44CFC71C2AA124F50065717C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7192AA124F50065717C /* Message.swift */; };
 		44CFC71D2AA124F50065717C /* RecipeViewControllerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC71A2AA124F50065717C /* RecipeViewControllerScreen.swift */; };
-		44CFC71E2AA124F50065717C /* IngredientsProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC71B2AA124F50065717C /* IngredientsProducts.swift */; };
 		44CFC7222AA127210065717C /* UIStack + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7212AA127210065717C /* UIStack + Extension.swift */; };
 		44CFC7242AA129ED0065717C /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7232AA129ED0065717C /* RecipeCell.swift */; };
 		44E53FC52A9A8DEE00B6BBBE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 44E53FC42A9A8DEE00B6BBBE /* SnapKit */; };
@@ -104,9 +102,7 @@
 		44CFC7132AA1215B0065717C /* SeeAllTrendingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeAllTrendingCell.swift; sourceTree = "<group>"; };
 		44CFC7142AA1215B0065717C /* TrendingNowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingNowCell.swift; sourceTree = "<group>"; };
 		44CFC7172AA1225F0065717C /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
-		44CFC7192AA124F50065717C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		44CFC71A2AA124F50065717C /* RecipeViewControllerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeViewControllerScreen.swift; sourceTree = "<group>"; };
-		44CFC71B2AA124F50065717C /* IngredientsProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsProducts.swift; sourceTree = "<group>"; };
 		44CFC7212AA127210065717C /* UIStack + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStack + Extension.swift"; sourceTree = "<group>"; };
 		44CFC7232AA129ED0065717C /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 		44E53FC92A9A91CC00B6BBBE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -251,10 +247,8 @@
 		444457052A9DC9CF003BA976 /* RecipeViewControllerScreen */ = {
 			isa = PBXGroup;
 			children = (
-				44CFC71B2AA124F50065717C /* IngredientsProducts.swift */,
-				44CFC7192AA124F50065717C /* Message.swift */,
-				44CFC71A2AA124F50065717C /* RecipeViewControllerScreen.swift */,
-				44CFC7232AA129ED0065717C /* RecipeCell.swift */,
+				44CFC7262AA1E95D0065717C /* Cell */,
+				44CFC7252AA1E92F0065717C /* VC */,
 			);
 			path = RecipeViewControllerScreen;
 			sourceTree = "<group>";
@@ -318,6 +312,22 @@
 				44A877FA2A9A880500241ED3 /* LaunchScreen.storyboard */,
 			);
 			path = Launchscreen;
+			sourceTree = "<group>";
+		};
+		44CFC7252AA1E92F0065717C /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				44CFC71A2AA124F50065717C /* RecipeViewControllerScreen.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		44CFC7262AA1E95D0065717C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				44CFC7232AA129ED0065717C /* RecipeCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		44E53FC82A9A91BC00B6BBBE /* Extension */ = {
@@ -432,7 +442,6 @@
 				2FCAFB032AA1B2E50010C61B /* HomeViewControllerTrendingCell.swift in Sources */,
 				37DFC3B72A9BA5E000C4951B /* MainViewController.swift in Sources */,
 				37DFC3C02A9BA6D700C4951B /* BellViewController.swift in Sources */,
-				44CFC71C2AA124F50065717C /* Message.swift in Sources */,
 				2FCAFAFB2AA1B2940010C61B /* SectionHeader.swift in Sources */,
 				44A877F42A9A880300241ED3 /* OnboardingViewController.swift in Sources */,
 				44CFC7222AA127210065717C /* UIStack + Extension.swift in Sources */,
@@ -451,7 +460,6 @@
 				44CFC71D2AA124F50065717C /* RecipeViewControllerScreen.swift in Sources */,
 				37DFC3BE2A9BA6CB00C4951B /* ProfileViewController.swift in Sources */,
 				44CFC7242AA129ED0065717C /* RecipeCell.swift in Sources */,
-				44CFC71E2AA124F50065717C /* IngredientsProducts.swift in Sources */,
 				37DFC3EF2A9E8FD200C4951B /* InitialOnboardingScreen.swift in Sources */,
 				44E53FCA2A9A91CC00B6BBBE /* UIColor+Extension.swift in Sources */,
 				44CFC7162AA1215B0065717C /* TrendingNowCell.swift in Sources */,

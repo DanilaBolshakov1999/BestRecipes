@@ -13,10 +13,7 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     //MARK: - Table View
     
     private let tableView = UITableView()
-
-    //MARK: - Model
     
-    var messages = Message.getMassage()
     
     //MARK: - UI Private Properties + Extension
     
@@ -24,9 +21,6 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     private var labelHeaderOne = UILabel(title: "Instructions", backgroundColor: .clear)
     private var labelHeaderStack = UILabel(title: "Ingredients", backgroundColor: .clear)
     private var labelHeaderStackItem = UILabel(title: "5 items", backgroundColor: .clear)
-    
-    //MARK:  Image
-    //private var imageViewOne = UIImage(backgroundColor: Theme.moreSwipe)
     
     //MARK:  Stack
     private var stackMainView = UIStackView(backgroundColor: .gray)
@@ -37,7 +31,6 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .cyan
         scrollView.contentSize = contentCize
         scrollView.frame = view.bounds
         return scrollView
@@ -45,15 +38,13 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .brown
         contentView.frame.size = contentCize
         return contentView
     }()
     
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle(rawValue: Theme.Fonts.appFont))
-        label.font = UIFont.systemFont(ofSize: 25)
+        label.font = UIFont(name: Theme.Fonts.boldFont, size: 24)
         label.text = Theme.mainView
         label.numberOfLines = 0
         return label
@@ -61,17 +52,8 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "Video")
+        image.image = UIImage(named: "recipeDetailImage")
         return image
-    }()
-    
-    private lazy var label: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle(rawValue: Theme.Fonts.appFont))
-        label.font = UIFont.systemFont(ofSize: 25)
-        label.text = Theme.textViewText
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
     }()
     
     private lazy var textView: UITextView = {
@@ -93,6 +75,7 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         configureNavController()
         setDelegates()
         setViews()
@@ -102,15 +85,17 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     //MARK: - Set Views
     
     private func setViews() {
-        tableView.backgroundColor = .brown
-        tableView.register(MessageCell.self , forCellReuseIdentifier: Theme.cellIdentifier)
-        tableView.separatorStyle = .none
+        //tableView.backgroundColor = .
+        tableView.register(RecipeCell.self, forCellReuseIdentifier: Theme.cellId)
+        tableView.rowHeight = 120
+        tableView.separatorStyle = .singleLine
         tableView.showsVerticalScrollIndicator = false
         
         //MARK: - Content Size
         scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + 1000)
         
         //MARK:  Add Main View
+        view.addSubview(tableView)
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(stackMainView)
@@ -121,13 +106,16 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
         stackMainView.addArrangedSubview(labelHeaderOne)
         stackMainView.addArrangedSubview(textView)
         stackMainView.addArrangedSubview(stackViewHeader)
-        stackMainView.addArrangedSubview(stackViewOneCell)
+        stackMainView.addArrangedSubview(tableView)
         
         //MARK: - Stack Label
         stackViewHeader.addArrangedSubview(labelHeaderStack)
         stackViewHeader.addArrangedSubview(labelHeaderStackItem)
         
-       // stackViewOneCell.addArrangedSubview(<#T##view: UIView##UIView#>)
+        tableView.isScrollEnabled = false
+        
+        textView.frame = view.bounds
+        
     }
     
     //MARK: - Set Delegates
@@ -140,12 +128,28 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     //MARK: - @objc Private Func
     
     @objc private func backButtonTapped() {
-        navigationController?.pushViewController(SeeAllViewController(), animated: true)
+        navigationController?.pushViewController(OnboardingViewController(), animated: true)
     }
     
     @objc private func buttonTapped() {
         navigationController?.pushViewController(SeeAllViewController(), animated: true)
     }
+    
+    //MARK: - Struct
+    
+    struct CellItems {
+        let image: String
+        let nameItem: String
+        let weightItem: String
+    }
+    
+    let items = [
+        CellItems(image: "ingredientsFirst", nameItem: "Fish", weightItem: "200g"),
+        CellItems(image: "ingredientsSecond", nameItem: "Ginger", weightItem: "100g"),
+        CellItems(image: "sunflowerOilThird", nameItem: "Vegetable Oli", weightItem: "80g"),
+        CellItems(image: "ingredientsFourth", nameItem: "Salt", weightItem: "50g"),
+        CellItems(image: "IngredientsFifth", nameItem: "Cucumber", weightItem: "200g")
+    ]
 }
 
 extension RecipeViewControllerScreen {
@@ -153,8 +157,6 @@ extension RecipeViewControllerScreen {
     //MARK: - Configure Nav Controller
     
     private func configureNavController() {
-        
-        title = "Description of the dish"
         
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
@@ -184,24 +186,22 @@ extension RecipeViewControllerScreen {
     }
 }
 
+
     //MARK: - UITableViewDataSource UITableViewDelegate
 
 extension RecipeViewControllerScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Theme.cellIdentifier, for: indexPath) as? MessageCell else { fatalError() }
-        let model = messages[indexPath.row]
-        cell.configure(with: model)
-        cell.textLabel?.text = "Some text"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Theme.cellId, for: indexPath) as? RecipeCell  else { fatalError() }
+        let item = items[indexPath.row]
+        cell.cellImage.image = UIImage(named: "ingredientsFirst")
+        cell.nameItem.text = item.nameItem
+        cell.weightItem.text = "\(item.weightItem) g"
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
     }
 }
 
@@ -215,7 +215,7 @@ extension RecipeViewControllerScreen {
         }
         
         stackMainView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(contentView)
+            make.top.leading.trailing.equalTo(contentView).inset(20)
         }
         
         mainLabel.snp.makeConstraints { make in
@@ -238,7 +238,8 @@ extension RecipeViewControllerScreen {
             make.leading.trailing.equalToSuperview()
         }
         
-        stackViewOneCell.snp.makeConstraints { make in
+        tableView.snp.makeConstraints { make in
+            make.height.equalTo(600)
             make.leading.trailing.equalToSuperview()
         }
     }

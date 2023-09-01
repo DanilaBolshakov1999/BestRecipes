@@ -24,8 +24,7 @@ extension UILabel {
         self.init()
         self.text = title
         self.backgroundColor = backgroundColor
-        self.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle(rawValue: Theme.Fonts.appFont))
-        self.font = UIFont.systemFont(ofSize: 25)
+        self.font = UIFont(name: Theme.Fonts.boldFont, size: 24)
     }
 }
 
