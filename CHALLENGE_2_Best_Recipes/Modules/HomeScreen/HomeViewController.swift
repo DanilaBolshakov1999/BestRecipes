@@ -113,16 +113,16 @@ final class HomeViewController: UIViewController {
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		if section == 0 {
+		switch sections[section] {
+		case .trending:
 			return 10
-		} else if section == 1 {
-			return 10
-		} else if section == 2 {
-			return 7
-		} else if section == 3 {
-			return 9
+		case .popularCategoryFilter:
+			return 8
+		case .popular:
+			return 5
+		case .recent:
+			return 11
 		}
-		return 5
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
