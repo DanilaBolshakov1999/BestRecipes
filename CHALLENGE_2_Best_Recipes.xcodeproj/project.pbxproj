@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1695647E2AA3585300A9F79C /* DiscoverViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1695647D2AA3585300A9F79C /* DiscoverViewContoller.swift */; };
+		169564802AA358EF00A9F79C /* SavedDishCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1695647F2AA358EF00A9F79C /* SavedDishCollectionCell.swift */; };
 		16FA368D2A9C6DC400C9917C /* SeeAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA368C2A9C6DC400C9917C /* SeeAllViewController.swift */; };
 		2FCAFAFB2AA1B2940010C61B /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAFAFA2AA1B2940010C61B /* SectionHeader.swift */; };
 		2FCAFAFD2AA1B2CC0010C61B /* HomeViewControllerFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAFAFC2AA1B2CC0010C61B /* HomeViewControllerFilterCell.swift */; };
@@ -58,6 +60,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1695647D2AA3585300A9F79C /* DiscoverViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewContoller.swift; sourceTree = "<group>"; };
+		1695647F2AA358EF00A9F79C /* SavedDishCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDishCollectionCell.swift; sourceTree = "<group>"; };
 		16FA368C2A9C6DC400C9917C /* SeeAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllViewController.swift; sourceTree = "<group>"; };
 		16FA36932A9C935A00C9917C /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		2FCAFAFA2AA1B2940010C61B /* SectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
@@ -122,6 +126,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		169564792AA357F200A9F79C /* DiscoverScreen */ = {
+			isa = PBXGroup;
+			children = (
+				1695647C2AA3581400A9F79C /* Model */,
+				1695647B2AA3580E00A9F79C /* View */,
+				1695647A2AA3580600A9F79C /* Controller */,
+			);
+			path = DiscoverScreen;
+			sourceTree = "<group>";
+		};
+		1695647A2AA3580600A9F79C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1695647D2AA3585300A9F79C /* DiscoverViewContoller.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1695647B2AA3580E00A9F79C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1695647F2AA358EF00A9F79C /* SavedDishCollectionCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1695647C2AA3581400A9F79C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		16FA368B2A9C6DA100C9917C /* SeeAllScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +333,7 @@
 		44A878042A9A88F800241ED3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				169564792AA357F200A9F79C /* DiscoverScreen */,
 				444457052A9DC9CF003BA976 /* RecipeViewControllerScreen */,
 				16FA368B2A9C6DA100C9917C /* SeeAllScreen */,
 				37DFC3BC2A9BA6AA00C4951B /* ProfileScreen */,
@@ -472,6 +510,8 @@
 				44CFC71D2AA124F50065717C /* RecipeViewControllerScreen.swift in Sources */,
 				37DFC3BE2A9BA6CB00C4951B /* ProfileViewController.swift in Sources */,
 				44CFC7242AA129ED0065717C /* RecipeCell.swift in Sources */,
+				169564802AA358EF00A9F79C /* SavedDishCollectionCell.swift in Sources */,
+				1695647E2AA3585300A9F79C /* DiscoverViewContoller.swift in Sources */,
 				37DFC3EF2A9E8FD200C4951B /* InitialOnboardingScreen.swift in Sources */,
 				44E53FCA2A9A91CC00B6BBBE /* UIColor+Extension.swift in Sources */,
 				44CFC7162AA1215B0065717C /* TrendingNowCell.swift in Sources */,
