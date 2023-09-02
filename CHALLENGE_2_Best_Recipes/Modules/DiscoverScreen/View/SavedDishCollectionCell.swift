@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SavedDishCollectionCell: UICollectionViewCell {
+final class SavedDishCollectionCell: UICollectionViewCell {
     
     private let dishBackGroundImage: UIImageView = {
         let dishBackGroundImage = UIImageView()
@@ -17,14 +17,19 @@ class SavedDishCollectionCell: UICollectionViewCell {
         return dishBackGroundImage
     }()
     
-    private let ratingOfDishStack: UIStackView = {
-        let ratingOfDishStack = UIStackView()
-        ratingOfDishStack.distribution = .fillEqually
-        ratingOfDishStack.axis = .horizontal
-        ratingOfDishStack.spacing = 2
-        return ratingOfDishStack
+    private let ratingView: UIView = {
+        let ratingView = UIView()
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.backgroundColor = .clear
+        ratingView.addSubview(blurView)
+        ratingView.layer.cornerRadius = 8
+        ratingView.clipsToBounds = true
+        blurView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        return ratingView
     }()
-
     
     private let starImageView: UIImageView = {
         let starImageView = UIImageView(image: UIImage(named: Theme.star))
@@ -32,7 +37,6 @@ class SavedDishCollectionCell: UICollectionViewCell {
         starImageView.contentMode = .scaleAspectFit
         return starImageView
     }()
-    
     
     private let ratingMarkLabel: UILabel = {
         let ratingMarkLabel = UILabel()
@@ -78,12 +82,10 @@ class SavedDishCollectionCell: UICollectionViewCell {
     }()
     
     
-    public func configure(with image: UIImage, title: String, rating: String) {
+    func configure(with image: UIImage, title: String, rating: String) {
         dishBackGroundImage.image = image
         dishTitle.text = title
         ratingMarkLabel.text = rating
-        ratingOfDishStack.addArrangedSubview(starImageView)
-        ratingOfDishStack.addArrangedSubview(ratingMarkLabel)
         
         setUpCell()
     }
@@ -105,10 +107,13 @@ extension SavedDishCollectionCell {
     
     private func addCellSubViews() {
         addSubview(dishBackGroundImage)
-        addSubview(ratingOfDishStack)
+        addSubview(ratingView)
         addSubview(saveButton)
         addSubview(dishTitle)
         addSubview(moreButton)
+        
+        ratingView.addSubview(starImageView)
+        ratingView.addSubview(ratingMarkLabel)
     }
     
     private func setUpConstrains() {
@@ -117,13 +122,24 @@ extension SavedDishCollectionCell {
             make.bottom.equalToSuperview().inset(50)
         }
         
-        ratingOfDishStack.snp.makeConstraints { make in
+        ratingView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(10)
             make.leading.equalToSuperview().inset(20)
             make.height.equalTo(27.5)
             make.width.equalTo(70)
         }
-        applyBlurEffect(to: ratingOfDishStack)
+        
+        starImageView.snp.makeConstraints { make in
+            make.width.equalTo(16)
+            make.height.equalTo(16)
+            make.leading.equalToSuperview().offset(10)
+            make.top.bottom.equalToSuperview()
+        }
+        
+        ratingMarkLabel.snp.makeConstraints { make in
+            make.leading.equalTo(starImageView.snp.trailing).offset(5)
+            make.centerY.equalTo(starImageView.snp.centerY)
+        }
         
         saveButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(10)
@@ -143,17 +159,6 @@ extension SavedDishCollectionCell {
             make.trailing.equalToSuperview().inset(5)
             make.centerY.equalTo(dishTitle.snp.centerY)
         }
-    }
-    
-    private func applyBlurEffect(to view: UIView) {
-        let blurEffect = UIBlurEffect(style: .light)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.frame = view.bounds
-        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurView.layer.cornerRadius = 5
-        blurView.clipsToBounds = true
-        view.insertSubview(blurView, at: 0)
-        view.backgroundColor = .clear
     }
     
 }

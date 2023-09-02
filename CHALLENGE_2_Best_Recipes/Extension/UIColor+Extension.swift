@@ -17,4 +17,5 @@ extension UIColor {
     
     static let attributedTextColor = UIColor(named: "attributedTextColor")
     
+    static let bluredBackGround = UIColor(red: 48/255, green: 48/255, blue: 48/255, alpha: 0.30)
 }
