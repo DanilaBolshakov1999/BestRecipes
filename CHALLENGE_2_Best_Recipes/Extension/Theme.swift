@@ -16,6 +16,8 @@ enum Theme {
     
     //MARK: - cellIdentifier
     static let cellIdentifier = "MessageCell"
+    static let cellId = "Cell"
+    
     
     //MARK: - Color
     static let redColor = "redColor"
