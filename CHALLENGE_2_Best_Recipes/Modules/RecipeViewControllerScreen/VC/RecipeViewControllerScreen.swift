@@ -13,8 +13,7 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     //MARK: - Table View
     
     private let tableView = UITableView()
-    
-    
+  
     //MARK: - UI Private Properties + Extension
     
     //MARK:  Label
@@ -52,6 +51,7 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
+        image.contentMode = .scaleAspectFit
         image.image = UIImage(named: "recipeDetailImage")
         return image
     }()
@@ -64,7 +64,7 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
         textView.isScrollEnabled = false
         return textView
     }()
-
+    
     //MARK: - Private Property
     
     private var contentCize: CGSize {
@@ -76,6 +76,8 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        tableView.backgroundColor = .clear
+        
         configureNavController()
         setDelegates()
         setViews()
@@ -85,10 +87,10 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     //MARK: - Set Views
     
     private func setViews() {
-        //tableView.backgroundColor = .
         tableView.register(RecipeCell.self, forCellReuseIdentifier: Theme.cellId)
-        tableView.rowHeight = 120
-        tableView.separatorStyle = .singleLine
+        
+        tableView.rowHeight = 400
+        tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         
         //MARK: - Content Size
@@ -134,22 +136,6 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     @objc private func buttonTapped() {
         navigationController?.pushViewController(SeeAllViewController(), animated: true)
     }
-    
-    //MARK: - Struct
-    
-    struct CellItems {
-        let image: String
-        let nameItem: String
-        let weightItem: String
-    }
-    
-    let items = [
-        CellItems(image: "ingredientsFirst", nameItem: "Fish", weightItem: "200g"),
-        CellItems(image: "ingredientsSecond", nameItem: "Ginger", weightItem: "100g"),
-        CellItems(image: "sunflowerOilThird", nameItem: "Vegetable Oli", weightItem: "80g"),
-        CellItems(image: "ingredientsFourth", nameItem: "Salt", weightItem: "50g"),
-        CellItems(image: "IngredientsFifth", nameItem: "Cucumber", weightItem: "200g")
-    ]
 }
 
 extension RecipeViewControllerScreen {
@@ -187,25 +173,42 @@ extension RecipeViewControllerScreen {
 }
 
 
-    //MARK: - UITableViewDataSource UITableViewDelegate
+//MARK: - UITableViewDataSource UITableViewDelegate
 
 extension RecipeViewControllerScreen: UITableViewDataSource, UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         items.count
     }
-    
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Theme.cellId, for: indexPath) as? RecipeCell  else { fatalError() }
+        
         let item = items[indexPath.row]
-        cell.cellImage.image = UIImage(named: "ingredientsFirst")
+        
+        cell.cellImage.image = UIImage(named: item.image)
         cell.nameItem.text = item.nameItem
+        cell.nameItem.font = UIFont(name: Theme.Fonts.boldFont, size: 15)
+        cell.weightItem.font = UIFont(name: Theme.Fonts.boldFont, size: 15)
         cell.weightItem.text = "\(item.weightItem) g"
+        cell.backgroundColor = .gray
+        cell.layer.cornerRadius = 35
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 2
+        cell.clipsToBounds = true
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You tapped cell number \(indexPath.section).")
     }
 }
 
-    //MARK: - Set Constrains
+//MARK: - Set Constrains
 
 extension RecipeViewControllerScreen {
     private func setConstrains() {
@@ -233,13 +236,13 @@ extension RecipeViewControllerScreen {
         textView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
         }
-    
+        
         stackViewHeader.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
         }
         
         tableView.snp.makeConstraints { make in
-            make.height.equalTo(600)
+            make.height.equalTo(650)
             make.leading.trailing.equalToSuperview()
         }
     }

@@ -20,13 +20,16 @@ class RecipeCell: UITableViewCell {
         addSubview(nameItem)
         addSubview(weightItem)
         
-        cellImage.frame = CGRect(x: 10, y: 40, width: 70, height: 70)
-        nameItem.frame = CGRect(x: 120, y: 60, width: 120, height: 30)
-        weightItem.frame = CGRect(x: 300, y: 60, width: 120, height: 30)
+        cellImage.frame = CGRect(x: 40, y: 15, width: 50, height: 50)
+        nameItem.frame = CGRect(x: 120, y: 15, width: 120, height: 30)
+        weightItem.frame = CGRect(x: 250, y: 15, width: 120, height: 30)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
 }

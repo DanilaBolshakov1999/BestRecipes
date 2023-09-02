@@ -52,7 +52,8 @@
 		44CFC71D2AA124F50065717C /* RecipeViewControllerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC71A2AA124F50065717C /* RecipeViewControllerScreen.swift */; };
 		44CFC7222AA127210065717C /* UIStack + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7212AA127210065717C /* UIStack + Extension.swift */; };
 		44CFC7242AA129ED0065717C /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7232AA129ED0065717C /* RecipeCell.swift */; };
-		44E53FC52A9A8DEE00B6BBBE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 44E53FC42A9A8DEE00B6BBBE /* SnapKit */; };
+		44CFC72B2AA1FC6C0065717C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC72A2AA1FC6C0065717C /* Model.swift */; };
+		44CFC7302AA33A720065717C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 44CFC72F2AA33A720065717C /* SnapKit */; };
 		44E53FCA2A9A91CC00B6BBBE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E53FC92A9A91CC00B6BBBE /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +106,7 @@
 		44CFC71A2AA124F50065717C /* RecipeViewControllerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeViewControllerScreen.swift; sourceTree = "<group>"; };
 		44CFC7212AA127210065717C /* UIStack + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStack + Extension.swift"; sourceTree = "<group>"; };
 		44CFC7232AA129ED0065717C /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		44CFC72A2AA1FC6C0065717C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		44E53FC92A9A91CC00B6BBBE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44E53FC52A9A8DEE00B6BBBE /* SnapKit in Frameworks */,
+				44CFC7302AA33A720065717C /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +249,7 @@
 		444457052A9DC9CF003BA976 /* RecipeViewControllerScreen */ = {
 			isa = PBXGroup;
 			children = (
+				44CFC7292AA1FBFE0065717C /* Models */,
 				44CFC7262AA1E95D0065717C /* Cell */,
 				44CFC7252AA1E92F0065717C /* VC */,
 			);
@@ -330,6 +333,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		44CFC7292AA1FBFE0065717C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				44CFC72A2AA1FC6C0065717C /* Model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		44E53FC82A9A91BC00B6BBBE /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,7 +371,7 @@
 			);
 			name = CHALLENGE_2_Best_Recipes;
 			packageProductDependencies = (
-				44E53FC42A9A8DEE00B6BBBE /* SnapKit */,
+				44CFC72F2AA33A720065717C /* SnapKit */,
 			);
 			productName = CHALLENGE_2_Best_Recipes;
 			productReference = 44A877EC2A9A880300241ED3 /* CHALLENGE_2_Best_Recipes.app */;
@@ -391,7 +402,7 @@
 			);
 			mainGroup = 44A877E32A9A880300241ED3;
 			packageReferences = (
-				44E53FC32A9A8DEE00B6BBBE /* XCRemoteSwiftPackageReference "SnapKit" */,
+				44CFC72E2AA33A720065717C /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 44A877ED2A9A880300241ED3 /* Products */;
 			projectDirPath = "";
@@ -438,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44CFC72B2AA1FC6C0065717C /* Model.swift in Sources */,
 				44CFC7182AA1225F0065717C /* UILabel+Extension.swift in Sources */,
 				2FCAFB032AA1B2E50010C61B /* HomeViewControllerTrendingCell.swift in Sources */,
 				37DFC3B72A9BA5E000C4951B /* MainViewController.swift in Sources */,
@@ -682,7 +694,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		44E53FC32A9A8DEE00B6BBBE /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		44CFC72E2AA33A720065717C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -693,9 +705,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		44E53FC42A9A8DEE00B6BBBE /* SnapKit */ = {
+		44CFC72F2AA33A720065717C /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 44E53FC32A9A8DEE00B6BBBE /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 44CFC72E2AA33A720065717C /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
