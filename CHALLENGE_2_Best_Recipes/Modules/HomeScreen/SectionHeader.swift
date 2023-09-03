@@ -26,7 +26,7 @@ final class SectionHeader: UICollectionReusableView {
 		let titleButtonColor = UIColor(named: Theme.primary50)
 		button.setTitleColor(titleButtonColor, for: .normal)
 		button.isHidden = true
-        button.isUserInteractionEnabled = false
+//        button.isUserInteractionEnabled = false
 		return button
 	}()
 	

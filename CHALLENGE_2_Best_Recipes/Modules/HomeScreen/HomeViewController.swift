@@ -38,7 +38,7 @@ final class HomeViewController: UIViewController {
 		super.viewDidLoad()
 		title = "Home"
 		view.backgroundColor = .cyan
-
+		navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.backButtonDisplayMode = .minimal
 		setupCollectionView()
 		setupSearchController()
@@ -117,8 +117,8 @@ final class HomeViewController: UIViewController {
 		} else {
 			header.configure(titleText: sections[indexPath.section].title, hideButton: false)
 		}
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(goToSeeAllScreen))
-            header.addGestureRecognizer(tapGestureRecognizer)
+//        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(goToSeeAllScreen))
+//            header.addGestureRecognizer(tapGestureRecognizer)
         
 		return header
 	}
