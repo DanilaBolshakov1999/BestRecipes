@@ -9,13 +9,14 @@ import UIKit
 
 class HomeViewControllerFilterCell: UICollectionViewCell {
 	
+	private var isSelectedCell = false
+	
 	private let titleLabel: UILabel = {
 		let label = UILabel()
 		label.textAlignment = .center
 		label.text = "Breakfast"
-		label.textColor = .white
-		//FIXME: - Change font
-		label.font = UIFont.systemFont(ofSize: 12)
+		label.textColor = UIColor(named: Theme.primary20)
+		label.font = UIFont(name: Theme.Fonts.boldFont, size: 12) //.systemFont(ofSize: 12)
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
 	}()
@@ -36,6 +37,17 @@ class HomeViewControllerFilterCell: UICollectionViewCell {
 	func configure(title: String) {
 		titleLabel.text = title
 	}
+	
+	func configureCell() {
+		isSelectedCell = !isSelectedCell
+		if isSelectedCell {
+			titleLabel.textColor = UIColor(named: Theme.whiteColor)
+			backgroundColor = UIColor(named: Theme.primary50)
+		} else {
+			titleLabel.textColor = UIColor(named: Theme.primary20)
+			backgroundColor = UIColor(named: Theme.whiteColor)
+		}
+	}
 }
 
 // MARK: - Style and Constraints
@@ -43,7 +55,7 @@ extension HomeViewControllerFilterCell {
 	private func setupView() {
 		clipsToBounds = true
 		layer.cornerRadius = 10
-		backgroundColor = .blue
+//		backgroundColor = .blue
 	}
 	
 	private func addSubviews() {

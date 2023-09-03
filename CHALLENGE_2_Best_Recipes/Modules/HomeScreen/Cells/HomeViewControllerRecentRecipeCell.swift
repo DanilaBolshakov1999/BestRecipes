@@ -22,6 +22,7 @@ class HomeViewControllerRecentRecipeCell: UICollectionViewCell {
 	private let titleLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Kelewele Ghanian Recipe"
+		label.font = UIFont(name: Theme.Fonts.boldFont, size: 14)
 		label.numberOfLines = 0
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
@@ -38,6 +39,11 @@ class HomeViewControllerRecentRecipeCell: UICollectionViewCell {
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+	
+	func configure(imageName: String, title: String) {
+		recentImage.image = UIImage(named: imageName)
+		titleLabel.text = title
 	}
 }
 

@@ -23,7 +23,7 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 	private let titleLabel: UILabel = {
 		let label = UILabel()
 		label.text = "How to sharwama at home"
-//		label.font = UIFont.poppins16()
+		label.font = UIFont(name: Theme.Fonts.boldFont, size: 16)
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
 	}()
@@ -47,7 +47,7 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 	private let ratingLabel: UILabel = {
 		let label = UILabel()
 		label.textColor = .white
-//		label.font = UIFont.poppins14()
+		label.font = UIFont(name: Theme.Fonts.boldFont, size: 14)
 		label.text = "4,5"
 		
 		label.translatesAutoresizingMaskIntoConstraints = false
@@ -81,6 +81,7 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 		addSubviews()
 		setupConstraints()
 		
+		bookmarkButton.addTarget(self, action: #selector(bookmarkAction), for: .touchUpInside)
 	}
 	
 	required init?(coder: NSCoder) {
@@ -90,6 +91,10 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 	func configureCell(title: String, imageName: String) {
 		trendingImage.image = UIImage(named: imageName)
 		titleLabel.text = title
+	}
+	
+	@objc private func bookmarkAction(_ sender: UIButton) {
+		print("BookMark")
 	}
 	
 }

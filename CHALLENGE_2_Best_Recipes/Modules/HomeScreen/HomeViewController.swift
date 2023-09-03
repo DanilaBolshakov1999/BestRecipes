@@ -32,15 +32,17 @@ final class HomeViewController: UIViewController {
 	var sections = Section.allCases
 	
 	private var collectionView: UICollectionView!
+	private let searchController = UISearchController(searchResultsController: nil)
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = "Home"
 		view.backgroundColor = .cyan
-
+		navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.backButtonDisplayMode = .minimal
 		setupCollectionView()
-
+		setupSearchController()
+		
 		collectionView.delegate = self
 		collectionView.dataSource = self
 		
@@ -57,6 +59,12 @@ final class HomeViewController: UIViewController {
 		collectionView.register(HomeViewControllerFilterCell.self, forCellWithReuseIdentifier: "cellId0")
 		collectionView.register(HomeViewControllerPopularCell.self, forCellWithReuseIdentifier: "cellId1")
 		collectionView.register(HomeViewControllerRecentRecipeCell.self, forCellWithReuseIdentifier: "cellId2")
+	}
+	
+	private func setupSearchController() {
+		searchController.searchResultsUpdater = self
+		searchController.searchBar.placeholder = "Search recipes"
+		navigationItem.searchController = searchController
 	}
 	
 	private func createCompositionalLayout() -> UICollectionViewLayout {
@@ -95,7 +103,7 @@ final class HomeViewController: UIViewController {
 		return section
 	}
 	
-	func setupHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+	private func setupHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
 		let sectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(30))
 		let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: sectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
 		
@@ -109,8 +117,8 @@ final class HomeViewController: UIViewController {
 		} else {
 			header.configure(titleText: sections[indexPath.section].title, hideButton: false)
 		}
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(goToSeeAllScreen))
-            header.addGestureRecognizer(tapGestureRecognizer)
+//        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(goToSeeAllScreen))
+//            header.addGestureRecognizer(tapGestureRecognizer)
         
 		return header
 	}
@@ -120,6 +128,16 @@ final class HomeViewController: UIViewController {
         navigationController?.pushViewController(SeeAllViewController(), animated: true)
     }
     
+}
+
+// MARK: - SearchResultUpdating
+extension HomeViewController: UISearchResultsUpdating {
+	func updateSearchResults(for searchController: UISearchController) {
+		guard let text = searchController.searchBar.text else { return }
+		if text != "" {
+			print(text)
+		}
+	}
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
@@ -161,5 +179,19 @@ extension HomeViewController: UICollectionViewDataSource {
 }
 
 extension HomeViewController: UICollectionViewDelegate {
-	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		switch sections[indexPath.section] {
+		case .trending:
+			print("Section \(indexPath.section), cell: \(indexPath.row)")
+		case .popularCategoryFilter:
+			print("Section \(indexPath.section), cell: \(indexPath.row)")
+			if let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerFilterCell {
+				cell.configureCell()
+			}
+		case .popular:
+			print("Section \(indexPath.section), cell: \(indexPath.row)")
+		case .recent:
+			print("Section \(indexPath.section), cell: \(indexPath.row)")
+		}
+	}
 }
