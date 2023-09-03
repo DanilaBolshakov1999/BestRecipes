@@ -32,6 +32,7 @@ final class HomeViewController: UIViewController {
 	var sections = Section.allCases
 	
 	private var collectionView: UICollectionView!
+	private let searchController = UISearchController(searchResultsController: nil)
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -39,7 +40,8 @@ final class HomeViewController: UIViewController {
 		view.backgroundColor = .cyan
 		
 		setupCollectionView()
-
+		setupSearchController()
+		
 		collectionView.delegate = self
 		collectionView.dataSource = self
 		
@@ -56,6 +58,12 @@ final class HomeViewController: UIViewController {
 		collectionView.register(HomeViewControllerFilterCell.self, forCellWithReuseIdentifier: "cellId0")
 		collectionView.register(HomeViewControllerPopularCell.self, forCellWithReuseIdentifier: "cellId1")
 		collectionView.register(HomeViewControllerRecentRecipeCell.self, forCellWithReuseIdentifier: "cellId2")
+	}
+	
+	private func setupSearchController() {
+		searchController.searchResultsUpdater = self
+		searchController.searchBar.placeholder = "Search recipes"
+		navigationItem.searchController = searchController
 	}
 	
 	private func createCompositionalLayout() -> UICollectionViewLayout {
@@ -107,6 +115,14 @@ final class HomeViewController: UIViewController {
 			header.configure(titleText: sections[indexPath.section].title, hideButton: false)
 		}
 		return header
+	}
+}
+
+// MARK: - SearchResultUpdating
+extension HomeViewController: UISearchResultsUpdating {
+	func updateSearchResults(for searchController: UISearchController) {
+		guard let text = searchController.searchBar.text else { return }
+		print(text)
 	}
 }
 
