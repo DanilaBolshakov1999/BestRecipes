@@ -37,7 +37,8 @@ final class HomeViewController: UIViewController {
 		super.viewDidLoad()
 		title = "Home"
 		view.backgroundColor = .cyan
-		
+
+        navigationItem.backButtonDisplayMode = .minimal
 		setupCollectionView()
 
 		collectionView.delegate = self
@@ -76,6 +77,8 @@ final class HomeViewController: UIViewController {
 		
 		return layout
 	}
+    
+
 	
 	private func createSection(groupWidth: CGFloat, groupHeight: CGFloat, header: [NSCollectionLayoutBoundarySupplementaryItem], behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior) -> NSCollectionLayoutSection {
 		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
@@ -106,8 +109,17 @@ final class HomeViewController: UIViewController {
 		} else {
 			header.configure(titleText: sections[indexPath.section].title, hideButton: false)
 		}
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(goToSeeAllScreen))
+            header.addGestureRecognizer(tapGestureRecognizer)
+        
 		return header
 	}
+    
+    @objc private func goToSeeAllScreen() {
+        print("tratatatata")
+        navigationController?.pushViewController(SeeAllViewController(), animated: true)
+    }
+    
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource

@@ -1,13 +1,13 @@
 //
-//  BellViewController.swift
+//  CreateRecipeViewController.swift
 //  CHALLENGE_2_Best_Recipes
 //
-//  Created by Alexander Altman on 27.08.2023.
+//  Created by Alexander Altman on 03.09.2023.
 //
 
 import UIKit
 
-final class BellViewController: UIViewController {
+class CreateRecipeViewController: UIViewController {
     
     private let imageView: UIImageView = {
         let element = UIImageView()
@@ -21,10 +21,15 @@ final class BellViewController: UIViewController {
         super.viewDidLoad()
         setViews()
         setSonstraints()
+        
+        if let tabBarItem = self.tabBarController?.tabBar.items?[2] as? UITabBarItem {
+            tabBarItem.title = .none
+            tabBarItem.isEnabled = false
+        }
     }
 }
 
-extension BellViewController {
+extension CreateRecipeViewController {
     private func setSonstraints() {
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -35,11 +40,11 @@ extension BellViewController {
     }
 }
 
-extension BellViewController {
+extension CreateRecipeViewController {
     private func setViews() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Bell"
-        view.backgroundColor = .cyan
+        title = "Create Recipe"
+        view.backgroundColor = .darkGray
         view.addSubview(imageView)
     }
 }

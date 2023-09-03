@@ -9,17 +9,18 @@ import UIKit
 
 extension UIViewController {
     
-    func setStatusBar() {
-        let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.configureWithTransparentBackground()
-        navBarAppearance.backgroundColor = UIColor.white
-        navBarAppearance.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont(name: Theme.Fonts.boldFont, size: 24)!,
-            NSAttributedString.Key.foregroundColor: UIColor.black
-        ]
-        UINavigationBar.appearance().standardAppearance = navBarAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-    }
+//    func setStatusBar() {
+//        let navBarAppearance = UINavigationBarAppearance()
+//        navBarAppearance.configureWithTransparentBackground()
+//        navBarAppearance.backgroundColor = UIColor.white
+//        navBarAppearance.titleTextAttributes = [
+//            NSAttributedString.Key.font: UIFont(name: Theme.Fonts.boldFont, size: 24)!,
+//            NSAttributedString.Key.foregroundColor: UIColor.black
+//        ]
+
+//        UINavigationBar.appearance().standardAppearance = navBarAppearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+//    }
     
     func setTabBarImage(imageName: String, title: String) {
         let configuration = UIImage.SymbolConfiguration(scale: .default)
