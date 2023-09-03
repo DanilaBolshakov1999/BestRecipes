@@ -103,7 +103,7 @@ final class HomeViewController: UIViewController {
 		return section
 	}
 	
-	func setupHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+	private func setupHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
 		let sectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(30))
 		let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: sectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
 		
