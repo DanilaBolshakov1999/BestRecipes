@@ -13,9 +13,13 @@ enum Theme {
     static let backgroundImageFirst = "firstImage"
     static let fishRecipeDetail = "fishRecipeDetail"
     static let videoScreen = "videoScreen"
+    static let star = "star"
+    static let favoritesActive = "FavoritesActive"
     
     //MARK: - cellIdentifier
     static let cellIdentifier = "MessageCell"
+    static let cellId = "Cell"
+    
     
     //MARK: - Color
     static let redColor = "redColor"
@@ -56,6 +60,7 @@ enum Theme {
     static let ingredients = "IngredientsCollectionViewCell"
     static let header = "HeaderSupplementaryView"
     static let trending = "TrendingCollectionViewCell"
+    static let savedDish = "SavedDishesCollectionView"
     
     //MARK:  UINavBar
     static let backSwipe = "backSwipe"
