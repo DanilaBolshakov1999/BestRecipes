@@ -124,12 +124,12 @@ final class OnboardingViewController: UIViewController {
     }
     
     @objc func skipButtonTapped() {
-        let vc = MainViewController()
+        let vc = CustomTabBarController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func continueButtonTapped(_ sender: UIButton) {
-        let vc = MainViewController()
+        let vc = CustomTabBarController()
         navigationController?.pushViewController(vc, animated: true)
     }
 }

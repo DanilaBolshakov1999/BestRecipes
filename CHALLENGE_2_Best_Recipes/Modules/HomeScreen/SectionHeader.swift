@@ -16,7 +16,7 @@ final class SectionHeader: UICollectionReusableView {
 		return label
 	}()
 	
-	private let seeAllButton: UIButton = {
+	private lazy var seeAllButton: UIButton = {
 		let button = UIButton()
 		button.setTitle("See all ", for: .normal)
 		button.titleLabel?.font = UIFont(name: Theme.Fonts.boldFont, size: 14)
@@ -26,6 +26,7 @@ final class SectionHeader: UICollectionReusableView {
 		let titleButtonColor = UIColor(named: Theme.primary50)
 		button.setTitleColor(titleButtonColor, for: .normal)
 		button.isHidden = true
+        button.isUserInteractionEnabled = false
 		return button
 	}()
 	

@@ -20,27 +20,27 @@ final class SeeAllViewController: UIViewController {
         return collectionView
     }()
     
-    private lazy var backButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(
-            image: UIImage(named: "BackArrow"),
-            style: .done,
-            target: self,
-            action: #selector(backButtonTapped)
-        )
-        button.tintColor = .black
-        return button
-    }()
+//    private lazy var backButton: UIBarButtonItem = {
+//        let button = UIBarButtonItem(
+//            image: UIImage(named: "BackArrow"),
+//            style: .done,
+//            target: self,
+//            action: #selector(backButtonTapped)
+//        )
+//        button.tintColor = .black
+//        return button
+//    }()
     
-    private lazy var moreButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(
-            image: UIImage(named: "More"),
-            style: .plain,
-            target: self,
-            action: #selector(moreButtonTapped)
-        )
-        button.tintColor = .black
-        return button
-    }()
+//    private lazy var moreButton: UIBarButtonItem = {
+//        let button = UIBarButtonItem(
+//            image: UIImage(named: "More"),
+//            style: .plain,
+//            target: self,
+//            action: #selector(moreButtonTapped)
+//        )
+//        button.tintColor = .black
+//        return button
+//    }()
     
     //MARK: - Life Cycle
     
@@ -59,33 +59,30 @@ final class SeeAllViewController: UIViewController {
         setConstrains()
     }
     
-    //MARK: - @objc Private Func
-    
-    @objc private func backButtonTapped() {
-        //navigationController?.pushViewController(RecipeViewControllerScreen(), animated: true)
-    }
-    
-    @objc private func moreButtonTapped() {
-        // Need Action
-    }
-    
+//    //MARK: - @objc Private Func
+//    @objc private func backButtonTapped() {
+//        //navigationController?.pushViewController(RecipeViewControllerScreen(), animated: true)
+//    }
+//    @objc private func moreButtonTapped() {
+//        // Need Action
+//    }
 }
 
 extension SeeAllViewController {
     
     private func setupNavigationBar() {
         title = "Trending Now"
-        
+
         let navigationAppearance = UINavigationBarAppearance()
         navigationAppearance.titleTextAttributes = [
             .font: UIFont(name: Theme.Fonts.semiBoldFont, size: 25) ?? UIFont.systemFont(ofSize: 25, weight: .bold),
             .foregroundColor: UIColor(named: "purpleText") ?? .black
         ]
-        
-        navigationItem.leftBarButtonItem = backButton
-        navigationItem.rightBarButtonItem = moreButton
-        
+
+//        navigationItem.leftBarButtonItem = backButton
+//        navigationItem.rightBarButtonItem = moreButton
         navigationController?.navigationBar.standardAppearance = navigationAppearance
+
     }
     
     private func addViews() {
@@ -119,14 +116,11 @@ extension SeeAllViewController: UICollectionViewDataSource {
         if let dishImage = UIImage(named: "dishOne") {
             trendingCell.configureCollectionCell(with: dishImage, describtion: "vegetable sauce at home", ingredients: "9 Ingredients", cookingTime: 25, rating: 5.0)
         }
-        
         return trendingCell
     }
-    
 }
 
 extension SeeAllViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width - 20, height: 200)
     }
