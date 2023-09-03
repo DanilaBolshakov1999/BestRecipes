@@ -37,7 +37,7 @@ extension MainViewController {
 
         viewControllers = tabBarList
         
-        setStatusBar()
+//        setStatusBar()
     }
 
     private func setupTabBar() {
