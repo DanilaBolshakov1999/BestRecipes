@@ -122,7 +122,9 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: UISearchResultsUpdating {
 	func updateSearchResults(for searchController: UISearchController) {
 		guard let text = searchController.searchBar.text else { return }
-		print(text)
+		if text != "" {
+			print(text)
+		}
 	}
 }
 
@@ -165,5 +167,19 @@ extension HomeViewController: UICollectionViewDataSource {
 }
 
 extension HomeViewController: UICollectionViewDelegate {
-	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		switch sections[indexPath.section] {
+		case .trending:
+			print("Section \(indexPath.section), cell: \(indexPath.row)")
+		case .popularCategoryFilter:
+			print("Section \(indexPath.section), cell: \(indexPath.row)")
+			if let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerFilterCell {
+				cell.configureCell()
+			}
+		case .popular:
+			print("Section \(indexPath.section), cell: \(indexPath.row)")
+		case .recent:
+			print("Section \(indexPath.section), cell: \(indexPath.row)")
+		}
+	}
 }

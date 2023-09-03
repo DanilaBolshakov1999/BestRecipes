@@ -40,6 +40,11 @@ class HomeViewControllerRecentRecipeCell: UICollectionViewCell {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+	
+	func configure(imageName: String, title: String) {
+		recentImage.image = UIImage(named: imageName)
+		titleLabel.text = title
+	}
 }
 
 // MARK: - Style and Constraints

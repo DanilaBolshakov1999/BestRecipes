@@ -81,6 +81,7 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 		addSubviews()
 		setupConstraints()
 		
+		bookmarkButton.addTarget(self, action: #selector(bookmarkAction), for: .touchUpInside)
 	}
 	
 	required init?(coder: NSCoder) {
@@ -90,6 +91,10 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 	func configureCell(title: String, imageName: String) {
 		trendingImage.image = UIImage(named: imageName)
 		titleLabel.text = title
+	}
+	
+	@objc private func bookmarkAction(_ sender: UIButton) {
+		print("BookMark")
 	}
 	
 }

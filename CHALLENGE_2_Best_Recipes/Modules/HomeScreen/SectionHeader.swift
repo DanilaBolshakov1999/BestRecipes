@@ -34,6 +34,8 @@ final class SectionHeader: UICollectionReusableView {
 		addSubview(title)
 		addSubview(seeAllButton)
 		setupConstraints()
+		
+		seeAllButton.addTarget(self, action: #selector(seeAllAction), for: .touchUpInside)
 	}
 	
 	required init?(coder: NSCoder) {
@@ -43,6 +45,10 @@ final class SectionHeader: UICollectionReusableView {
 	func configure(titleText: String, hideButton: Bool) {
 		title.text = titleText
 		seeAllButton.isHidden = hideButton
+	}
+	
+	@objc func seeAllAction(_ sender: UIButton) {
+		print(title.text)
 	}
 }
 

@@ -105,6 +105,12 @@ class HomeViewControllerPopularCell: UICollectionViewCell {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+	
+	func configure(imageName: String, title: String, time: String) {
+		popularImage.image = UIImage(named: imageName)
+		titleLabel.text = title
+		timeLabel.text = "\(time) Mins"
+	}
 }
 
 // MARK: - Style and Constraints

@@ -9,6 +9,8 @@ import UIKit
 
 class HomeViewControllerFilterCell: UICollectionViewCell {
 	
+	private var isSelectedCell = false
+	
 	private let titleLabel: UILabel = {
 		let label = UILabel()
 		label.textAlignment = .center
@@ -34,6 +36,17 @@ class HomeViewControllerFilterCell: UICollectionViewCell {
 	
 	func configure(title: String) {
 		titleLabel.text = title
+	}
+	
+	func configureCell() {
+		isSelectedCell = !isSelectedCell
+		if isSelectedCell {
+			titleLabel.textColor = UIColor(named: Theme.whiteColor)
+			backgroundColor = UIColor(named: Theme.primary50)
+		} else {
+			titleLabel.textColor = UIColor(named: Theme.primary20)
+			backgroundColor = UIColor(named: Theme.whiteColor)
+		}
 	}
 }
 
