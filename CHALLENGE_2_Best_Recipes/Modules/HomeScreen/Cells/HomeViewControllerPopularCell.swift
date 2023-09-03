@@ -22,7 +22,7 @@ class HomeViewControllerPopularCell: UICollectionViewCell {
 	
 	private let view: UIView = {
 		let view = UIView()
-		view.backgroundColor = UIColor(red: 241/255, green: 241/255, blue: 241/255, alpha: 1)
+		view.backgroundColor = UIColor(named: Theme.neutral10)
 		view.clipsToBounds = true
 		view.layer.cornerRadius = 16
 		view.translatesAutoresizingMaskIntoConstraints = false
@@ -34,21 +34,22 @@ class HomeViewControllerPopularCell: UICollectionViewCell {
 		label.text = "Chicken and Vegetable wrap"
 		label.numberOfLines = 0
 		label.textAlignment = .center
-//		label.font = UIFont.poppins14()
+		label.font = UIFont(name: Theme.Fonts.boldFont, size: 14)
 		return label
 	}()
 	
 	private let titleTimeLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Time"
-		label.font = UIFont.systemFont(ofSize: 12, weight: .light)
+		label.textColor = UIColor(named: Theme.neutral30)
+		label.font = UIFont(name: Theme.Fonts.appFont, size: 12) //.systemFont(ofSize: 12, weight: .light)
 		return label
 	}()
 	
 	private let timeLabel: UILabel = {
 		let label = UILabel()
 		label.text = "5 Mins"
-		label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+		label.font = UIFont(name: Theme.Fonts.boldFont, size: 12)//.systemFont(ofSize: 12, weight: .bold)
 		return label
 	}()
 	

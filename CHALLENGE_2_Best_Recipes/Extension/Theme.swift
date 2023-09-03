@@ -25,6 +25,11 @@ enum Theme {
     static let redColor = "redColor"
     static let brownColor = "brownColor"
     static let whiteColor = "whiteColor"
+	static let primary20 = "primary20"
+	static let primary50 = "primary50"
+	static let neutral10 = "neutral10"
+	static let neutral30 = "neutral30"
+	static let neutral100 = "neutral100"
     
     //MARK: Font
     enum Fonts {

@@ -12,14 +12,19 @@ final class SectionHeader: UICollectionReusableView {
 	static let reuseId = "SectionHeader"
 	private let title: UILabel = {
 		let label = UILabel()
-//		label.font = UIFont.poppins20()
+		label.font = UIFont(name: Theme.Fonts.extraBoldFont, size: 20)
 		return label
 	}()
 	
 	private let seeAllButton: UIButton = {
 		let button = UIButton()
-		button.setTitle("See all ->", for: .normal)
-		button.setTitleColor(.red, for: .normal)
+		button.setTitle("See all ", for: .normal)
+		button.titleLabel?.font = UIFont(name: Theme.Fonts.boldFont, size: 14)
+		button.setImage(UIImage.init(systemName: "arrow.right"), for: .normal)
+		button.tintColor = UIColor(named: Theme.neutral100)
+		button.semanticContentAttribute = .forceRightToLeft
+		let titleButtonColor = UIColor(named: Theme.primary50)
+		button.setTitleColor(titleButtonColor, for: .normal)
 		button.isHidden = true
 		return button
 	}()
