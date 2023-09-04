@@ -11,7 +11,6 @@ import UIKit
 extension UIStackView {
     convenience init(backgroundColor: UIColor) {
         self.init()
-        //self.backgroundColor = .blue
         self.axis = .vertical
         self.spacing = 10
     }

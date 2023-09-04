@@ -11,14 +11,14 @@ import UIKit
 extension UILabel {
     
     convenience init(text: String = "", textColor: UIColor, font: UIFont, numberOfLines: Int = 0, lineBreakMode: NSLineBreakMode = .byWordWrapping, textAlignment: NSTextAlignment = .left) {
-            self.init()
-            self.text = text
-            self.textColor = textColor
-            self.font = font
-            self.numberOfLines = numberOfLines
-            self.lineBreakMode = lineBreakMode
-            self.textAlignment = textAlignment
-        }
+        self.init()
+        self.text = text
+        self.textColor = textColor
+        self.font = font
+        self.numberOfLines = numberOfLines
+        self.lineBreakMode = lineBreakMode
+        self.textAlignment = textAlignment
+    }
     
     convenience init(title: String, backgroundColor: UIColor?) {
         self.init()

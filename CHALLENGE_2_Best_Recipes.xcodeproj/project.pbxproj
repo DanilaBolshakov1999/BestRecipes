@@ -66,7 +66,6 @@
 		1695647D2AA3585300A9F79C /* DiscoverViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewContoller.swift; sourceTree = "<group>"; };
 		1695647F2AA358EF00A9F79C /* SavedDishCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDishCollectionCell.swift; sourceTree = "<group>"; };
 		16FA368C2A9C6DC400C9917C /* SeeAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllViewController.swift; sourceTree = "<group>"; };
-		16FA36932A9C935A00C9917C /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		2FCAFAFA2AA1B2940010C61B /* SectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		2FCAFAFC2AA1B2CC0010C61B /* HomeViewControllerFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerFilterCell.swift; sourceTree = "<group>"; };
 		2FCAFAFE2AA1B2D30010C61B /* HomeViewControllerPopularCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerPopularCell.swift; sourceTree = "<group>"; };
@@ -411,7 +410,6 @@
 				44E53FC92A9A91CC00B6BBBE /* UIColor+Extension.swift */,
 				37DFC3C52A9BAED100C4951B /* UIViewController+Utils.swift */,
 				44CFC7172AA1225F0065717C /* UILabel+Extension.swift */,
-				16FA36932A9C935A00C9917C /* UIFont + Extension.swift */,
 				44CFC7212AA127210065717C /* UIStack + Extension.swift */,
 			);
 			path = Extension;
