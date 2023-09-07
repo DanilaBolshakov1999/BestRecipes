@@ -30,12 +30,13 @@ enum Section: Int, CaseIterable {
 final class HomeViewController: UIViewController {
 	
 	var sections = Section.allCases
-	
+    private var trendingNowRecipes: [Recipe] = []
 	private var collectionView: UICollectionView!
 	private let searchController = UISearchController(searchResultsController: nil)
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        fetchTrendinRecipes()
 		title = "Home"
 		view.backgroundColor = .cyan
 		navigationController?.navigationBar.prefersLargeTitles = true
@@ -86,7 +87,30 @@ final class HomeViewController: UIViewController {
 		return layout
 	}
     
-
+    private func fetchTrendinRecipes() {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            APIManager.shared.fetchRandomRecipes(numberOfRecipes: 100) { result in
+                switch result {
+                case .success(let cookData):
+                    let recipesWithImages = cookData.recipes.filter { recipe in
+                        guard !recipe.title.isEmpty,
+                              !recipe.extendedIngredients.isEmpty,
+                              recipe.readyInMinutes > 0 else {
+                            return false
+                        }
+                        
+                        return true
+                    }
+                    self?.trendingNowRecipes = recipesWithImages
+                    DispatchQueue.main.async {
+                        self?.collectionView.reloadData()
+                    }
+                case .failure(let error):
+                    print("Error: \(error)")
+                }
+            }
+        }
+    }
 	
 	private func createSection(groupWidth: CGFloat, groupHeight: CGFloat, header: [NSCollectionLayoutBoundarySupplementaryItem], behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior) -> NSCollectionLayoutSection {
 		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
@@ -145,7 +169,7 @@ extension HomeViewController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		switch sections[section] {
 		case .trending:
-			return 10
+            return trendingNowRecipes.count
 		case .popularCategoryFilter:
 			return 8
 		case .popular:
@@ -159,6 +183,16 @@ extension HomeViewController: UICollectionViewDataSource {
 		switch sections[indexPath.section] {
 		case .trending:
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! HomeViewControllerTrendingCell
+            let recipe = trendingNowRecipes[indexPath.item]
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                APIManager.shared.fetchRecipeImage(id: recipe.id) { image in
+                    if let image = image {
+                        cell.configureCell(title: recipe.title, imageName: image, rating: recipe.healthScore)
+                    }
+                }
+            }
+            
 			return cell
 		case .popularCategoryFilter:
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId0", for: indexPath) as! HomeViewControllerFilterCell
