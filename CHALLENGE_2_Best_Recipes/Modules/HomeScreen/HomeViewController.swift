@@ -73,13 +73,13 @@ final class HomeViewController: UIViewController {
 			
 			switch section {
 			case .trending:
-				return self.createSection(groupWidth: 300, groupHeight: 220, header: [self.setupHeader()], behavior: .paging)//self.createTrendingRecipes()
+				return self.createSection(groupWidth: 300, groupHeight: 220, header: [self.setupHeader()], behavior: .groupPaging)
 			case .popularCategoryFilter:
 				return self.createSection(groupWidth: 83, groupHeight: 34, header: [self.setupHeader()], behavior: .continuous)
 			case .popular:
-				return self.createSection(groupWidth: 150, groupHeight: 231, header: [], behavior: .paging)//self.createPopularCategory()
+				return self.createSection(groupWidth: 150, groupHeight: 231, header: [], behavior: .groupPaging)
 			case .recent:
-				return self.createSection(groupWidth: 124, groupHeight: 175, header: [self.setupHeader()], behavior: .paging)//self.createRecentRecipe()
+				return self.createSection(groupWidth: 124, groupHeight: 175, header: [self.setupHeader()], behavior: .groupPaging)
 			}
 		}
 		
