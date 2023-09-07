@@ -76,5 +76,5 @@ struct Recipe: Codable {
 // MARK: - ExtendedIngredient
 
 struct ExtendedIngredient: Codable {
-    
+    let id: Int
 }
