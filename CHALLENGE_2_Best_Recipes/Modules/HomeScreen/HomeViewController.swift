@@ -29,7 +29,7 @@ enum Section: Int, CaseIterable {
 
 final class HomeViewController: UIViewController {
 	
-	var sections = Section.allCases
+	private var sections = Section.allCases
 	
 	private var collectionView: UICollectionView!
 	private let searchController = UISearchController(searchResultsController: nil)
@@ -86,7 +86,11 @@ final class HomeViewController: UIViewController {
 		return layout
 	}
     
-
+	private func goToVC(with title: String) {
+		let destinationVC = SeeAllViewController()
+		destinationVC.title = title
+		self.navigationController?.pushViewController(destinationVC, animated: true)
+	}
 	
 	private func createSection(groupWidth: CGFloat, groupHeight: CGFloat, header: [NSCollectionLayoutBoundarySupplementaryItem], behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior) -> NSCollectionLayoutSection {
 		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
@@ -117,17 +121,19 @@ final class HomeViewController: UIViewController {
 		} else {
 			header.configure(titleText: sections[indexPath.section].title, hideButton: false)
 		}
-//        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(goToSeeAllScreen))
-//            header.addGestureRecognizer(tapGestureRecognizer)
+		
+		header.buttonHeaderAction = { [weak self] title in
+			guard let self = self else { return }
+			self.goToVC(with: title ?? "")
+		}
         
 		return header
 	}
     
-    @objc private func goToSeeAllScreen() {
-        print("tratatatata")
-        navigationController?.pushViewController(SeeAllViewController(), animated: true)
-    }
-    
+//    @objc private func goToSeeAllScreen() {
+//        print("tratatatata")
+//        navigationController?.pushViewController(SeeAllViewController(), animated: true)
+//    }
 }
 
 // MARK: - SearchResultUpdating

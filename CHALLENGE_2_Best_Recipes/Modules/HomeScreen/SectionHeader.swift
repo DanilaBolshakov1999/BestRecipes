@@ -9,6 +9,8 @@ import UIKit
 
 final class SectionHeader: UICollectionReusableView {
 	
+	var buttonHeaderAction: ((_ headerTitle: String?) -> Void)?
+	
 	static let reuseId = "SectionHeader"
 	private let title: UILabel = {
 		let label = UILabel()
@@ -48,8 +50,8 @@ final class SectionHeader: UICollectionReusableView {
 		seeAllButton.isHidden = hideButton
 	}
 	
-	@objc func seeAllAction(_ sender: UIButton) {
-		print(title.text)
+	@objc private func seeAllAction(_ sender: UIButton) {
+		buttonHeaderAction?(title.text)
 	}
 }
 
