@@ -111,15 +111,15 @@ extension SeeAllViewController {
     
     private func fetchRandomRecipes() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            APIManager.shared.fetchRandomRecipes(numberOfRecipes: 3) { result in
+            APIManager.shared.fetchRandomRecipes(numberOfRecipes: 100) { result in
                 switch result {
                 case .success(let cookData):
                     let recipesWithImages = cookData.recipes.filter { recipe in
                         
-                        guard !recipe.image.isEmpty else { return false }
+//                        guard !recipe.image.isEmpty else { return false }
                         
                         guard !recipe.title.isEmpty,
-                              !recipe.extendedIngredients.isEmpty,
+//                              !recipe.extendedIngredients.isEmpty,
                               recipe.readyInMinutes > 0 else {
                             return false
                         }
@@ -131,7 +131,7 @@ extension SeeAllViewController {
                         self?.trendingNowCollectoinView.reloadData()
                     }
                 case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
+                    print("Error: \(error)")
                 }
             }
         }
