@@ -24,27 +24,27 @@ final class SeeAllViewController: UIViewController {
         return collectionView
     }()
     
-//    private lazy var backButton: UIBarButtonItem = {
-//        let button = UIBarButtonItem(
-//            image: UIImage(named: "BackArrow"),
-//            style: .done,
-//            target: self,
-//            action: #selector(backButtonTapped)
-//        )
-//        button.tintColor = .black
-//        return button
-//    }()
+    //    private lazy var backButton: UIBarButtonItem = {
+    //        let button = UIBarButtonItem(
+    //            image: UIImage(named: "BackArrow"),
+    //            style: .done,
+    //            target: self,
+    //            action: #selector(backButtonTapped)
+    //        )
+    //        button.tintColor = .black
+    //        return button
+    //    }()
     
-//    private lazy var moreButton: UIBarButtonItem = {
-//        let button = UIBarButtonItem(
-//            image: UIImage(named: "More"),
-//            style: .plain,
-//            target: self,
-//            action: #selector(moreButtonTapped)
-//        )
-//        button.tintColor = .black
-//        return button
-//    }()
+    //    private lazy var moreButton: UIBarButtonItem = {
+    //        let button = UIBarButtonItem(
+    //            image: UIImage(named: "More"),
+    //            style: .plain,
+    //            target: self,
+    //            action: #selector(moreButtonTapped)
+    //        )
+    //        button.tintColor = .black
+    //        return button
+    //    }()
     
     //MARK: - Life Cycle
     
@@ -61,33 +61,33 @@ final class SeeAllViewController: UIViewController {
         setDelegates()
         registerCells()
         setConstrains()
-        fetchRandomRecipes()
+        fetchTrendinRecipes()
     }
     
-//    //MARK: - @objc Private Func
-//    @objc private func backButtonTapped() {
-//        //navigationController?.pushViewController(RecipeViewControllerScreen(), animated: true)
-//    }
-//    @objc private func moreButtonTapped() {
-//        // Need Action
-//    }
+    //    //MARK: - @objc Private Func
+    //    @objc private func backButtonTapped() {
+    //        //navigationController?.pushViewController(RecipeViewControllerScreen(), animated: true)
+    //    }
+    //    @objc private func moreButtonTapped() {
+    //        // Need Action
+    //    }
 }
 
 extension SeeAllViewController {
     
     private func setupNavigationBar() {
         title = "Trending Now"
-
+        
         let navigationAppearance = UINavigationBarAppearance()
         navigationAppearance.titleTextAttributes = [
             .font: UIFont(name: Theme.Fonts.semiBoldFont, size: 25) ?? UIFont.systemFont(ofSize: 25, weight: .bold),
             .foregroundColor: UIColor(named: "purpleText") ?? .black
         ]
-
-//        navigationItem.leftBarButtonItem = backButton
-//        navigationItem.rightBarButtonItem = moreButton
+        
+        //        navigationItem.leftBarButtonItem = backButton
+        //        navigationItem.rightBarButtonItem = moreButton
         navigationController?.navigationBar.standardAppearance = navigationAppearance
-
+        
     }
     
     private func addViews() {
@@ -109,7 +109,7 @@ extension SeeAllViewController {
         trendingNowCollectoinView.register(SeeAllTrendingCell.self, forCellWithReuseIdentifier: Theme.trending)
     }
     
-    private func fetchRandomRecipes() {
+    private func fetchTrendinRecipes() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             APIManager.shared.fetchRandomRecipes(numberOfRecipes: 100) { result in
                 switch result {
