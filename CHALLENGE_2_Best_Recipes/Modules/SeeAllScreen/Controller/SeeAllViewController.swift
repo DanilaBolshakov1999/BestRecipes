@@ -115,11 +115,8 @@ extension SeeAllViewController {
                 switch result {
                 case .success(let cookData):
                     let recipesWithImages = cookData.recipes.filter { recipe in
-                        
-//                        guard !recipe.image.isEmpty else { return false }
-                        
                         guard !recipe.title.isEmpty,
-//                              !recipe.extendedIngredients.isEmpty,
+                              !recipe.extendedIngredients.isEmpty,
                               recipe.readyInMinutes > 0 else {
                             return false
                         }
