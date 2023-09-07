@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct CookData: Codable {
+    let recipes: [Recipe]
+}
+
 // MARK: - Recipe
 
 struct Recipe: Codable {
