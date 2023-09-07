@@ -10,6 +10,10 @@ import SnapKit
 
 final class SeeAllViewController: UIViewController {
     
+    //  MARK: - Properties
+    
+    private var cookData: [Recipe] = []
+    
     //  MARK: - UI
     
     private lazy var trendingNowCollectoinView: UICollectionView = {
@@ -57,6 +61,7 @@ final class SeeAllViewController: UIViewController {
         setDelegates()
         registerCells()
         setConstrains()
+        fetchRandomRecipes()
     }
     
 //    //MARK: - @objc Private Func
@@ -103,18 +108,59 @@ extension SeeAllViewController {
     private func registerCells() {
         trendingNowCollectoinView.register(SeeAllTrendingCell.self, forCellWithReuseIdentifier: Theme.trending)
     }
+    
+    private func fetchRandomRecipes() {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            APIManager.shared.fetchRandomRecipes(numberOfRecipes: 3) { result in
+                switch result {
+                case .success(let cookData):
+                    let recipesWithImages = cookData.recipes.filter { recipe in
+                        
+                        guard !recipe.image.isEmpty else { return false }
+                        
+                        guard !recipe.title.isEmpty,
+                              !recipe.extendedIngredients.isEmpty,
+                              recipe.readyInMinutes > 0 else {
+                            return false
+                        }
+                        
+                        return true
+                    }
+                    self?.cookData = recipesWithImages
+                    DispatchQueue.main.async {
+                        self?.trendingNowCollectoinView.reloadData()
+                    }
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
 }
 
 extension SeeAllViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return cookData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let trendingCell = collectionView.dequeueReusableCell(withReuseIdentifier: Theme.trending, for: indexPath) as? SeeAllTrendingCell else { return UICollectionViewCell() }
         
-        if let dishImage = UIImage(named: "dishOne") {
-            trendingCell.configureCollectionCell(with: dishImage, describtion: "vegetable sauce at home", ingredients: "9 Ingredients", cookingTime: 25, rating: 5.0)
+        let recipe = cookData[indexPath.item]
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            APIManager.shared.fetchRecipeImage(id: recipe.id) { image in
+                if let image = image {
+                    trendingCell.configureCollectionCell(
+                        with: image,
+                        describtion: recipe.title,
+                        ingredients: String(describing: recipe.extendedIngredients.count),
+                        cookingTime: recipe.readyInMinutes,
+                        rating: recipe.healthScore
+                    )
+                }
+            }
         }
         return trendingCell
     }
