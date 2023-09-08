@@ -8,100 +8,103 @@
 import UIKit
 
 enum Section: Int, CaseIterable {
-	case trending
-	case popularCategoryFilter
-	case popular
-	case recent
-	
-	var title: String {
-		switch self {
-		case .trending:
-			return "Trending now 🔥"
-		case .popularCategoryFilter:
-			return "Popular category"
-		case .popular:
-			return ""
-		case .recent:
-			return "Recent recipe"
-		}
-	}
+    case trending
+    case popularCategoryFilter
+    case popular
+    case recent
+    
+    var title: String {
+        switch self {
+        case .trending:
+            return "Trending now 🔥"
+        case .popularCategoryFilter:
+            return "Popular category"
+        case .popular:
+            return ""
+        case .recent:
+            return "Recent recipe"
+        }
+    }
 }
 
 final class HomeViewController: UIViewController {
-	
-	var sections = Section.allCases
+    
+    var sections = Section.allCases
     private var trendingNowRecipes: [Recipe] = []
-	private var collectionView: UICollectionView!
-	private let searchController = UISearchController(searchResultsController: nil)
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
+    private var randomRecipes: [Recipe] = []
+    private var collectionView: UICollectionView!
+    private let searchController = UISearchController(searchResultsController: nil)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         fetchTrendinRecipes()
-		title = "Home"
-		view.backgroundColor = .cyan
-		navigationController?.navigationBar.prefersLargeTitles = true
+        fetchRandomRecipes()
+        title = "Home"
+        view.backgroundColor = .cyan
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.backButtonDisplayMode = .minimal
-		setupCollectionView()
-		setupSearchController()
-		
-		collectionView.delegate = self
-		collectionView.dataSource = self
-		
-	}
-	
-	private func setupCollectionView() {
-		collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
-		collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		collectionView.backgroundColor = .white
-		view.addSubview(collectionView)
-		
-		collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseId)
-		collectionView.register(HomeViewControllerTrendingCell.self, forCellWithReuseIdentifier: "cellId")
-		collectionView.register(HomeViewControllerFilterCell.self, forCellWithReuseIdentifier: "cellId0")
-		collectionView.register(HomeViewControllerPopularCell.self, forCellWithReuseIdentifier: "cellId1")
-		collectionView.register(HomeViewControllerRecentRecipeCell.self, forCellWithReuseIdentifier: "cellId2")
-	}
-	
-	private func setupSearchController() {
-		searchController.searchResultsUpdater = self
-		searchController.searchBar.placeholder = "Search recipes"
-		navigationItem.searchController = searchController
-	}
-	
-	private func createCompositionalLayout() -> UICollectionViewLayout {
-		let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
-			guard let section = Section(rawValue: sectionIndex) else { fatalError() }
-			
-			switch section {
-			case .trending:
-				return self.createSection(groupWidth: 300, groupHeight: 220, header: [self.setupHeader()], behavior: .paging)//self.createTrendingRecipes()
-			case .popularCategoryFilter:
-				return self.createSection(groupWidth: 83, groupHeight: 34, header: [self.setupHeader()], behavior: .continuous)
-			case .popular:
-				return self.createSection(groupWidth: 150, groupHeight: 231, header: [], behavior: .paging)//self.createPopularCategory()
-			case .recent:
-				return self.createSection(groupWidth: 124, groupHeight: 175, header: [self.setupHeader()], behavior: .paging)//self.createRecentRecipe()
-			}
-		}
-		
-		return layout
-	}
+        setupCollectionView()
+        setupSearchController()
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+    }
+    
+    private func setupCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = .white
+        view.addSubview(collectionView)
+        
+        collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseId)
+        collectionView.register(HomeViewControllerTrendingCell.self, forCellWithReuseIdentifier: "cellId")
+        collectionView.register(HomeViewControllerFilterCell.self, forCellWithReuseIdentifier: "cellId0")
+        collectionView.register(HomeViewControllerPopularCell.self, forCellWithReuseIdentifier: "cellId1")
+        collectionView.register(HomeViewControllerRecentRecipeCell.self, forCellWithReuseIdentifier: "cellId2")
+    }
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search recipes"
+        navigationItem.searchController = searchController
+    }
+    
+    private func createCompositionalLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+            guard let section = Section(rawValue: sectionIndex) else { fatalError() }
+            
+            switch section {
+            case .trending:
+                return self.createSection(groupWidth: 300, groupHeight: 220, header: [self.setupHeader()], behavior: .paging)//self.createTrendingRecipes()
+            case .popularCategoryFilter:
+                return self.createSection(groupWidth: 83, groupHeight: 34, header: [self.setupHeader()], behavior: .continuous)
+            case .popular:
+                return self.createSection(groupWidth: 150, groupHeight: 231, header: [], behavior: .paging)//self.createPopularCategory()
+            case .recent:
+                return self.createSection(groupWidth: 124, groupHeight: 175, header: [self.setupHeader()], behavior: .paging)//self.createRecentRecipe()
+            }
+        }
+        
+        return layout
+    }
     
     private func fetchTrendinRecipes() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            APIManager.shared.fetchRandomRecipes(numberOfRecipes: 100) { result in
+            APIManager.shared.fetchRandomRecipes(numberOfRecipes: 350) { result in
                 switch result {
                 case .success(let cookData):
-                    let recipesWithImages = cookData.recipes.filter { recipe in
+                    let recipesWithImagesAndLikes = cookData.recipes.filter { recipe in
                         guard !recipe.title.isEmpty,
                               !recipe.extendedIngredients.isEmpty,
-                              recipe.readyInMinutes > 0 else {
+                              recipe.readyInMinutes > 0,
+                              recipe.healthScore > 40 else {
                             return false
                         }
                         
                         return true
                     }
-                    self?.trendingNowRecipes = recipesWithImages
+                    self?.trendingNowRecipes = recipesWithImagesAndLikes
                     DispatchQueue.main.async {
                         self?.collectionView.reloadData()
                     }
@@ -111,41 +114,57 @@ final class HomeViewController: UIViewController {
             }
         }
     }
-	
-	private func createSection(groupWidth: CGFloat, groupHeight: CGFloat, header: [NSCollectionLayoutBoundarySupplementaryItem], behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior) -> NSCollectionLayoutSection {
-		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-		let item = NSCollectionLayoutItem(layoutSize: itemSize)
-		
-		let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(groupWidth), heightDimension: .absolute(groupHeight))
-		let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-		
-		let section = NSCollectionLayoutSection(group: group)
-		section.interGroupSpacing = 16
-		section.contentInsets = NSDirectionalEdgeInsets.init(top: 5, leading: 20, bottom: 16, trailing: 20)
-		section.orthogonalScrollingBehavior = behavior//.groupPaging
-		section.boundarySupplementaryItems = header
-		return section
-	}
-	
-	private func setupHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-		let sectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(30))
-		let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: sectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
-		
-		return sectionHeader
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.reuseId, for: indexPath) as! SectionHeader
-		if indexPath.section == 1 || indexPath.section == 2 {
-			header.configure(titleText: sections[indexPath.section].title, hideButton: true)
-		} else {
-			header.configure(titleText: sections[indexPath.section].title, hideButton: false)
-		}
-//        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(goToSeeAllScreen))
-//            header.addGestureRecognizer(tapGestureRecognizer)
+    
+    private func fetchRandomRecipes() {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            APIManager.shared.fetchRandomRecipes(numberOfRecipes: 300) { result in
+                switch result {
+                case .success(let cookData):
+                    self?.randomRecipes = cookData.recipes
+                    DispatchQueue.main.async {
+                        self?.collectionView.reloadData()
+                    }
+                case .failure(let error):
+                    print("Error: \(error)")
+                }
+            }
+        }
+    }
+    
+    private func createSection(groupWidth: CGFloat, groupHeight: CGFloat, header: [NSCollectionLayoutBoundarySupplementaryItem], behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-		return header
-	}
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(groupWidth), heightDimension: .absolute(groupHeight))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 16
+        section.contentInsets = NSDirectionalEdgeInsets.init(top: 5, leading: 20, bottom: 16, trailing: 20)
+        section.orthogonalScrollingBehavior = behavior//.groupPaging
+        section.boundarySupplementaryItems = header
+        return section
+    }
+    
+    private func setupHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let sectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(30))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: sectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+        
+        return sectionHeader
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.reuseId, for: indexPath) as! SectionHeader
+        if indexPath.section == 1 || indexPath.section == 2 {
+            header.configure(titleText: sections[indexPath.section].title, hideButton: true)
+        } else {
+            header.configure(titleText: sections[indexPath.section].title, hideButton: false)
+        }
+        //        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(goToSeeAllScreen))
+        //            header.addGestureRecognizer(tapGestureRecognizer)
+        
+        return header
+    }
     
     @objc private func goToSeeAllScreen() {
         print("tratatatata")
@@ -156,33 +175,33 @@ final class HomeViewController: UIViewController {
 
 // MARK: - SearchResultUpdating
 extension HomeViewController: UISearchResultsUpdating {
-	func updateSearchResults(for searchController: UISearchController) {
-		guard let text = searchController.searchBar.text else { return }
-		if text != "" {
-			print(text)
-		}
-	}
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        if text != "" {
+            print(text)
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		switch sections[section] {
-		case .trending:
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch sections[section] {
+        case .trending:
             return trendingNowRecipes.count
-		case .popularCategoryFilter:
-			return 8
-		case .popular:
-			return 5
-		case .recent:
-			return 11
-		}
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		switch sections[indexPath.section] {
-		case .trending:
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! HomeViewControllerTrendingCell
+        case .popularCategoryFilter:
+            return 8
+        case .popular:
+            return 5
+        case .recent:
+            return randomRecipes.count
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch sections[indexPath.section] {
+        case .trending:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! HomeViewControllerTrendingCell
             let recipe = trendingNowRecipes[indexPath.item]
             
             DispatchQueue.global(qos: .userInitiated).async {
@@ -193,39 +212,48 @@ extension HomeViewController: UICollectionViewDataSource {
                 }
             }
             
-			return cell
-		case .popularCategoryFilter:
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId0", for: indexPath) as! HomeViewControllerFilterCell
-			return cell
-		case .popular:
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId1", for: indexPath) as! HomeViewControllerPopularCell //HomeViewControllerPopularCell
-//			cell.configure(title: sections[indexPath.row].title)
-			return cell
-		case .recent:
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId2", for: indexPath) as! HomeViewControllerRecentRecipeCell
-			return cell
-		}
-	}
-	
-	func numberOfSections(in collectionView: UICollectionView) -> Int {
-		return sections.count
-	}
+            return cell
+        case .popularCategoryFilter:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId0", for: indexPath) as! HomeViewControllerFilterCell
+            return cell
+        case .popular:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId1", for: indexPath) as! HomeViewControllerPopularCell //HomeViewControllerPopularCell
+            //			cell.configure(title: sections[indexPath.row].title)
+            return cell
+        case .recent:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId2", for: indexPath) as! HomeViewControllerRecentRecipeCell
+            let recipe = randomRecipes[indexPath.item]
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                APIManager.shared.fetchRecipeImage(id: recipe.id) { image in
+                    if let image = image {
+                        cell.configure(imageName: image, title: recipe.title)
+                    }
+                }
+            }
+            return cell
+        }
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sections.count
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegate {
-	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		switch sections[indexPath.section] {
-		case .trending:
-			print("Section \(indexPath.section), cell: \(indexPath.row)")
-		case .popularCategoryFilter:
-			print("Section \(indexPath.section), cell: \(indexPath.row)")
-			if let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerFilterCell {
-				cell.configureCell()
-			}
-		case .popular:
-			print("Section \(indexPath.section), cell: \(indexPath.row)")
-		case .recent:
-			print("Section \(indexPath.section), cell: \(indexPath.row)")
-		}
-	}
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch sections[indexPath.section] {
+        case .trending:
+            print("Section \(indexPath.section), cell: \(indexPath.row)")
+        case .popularCategoryFilter:
+            print("Section \(indexPath.section), cell: \(indexPath.row)")
+            if let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerFilterCell {
+                cell.configureCell()
+            }
+        case .popular:
+            print("Section \(indexPath.section), cell: \(indexPath.row)")
+        case .recent:
+            print("Section \(indexPath.section), cell: \(indexPath.row)")
+        }
+    }
 }

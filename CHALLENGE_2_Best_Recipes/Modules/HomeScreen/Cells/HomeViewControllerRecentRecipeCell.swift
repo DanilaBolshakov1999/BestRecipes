@@ -40,10 +40,16 @@ class HomeViewControllerRecentRecipeCell: UICollectionViewCell {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        recentImage.image = nil
+        titleLabel.text = nil
+    }
 	
-	func configure(imageName: String, title: String) {
-		recentImage.image = UIImage(named: imageName)
-		titleLabel.text = title
+    func configure(imageName: UIImage, title: String) {
+		recentImage.image = imageName
+        titleLabel.text = DisplayData.shared.truncateTitle(title)
 	}
 }
 
