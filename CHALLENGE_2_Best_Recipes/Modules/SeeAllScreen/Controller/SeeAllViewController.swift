@@ -76,7 +76,7 @@ final class SeeAllViewController: UIViewController {
 extension SeeAllViewController {
     
     private func setupNavigationBar() {
-        title = "Trending Now"
+//        title = "Trending Now"
 
         let navigationAppearance = UINavigationBarAppearance()
         navigationAppearance.titleTextAttributes = [

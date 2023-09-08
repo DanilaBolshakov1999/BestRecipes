@@ -9,22 +9,31 @@ import UIKit
 
 extension UIViewController {
     
-//    func setStatusBar() {
-//        let navBarAppearance = UINavigationBarAppearance()
-//        navBarAppearance.configureWithTransparentBackground()
-//        navBarAppearance.backgroundColor = UIColor.white
-//        navBarAppearance.titleTextAttributes = [
-//            NSAttributedString.Key.font: UIFont(name: Theme.Fonts.boldFont, size: 24)!,
-//            NSAttributedString.Key.foregroundColor: UIColor.black
-//        ]
-
-//        UINavigationBar.appearance().standardAppearance = navBarAppearance
-//        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-//    }
+    //    func setStatusBar() {
+    //        let navBarAppearance = UINavigationBarAppearance()
+    //        navBarAppearance.configureWithTransparentBackground()
+    //        navBarAppearance.backgroundColor = UIColor.white
+    //        navBarAppearance.titleTextAttributes = [
+    //            NSAttributedString.Key.font: UIFont(name: Theme.Fonts.boldFont, size: 24)!,
+    //            NSAttributedString.Key.foregroundColor: UIColor.black
+    //        ]
+    
+    //        UINavigationBar.appearance().standardAppearance = navBarAppearance
+    //        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+    //    }
     
     func setTabBarImage(imageName: String, title: String) {
         let configuration = UIImage.SymbolConfiguration(scale: .default)
         let image = UIImage(named: imageName, in: nil, with: configuration)
         tabBarItem = UITabBarItem(title: title, image: image, tag: 0)
+    }
+}
+
+extension UIImageView {
+    
+    func setRounded() {
+        self.layoutIfNeeded()
+        self.layer.cornerRadius = self.frame.width / 2
+        self.layer.masksToBounds = true
     }
 }
