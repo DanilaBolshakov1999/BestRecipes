@@ -88,9 +88,10 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func configureCell(title: String, imageName: String) {
-		trendingImage.image = UIImage(named: imageName)
-		titleLabel.text = title
+    func configureCell(title: String, imageName: UIImage, rating: Int) {
+		trendingImage.image = imageName
+        titleLabel.text = "How to \(DisplayData.shared.truncateTitle(title))"
+        ratingLabel.text = String(describing: DisplayData.shared.calculateRating(rating: rating))
 	}
 	
 	@objc private func bookmarkAction(_ sender: UIButton) {
@@ -142,4 +143,5 @@ extension HomeViewControllerTrendingCell {
 			stackView.centerYAnchor.constraint(equalTo: rating.centerYAnchor)
 		])
 	}
+    
 }
