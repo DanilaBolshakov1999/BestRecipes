@@ -90,7 +90,7 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 	
     func configureCell(title: String, imageName: UIImage, rating: Int) {
 		trendingImage.image = imageName
-		titleLabel.text = title
+		titleLabel.text = "How to \(truncateTitle(title))"
         ratingLabel.text = String(describing: calculateRating(rating: rating))
 	}
 	
@@ -188,5 +188,24 @@ extension HomeViewControllerTrendingCell {
         
         return calculatedRating
     }
+    
+    private func truncateTitle(_ title: String) -> String {
+        let excludedWords = ["must", "at", "with", "-", "and"] // Add any other words you want to exclude
+        let words = title.components(separatedBy: " ")
+        
+        var truncatedWords: [String] = []
+        
+        for word in words {
+            if truncatedWords.count >= 2 {
+                break
+            }
+            if !excludedWords.contains(word.lowercased()) {
+                truncatedWords.append(word)
+            }
+        }
+        
+        return truncatedWords.joined(separator: " ")
+    }
+
     
 }
