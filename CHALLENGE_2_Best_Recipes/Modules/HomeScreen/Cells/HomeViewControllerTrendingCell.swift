@@ -190,7 +190,7 @@ extension HomeViewControllerTrendingCell {
     }
     
     private func truncateTitle(_ title: String) -> String {
-        let excludedWords = ["must", "at", "with", "-", "and"] // Add any other words you want to exclude
+        let excludedWords = ["must", "at", "with", "-", "and"]
         let words = title.components(separatedBy: " ")
         
         var truncatedWords: [String] = []
