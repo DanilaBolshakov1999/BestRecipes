@@ -111,6 +111,14 @@ class HomeViewControllerPopularCell: UICollectionViewCell {
 		titleLabel.text = title
 		timeLabel.text = "\(time) Mins"
 	}
+	
+	func getTitle() -> String {
+		return titleLabel.text ?? ""
+	}
+	
+	func getImage() -> UIImage {
+		return popularImage.image ?? UIImage.init(systemName: "hourglass")!
+	}
 }
 
 // MARK: - Style and Constraints

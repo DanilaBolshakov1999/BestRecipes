@@ -93,6 +93,14 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 		titleLabel.text = title
 	}
 	
+	func getTitle() -> String {
+		return titleLabel.text ?? ""
+	}
+	
+	func getImage() -> UIImage {
+		return trendingImage.image ?? UIImage.init(systemName: "hourglass")!
+	}
+	
 	@objc private func bookmarkAction(_ sender: UIButton) {
 		print("BookMark")
 	}

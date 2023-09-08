@@ -92,6 +92,11 @@ final class HomeViewController: UIViewController {
 		self.navigationController?.pushViewController(destinationVC, animated: true)
 	}
 	
+	private func goToRecipeViewController(title: String, image: UIImage) {
+		let destinationVC = RecipeViewControllerScreen()
+		navigationController?.pushViewController(destinationVC, animated: true)
+	}
+	
 	private func createSection(groupWidth: CGFloat, groupHeight: CGFloat, header: [NSCollectionLayoutBoundarySupplementaryItem], behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior) -> NSCollectionLayoutSection {
 		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
 		let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -189,6 +194,8 @@ extension HomeViewController: UICollectionViewDelegate {
 		switch sections[indexPath.section] {
 		case .trending:
 			print("Section \(indexPath.section), cell: \(indexPath.row)")
+			guard let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerTrendingCell else { return }
+			goToRecipeViewController(title: cell.getTitle(), image: cell.getImage())
 		case .popularCategoryFilter:
 			print("Section \(indexPath.section), cell: \(indexPath.row)")
 			if let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerFilterCell {
@@ -196,8 +203,12 @@ extension HomeViewController: UICollectionViewDelegate {
 			}
 		case .popular:
 			print("Section \(indexPath.section), cell: \(indexPath.row)")
+			guard let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerPopularCell else { return }
+			goToRecipeViewController(title: cell.getTitle(), image: cell.getImage())
 		case .recent:
 			print("Section \(indexPath.section), cell: \(indexPath.row)")
+			guard let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerRecentRecipeCell else { return }
+			goToRecipeViewController(title: cell.getTitle(), image: cell.getImage())
 		}
 	}
 }

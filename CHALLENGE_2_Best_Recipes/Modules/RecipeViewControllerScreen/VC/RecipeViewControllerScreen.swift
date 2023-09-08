@@ -130,7 +130,8 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     //MARK: - @objc Private Func
     
     @objc private func backButtonTapped() {
-        navigationController?.pushViewController(OnboardingViewController(), animated: true)
+//        navigationController?.pushViewController(OnboardingViewController(), animated: true)
+		navigationController?.popViewController(animated: true)
     }
     
     @objc private func buttonTapped() {
