@@ -20,6 +20,17 @@ final class DiscoverViewContoller: UIViewController {
         return collectionView
     }()
     
+    private lazy var backButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            image: UIImage(named: "BackArrow"),
+            style: .done,
+            target: self,
+            action: #selector(backButtonTapped)
+        )
+        button.tintColor = .black
+        return button
+    }()
+    
     //MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -37,6 +48,12 @@ final class DiscoverViewContoller: UIViewController {
         registerCells()
     }
     
+    //  MARK: - Private @objc func
+    
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 extension DiscoverViewContoller {
@@ -51,6 +68,7 @@ extension DiscoverViewContoller {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.standardAppearance = navigationAppearance
+        navigationItem.leftBarButtonItem = backButton
     }
     
     private func addSubviews() {
