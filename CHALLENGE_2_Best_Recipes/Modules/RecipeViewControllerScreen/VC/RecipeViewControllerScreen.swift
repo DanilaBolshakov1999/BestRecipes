@@ -10,6 +10,8 @@ import SnapKit
 
 final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     
+	var steps: [AnalyzedInstruction]?
+	
     //MARK: - Table View
     
     private let tableView = UITableView()
@@ -130,7 +132,8 @@ final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     //MARK: - @objc Private Func
     
     @objc private func backButtonTapped() {
-        navigationController?.pushViewController(OnboardingViewController(), animated: true)
+//        navigationController?.pushViewController(OnboardingViewController(), animated: true)
+		navigationController?.popViewController(animated: true)
     }
     
     @objc private func buttonTapped() {
@@ -170,6 +173,11 @@ extension RecipeViewControllerScreen {
         
         navigationController?.navigationBar.standardAppearance = appearance
     }
+	
+	func configureImageTitle(image: UIImage, title: String) {
+		imageView.image = image
+		mainLabel.text = title
+	}
 }
 
 

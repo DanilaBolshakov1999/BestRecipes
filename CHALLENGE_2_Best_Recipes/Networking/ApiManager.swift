@@ -16,6 +16,7 @@ final class APIManager {
     private let apiKey = "08aaad3488c7489fa416f8e726d49df7"
     private let baseURL = "https://api.spoonacular.com/recipes/"
     private let randomEndpoint = "random"
+	private let complexEndpoint = "complexSearch"
     
     func fetchRandomRecipes(numberOfRecipes: Int, completion: @escaping (Result<CookData, Error>) -> Void) {
         let queryString = "number=\(numberOfRecipes)&apiKey=\(apiKey)"
@@ -54,4 +55,30 @@ final class APIManager {
             completion(image)
         }
     }
+	
+	func fetchMealTypeRecipe(numberOfRecipes: Int, mealType: String, completion: @escaping (Result<TypeData, Error>) -> Void) {
+		let queryString = "addRecipeInformation=true&number=\(numberOfRecipes)&type=\(mealType)&apiKey=\(apiKey)"
+		let fullURLString = baseURL + complexEndpoint + "?" + queryString
+		
+		guard let url = URL(string: fullURLString) else {
+			return
+		}
+		print("FULL STRING: \(fullURLString)")
+		
+		let task = URLSession.shared.dataTask(with: url) { data, response, fetchError in
+			if let fetchError = fetchError {
+				completion(.failure(fetchError))
+			} else if let data = data {
+				do {
+					let decoder = JSONDecoder()
+					let cookData = try decoder.decode(TypeData.self, from: data)
+					print("COOOOOK DATA = \(cookData)")
+					completion(.success(cookData))
+				} catch {
+					completion(.failure(error))
+				}
+			}
+		}
+		task.resume()
+	}
 }

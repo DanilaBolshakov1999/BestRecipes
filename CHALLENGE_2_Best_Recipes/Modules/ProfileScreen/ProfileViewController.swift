@@ -93,7 +93,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             fatalError("Could not dequeue SeeAllTrendingCell")
         }
         if let dishImage = UIImage(named: "dishOne") {
-            cell.configureCollectionCell(with: dishImage, describtion: "vegetable sauce at home", ingredients: "9 Ingredients", cookingTime: 25, rating: 5.0)
+			cell.configureCollectionCell(with: dishImage, describtion: "vegetable sauce at home", ingredients: "9 Ingredients", cookingTime: 25, rating: Int(5.0))
         }
         cell.layer.cornerRadius = 10
         return cell

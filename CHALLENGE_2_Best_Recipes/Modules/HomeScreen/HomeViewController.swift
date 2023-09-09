@@ -32,13 +32,19 @@ final class HomeViewController: UIViewController {
     var sections = Section.allCases
     private var trendingNowRecipes: [Recipe] = []
     private var randomRecipes: [Recipe] = []
+	private var typeRecipes: [Resulte] = []
     private var collectionView: UICollectionView!
+	private let mealTypes = MealType.allCases
     private let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchTrendinRecipes()
         fetchRandomRecipes()
+		fetchMealTypeRecipe(mealType: "main%20course")
+		
+		print("TYPE RECIPE \(typeRecipes)")
+		print("RANDOOOOOOM: \(randomRecipes)")
         title = "Home"
         view.backgroundColor = .cyan
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -93,6 +99,13 @@ final class HomeViewController: UIViewController {
 		let destinationVC = SeeAllViewController()
 		destinationVC.title = title
 		self.navigationController?.pushViewController(destinationVC, animated: true)
+	}
+	
+	private func goToRecipeViewController(title: String, image: UIImage, steps: [AnalyzedInstruction]?) {
+		let destinationVC = RecipeViewControllerScreen()
+		destinationVC.configureImageTitle(image: image, title: title)
+		destinationVC.steps = steps
+		navigationController?.pushViewController(destinationVC, animated: true)
 	}
 	
 	private func createSection(groupWidth: CGFloat, groupHeight: CGFloat, header: [NSCollectionLayoutBoundarySupplementaryItem], behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior) -> NSCollectionLayoutSection {
@@ -172,6 +185,23 @@ final class HomeViewController: UIViewController {
             }
         }
     }
+	
+	private func fetchMealTypeRecipe(mealType: String) {
+		DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+			APIManager.shared.fetchMealTypeRecipe(numberOfRecipes: 300, mealType: mealType) { result in
+				switch result {
+				case .success(let data):
+					self?.typeRecipes = data.results
+					DispatchQueue.main.async {
+						let indexSet = IndexSet(integer: 2)
+						self?.collectionView.reloadSections(indexSet)
+					}
+				case .failure(let error):
+					print("Error:::: \(error)")
+				}
+			}
+		}
+	}
 }
 
 // MARK: - SearchResultUpdating
@@ -191,9 +221,9 @@ extension HomeViewController: UICollectionViewDataSource {
         case .trending:
             return trendingNowRecipes.count
         case .popularCategoryFilter:
-            return 8
+			return mealTypes.count
         case .popular:
-            return 5
+			return typeRecipes.count
         case .recent:
             return randomRecipes.count
         }
@@ -215,10 +245,27 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case .popularCategoryFilter:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId0", for: indexPath) as! HomeViewControllerFilterCell
+			cell.configure(title: mealTypes[indexPath.row].rawValue)
+			
+			if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first, selectedIndexPath == indexPath {
+				cell.configureCellSelect()
+			} else {
+				cell.configureCellDeselect()
+			}
+			
             return cell
         case .popular:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId1", for: indexPath) as! HomeViewControllerPopularCell //HomeViewControllerPopularCell
-            //			cell.configure(title: sections[indexPath.row].title)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId1", for: indexPath) as! HomeViewControllerPopularCell 
+			let recipe = typeRecipes[indexPath.item]
+
+			DispatchQueue.global(qos: .userInitiated).async {
+				APIManager.shared.fetchRecipeImage(id: recipe.id) { image in
+					if let image = image {
+						cell.configure(imageName: image, title: recipe.title, time: String(recipe.readyInMinutes))
+					}
+				}
+			}
+			
             return cell
         case .recent:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId2", for: indexPath) as! HomeViewControllerRecentRecipeCell
@@ -241,19 +288,36 @@ extension HomeViewController: UICollectionViewDataSource {
 }
 
 extension HomeViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch sections[indexPath.section] {
-        case .trending:
-            print("Section \(indexPath.section), cell: \(indexPath.row)")
-        case .popularCategoryFilter:
-            print("Section \(indexPath.section), cell: \(indexPath.row)")
-            if let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerFilterCell {
-                cell.configureCell()
-            }
-        case .popular:
-            print("Section \(indexPath.section), cell: \(indexPath.row)")
-        case .recent:
-            print("Section \(indexPath.section), cell: \(indexPath.row)")
-        }
-    }
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		switch sections[indexPath.section] {
+		case .trending:
+			print("Section \(indexPath.section), cell: \(indexPath.row)")
+			guard let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerTrendingCell else { return }
+			goToRecipeViewController(title: cell.getTitle(), image: cell.getImage(), steps: nil)
+		case .popularCategoryFilter:
+			print("Section \(indexPath.section), cell: \(indexPath.row)")
+			if let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerFilterCell {
+				cell.configureCellSelect()
+				let mealType = cell.getTitle()
+				fetchMealTypeRecipe(mealType: mealType)
+			}
+		case .popular:
+			print("Section \(indexPath.section), cell: \(indexPath.row)")
+			guard let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerPopularCell else { return }
+			let recipe = typeRecipes[indexPath.item]
+			let steps = recipe.analyzedInstructions
+			
+			goToRecipeViewController(title: cell.getTitle(), image: cell.getImage(), steps: steps)
+		case .recent:
+			print("Section \(indexPath.section), cell: \(indexPath.row)")
+			guard let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerRecentRecipeCell else { return }
+			goToRecipeViewController(title: cell.getTitle(), image: cell.getImage(), steps: nil)
+		}
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+		if let cell = collectionView.cellForItem(at: indexPath) as? HomeViewControllerFilterCell {
+			cell.configureCellDeselect()
+		}
+	}
 }

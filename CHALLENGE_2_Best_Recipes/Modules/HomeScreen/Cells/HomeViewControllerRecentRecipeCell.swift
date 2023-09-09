@@ -51,6 +51,14 @@ class HomeViewControllerRecentRecipeCell: UICollectionViewCell {
 		recentImage.image = imageName
         titleLabel.text = DisplayData.shared.truncateTitle(title)
 	}
+	
+	func getTitle() -> String {
+		return titleLabel.text ?? ""
+	}
+	
+	func getImage() -> UIImage {
+		return recentImage.image ?? UIImage.init(systemName: "hourglass")!
+	}
 }
 
 // MARK: - Style and Constraints

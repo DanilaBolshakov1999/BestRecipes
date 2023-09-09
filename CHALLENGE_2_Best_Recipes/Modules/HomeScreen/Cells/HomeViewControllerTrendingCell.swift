@@ -94,6 +94,14 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
         ratingLabel.text = String(describing: DisplayData.shared.calculateRating(rating: rating))
 	}
 	
+	func getTitle() -> String {
+		return titleLabel.text ?? ""
+	}
+	
+	func getImage() -> UIImage {
+		return trendingImage.image ?? UIImage.init(systemName: "hourglass")!
+	}
+	
 	@objc private func bookmarkAction(_ sender: UIButton) {
 		print("BookMark")
 	}
