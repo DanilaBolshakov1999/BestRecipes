@@ -10,6 +10,8 @@ import SnapKit
 
 final class RecipeViewControllerScreen: UIViewController, UITextViewDelegate {
     
+	var steps: [AnalyzedInstruction]?
+	
     //MARK: - Table View
     
     private let tableView = UITableView()
@@ -171,6 +173,11 @@ extension RecipeViewControllerScreen {
         
         navigationController?.navigationBar.standardAppearance = appearance
     }
+	
+	func configureImageTitle(image: UIImage, title: String) {
+		imageView.image = image
+		mainLabel.text = title
+	}
 }
 
 
