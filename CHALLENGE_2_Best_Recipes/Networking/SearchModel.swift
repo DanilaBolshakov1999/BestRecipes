@@ -7,8 +7,13 @@
 
 import Foundation
 
-//struct RecipeOne: Codable {
-//    let id: Int
-//    let title: String
-//    let image: String
-//}
+struct RecipeSearch: Codable {
+    let results: [RecipeOne]
+}
+
+struct RecipeOne: Codable {
+    let id: Int
+    let title: String
+    let image: String
+    let imageType: String
+}

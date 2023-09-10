@@ -52,7 +52,7 @@ struct Recipe: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-
+        
         preparationMinutes = try container.decode(Int.self, forKey: .preparationMinutes)
         cookingMinutes = try container.decode(Int.self, forKey: .cookingMinutes)
         aggregateLikes = try container.decode(Int.self, forKey: .aggregateLikes)
@@ -65,15 +65,14 @@ struct Recipe: Codable {
         title = try container.decode(String.self, forKey: .title)
         readyInMinutes = try container.decode(Int.self, forKey: .readyInMinutes)
         servings = try container.decode(Int.self, forKey: .servings)
-//        sourceUrl = try container.decode(String.self, forKey: .sourceUrl)
-//        image = try container.decode(String.self, forKey: .image)
-//        imageType = try container.decode(String.self, forKey: .imageType)
+//      sourceUrl = try container.decode(String.self, forKey: .sourceUrl)
+//      image = try container.decode(String.self, forKey: .image)
+//      imageType = try container.decode(String.self, forKey: .imageType)
         summary = try container.decode(String.self, forKey: .summary)
         cuisines = try container.decode([String].self, forKey: .cuisines)
         dishTypes = try container.decode([String].self, forKey: .dishTypes)
-        //ingredients = try container.decode([Ingredients].self, forKey: .ingredients)
+//      ingredients = try container.decode([Ingredients].self, forKey: .ingredients)
     }
- 
 }
 
 // MARK: - ExtendedIngredient
