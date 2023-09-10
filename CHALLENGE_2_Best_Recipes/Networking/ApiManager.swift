@@ -13,14 +13,42 @@ final class APIManager {
     
     private init() {}
     
-    private let apiKey = "08aaad3488c7489fa416f8e726d49df7"
+    private let apiKey = "9ad0375acd614e2ebdceb11bddcaf4e6"
     private let baseURL = "https://api.spoonacular.com/recipes/"
     private let randomEndpoint = "random"
+    private let searchEndpoint = "findByIngredients"
 	private let complexEndpoint = "complexSearch"
     
     func fetchRandomRecipes(numberOfRecipes: Int, completion: @escaping (Result<CookData, Error>) -> Void) {
         let queryString = "number=\(numberOfRecipes)&apiKey=\(apiKey)"
         let fullURLString = baseURL + randomEndpoint + "?" + queryString
+        
+        guard let url = URL(string: fullURLString) else {
+            return
+        }
+        print(fullURLString)
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, fetchError in
+            if let fetchError = fetchError {
+                completion(.failure(fetchError))
+            } else if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let cookData = try decoder.decode(CookData.self, from: data)
+                    completion(.success(cookData))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    //complexSearch?query=pasta
+    
+    func fetchRecipesSearch(ingredients: String, numberOfRecipes: Int, completion: @escaping (Result<CookData, Error>) -> Void) {
+        let queryString = "&apiKey=\(apiKey)"
+        let fullURLString = baseURL + complexEndpoint + "?query=\(ingredients)" + queryString
         
         guard let url = URL(string: fullURLString) else {
             return

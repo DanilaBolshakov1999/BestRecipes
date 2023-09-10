@@ -51,6 +51,7 @@
 		37DFC3ED2A9BE15100C4951B /* OnboardingScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3EC2A9BE15100C4951B /* OnboardingScreens.swift */; };
 		37DFC3EF2A9E8FD200C4951B /* InitialOnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFC3EE2A9E8FD200C4951B /* InitialOnboardingScreen.swift */; };
 		443403252AACCBD80014D604 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443403242AACCBD80014D604 /* SearchViewController.swift */; };
+		443403272AACEC9F0014D604 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443403262AACEC9F0014D604 /* SearchModel.swift */; };
 		444456E12A9AA042003BA976 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444456E02A9AA042003BA976 /* Theme.swift */; };
 		444457042A9DC931003BA976 /* README_CHALLENGE_2.md in Resources */ = {isa = PBXBuildFile; fileRef = 444457032A9DC931003BA976 /* README_CHALLENGE_2.md */; };
 		44A877F02A9A880300241ED3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A877EF2A9A880300241ED3 /* AppDelegate.swift */; };
@@ -113,6 +114,7 @@
 		37DFC3EC2A9BE15100C4951B /* OnboardingScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreens.swift; sourceTree = "<group>"; };
 		37DFC3EE2A9E8FD200C4951B /* InitialOnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialOnboardingScreen.swift; sourceTree = "<group>"; };
 		443403242AACCBD80014D604 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		443403262AACEC9F0014D604 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		444456E02A9AA042003BA976 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		444457032A9DC931003BA976 /* README_CHALLENGE_2.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README_CHALLENGE_2.md; sourceTree = "<group>"; };
 		44A877EC2A9A880300241ED3 /* CHALLENGE_2_Best_Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHALLENGE_2_Best_Recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +183,7 @@
 		16D3CF352AA9DF71004563DA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				443403262AACEC9F0014D604 /* SearchModel.swift */,
 				16D3CF362AA9DF8A004563DA /* RecipeModel.swift */,
 				2F9FC01A2AAC47A4004E0AE6 /* MealTypeData.swift */,
 				16D3CF382AA9DFC1004563DA /* ApiManager.swift */,
@@ -583,6 +586,7 @@
 				16D3CF392AA9DFC1004563DA /* ApiManager.swift in Sources */,
 				37DFC3EF2A9E8FD200C4951B /* InitialOnboardingScreen.swift in Sources */,
 				44E53FCA2A9A91CC00B6BBBE /* UIColor+Extension.swift in Sources */,
+				443403272AACEC9F0014D604 /* SearchModel.swift in Sources */,
 				44CFC7162AA1215B0065717C /* TrendingNowCell.swift in Sources */,
 				37DA4BF62AA35E5C00AB64DC /* CustomTabBar.swift in Sources */,
 			);

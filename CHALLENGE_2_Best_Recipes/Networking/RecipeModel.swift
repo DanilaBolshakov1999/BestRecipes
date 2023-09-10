@@ -29,6 +29,7 @@ struct Recipe: Codable {
     let summary: String
     let cuisines: [String]
     let dishTypes: [String]
+    //let ingredients: [Ingredients]
     
     enum CodingKeys: String, CodingKey {
         case preparationMinutes,
@@ -46,6 +47,7 @@ struct Recipe: Codable {
              summary,
              cuisines,
              dishTypes
+             //ingredients
     }
 
     init(from decoder: Decoder) throws {
@@ -69,6 +71,7 @@ struct Recipe: Codable {
         summary = try container.decode(String.self, forKey: .summary)
         cuisines = try container.decode([String].self, forKey: .cuisines)
         dishTypes = try container.decode([String].self, forKey: .dishTypes)
+        //ingredients = try container.decode([Ingredients].self, forKey: .ingredients)
     }
  
 }
@@ -78,3 +81,58 @@ struct Recipe: Codable {
 struct ExtendedIngredient: Codable {
     let id: Int
 }
+
+//struct Ingredients: Codable {
+//    let id: Int
+//    let title: String
+//    let image: String
+//    let imageType: String
+//    let usedIngredientCount: Int
+//    let missedIngredientCount: Int
+//    let missedIngredients: [MissedIngredients]
+//    let usedIngredients: [UsedIngredients]
+//    let unusedIngredients: [UnusedIngredients]
+//    let likes: Int
+//}
+//
+//struct MissedIngredients: Codable {
+//    let id: Int
+//    let amount: Int
+//    let unit: String
+//    let unitLong: String
+//    let unitShort: String
+//    let aisle: String
+//    let name: String
+//    let original: String
+//    let originalName: String
+//    let meta: [String]
+//    let image: String
+//}
+//
+//struct UsedIngredients: Codable {
+//    let id: Int
+//    let amount: Int
+//    let unit: String
+//    let unitLong: String
+//    let unitShort: String
+//    let aisle: String
+//    let name: String
+//    let original: String
+//    let originalName: String
+//    let meta: [String]
+//    let image: String
+//}
+//
+//struct UnusedIngredients: Codable {
+//    let id: Int
+//    let amount: Int
+//    let unit: String
+//    let unitLong: String
+//    let unitShort: String
+//    let aisle: String
+//    let name: String
+//    let original: String
+//    let originalName: String
+//    let meta: [String]
+//    let image: String
+//}
