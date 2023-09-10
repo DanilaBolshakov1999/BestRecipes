@@ -29,6 +29,7 @@ struct Recipe: Codable {
     let summary: String
     let cuisines: [String]
     let dishTypes: [String]
+    //let ingredients: [Ingredients]
     
     enum CodingKeys: String, CodingKey {
         case preparationMinutes,
@@ -46,11 +47,12 @@ struct Recipe: Codable {
              summary,
              cuisines,
              dishTypes
+             //ingredients
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-
+        
         preparationMinutes = try container.decode(Int.self, forKey: .preparationMinutes)
         cookingMinutes = try container.decode(Int.self, forKey: .cookingMinutes)
         aggregateLikes = try container.decode(Int.self, forKey: .aggregateLikes)
@@ -63,14 +65,14 @@ struct Recipe: Codable {
         title = try container.decode(String.self, forKey: .title)
         readyInMinutes = try container.decode(Int.self, forKey: .readyInMinutes)
         servings = try container.decode(Int.self, forKey: .servings)
-//        sourceUrl = try container.decode(String.self, forKey: .sourceUrl)
-//        image = try container.decode(String.self, forKey: .image)
-//        imageType = try container.decode(String.self, forKey: .imageType)
+//      sourceUrl = try container.decode(String.self, forKey: .sourceUrl)
+//      image = try container.decode(String.self, forKey: .image)
+//      imageType = try container.decode(String.self, forKey: .imageType)
         summary = try container.decode(String.self, forKey: .summary)
         cuisines = try container.decode([String].self, forKey: .cuisines)
         dishTypes = try container.decode([String].self, forKey: .dishTypes)
+//      ingredients = try container.decode([Ingredients].self, forKey: .ingredients)
     }
- 
 }
 
 // MARK: - ExtendedIngredient
@@ -78,3 +80,58 @@ struct Recipe: Codable {
 struct ExtendedIngredient: Codable {
     let id: Int
 }
+
+//struct Ingredients: Codable {
+//    let id: Int
+//    let title: String
+//    let image: String
+//    let imageType: String
+//    let usedIngredientCount: Int
+//    let missedIngredientCount: Int
+//    let missedIngredients: [MissedIngredients]
+//    let usedIngredients: [UsedIngredients]
+//    let unusedIngredients: [UnusedIngredients]
+//    let likes: Int
+//}
+//
+//struct MissedIngredients: Codable {
+//    let id: Int
+//    let amount: Int
+//    let unit: String
+//    let unitLong: String
+//    let unitShort: String
+//    let aisle: String
+//    let name: String
+//    let original: String
+//    let originalName: String
+//    let meta: [String]
+//    let image: String
+//}
+//
+//struct UsedIngredients: Codable {
+//    let id: Int
+//    let amount: Int
+//    let unit: String
+//    let unitLong: String
+//    let unitShort: String
+//    let aisle: String
+//    let name: String
+//    let original: String
+//    let originalName: String
+//    let meta: [String]
+//    let image: String
+//}
+//
+//struct UnusedIngredients: Codable {
+//    let id: Int
+//    let amount: Int
+//    let unit: String
+//    let unitLong: String
+//    let unitShort: String
+//    let aisle: String
+//    let name: String
+//    let original: String
+//    let originalName: String
+//    let meta: [String]
+//    let image: String
+//}

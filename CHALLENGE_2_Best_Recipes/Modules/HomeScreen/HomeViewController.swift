@@ -50,12 +50,25 @@ final class HomeViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.backButtonDisplayMode = .minimal
         setupCollectionView()
-        setupSearchController()
+        setUpNavBar()
+        //setupSearchController()
         
         collectionView.delegate = self
         collectionView.dataSource = self
         
     }
+    
+    private func setUpNavBar() {
+            let searchBar = UISearchBar()
+            searchBar.delegate = self
+            searchBar.sizeToFit()
+            searchBar.searchBarStyle = .minimal
+            searchBar.placeholder = "Search by username"
+            searchBar.tintColor = UIColor.lightGray
+            searchBar.barTintColor = UIColor.lightGray
+            navigationItem.titleView = searchBar
+            searchBar.isTranslucent = true
+        }
     
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
@@ -70,11 +83,11 @@ final class HomeViewController: UIViewController {
         collectionView.register(HomeViewControllerRecentRecipeCell.self, forCellWithReuseIdentifier: "cellId2")
     }
     
-    private func setupSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Search recipes"
-        navigationItem.searchController = searchController
-    }
+//    private func setupSearchController() {
+//        searchController.searchResultsUpdater = self
+//        searchController.searchBar.placeholder = "Search recipes"
+//        navigationItem.searchController = searchController
+//    }
     
 	private func createCompositionalLayout() -> UICollectionViewLayout {
 		let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
@@ -320,4 +333,14 @@ extension HomeViewController: UICollectionViewDelegate {
 			cell.configureCellDeselect()
 		}
 	}
+}
+//MARK: - UISearchBarDelegate Transition SearchViewController()
+
+extension HomeViewController: UISearchBarDelegate {
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool { // Этот код будет выполнен, когда пользователь начинает редактировать в поисковой панели
+        let searchViewController = SearchViewController() // Создайте и покажите новый контроллер (UIViewController)
+        self.navigationController?.pushViewController(searchViewController, animated: true)
+        return false  // Возвращаем false, чтобы предотвратить появление клавиатуры, если нужно
+    }
 }
