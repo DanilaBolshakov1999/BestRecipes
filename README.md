@@ -1,7 +1,7 @@
 # Challenge #2 - Best Recipes
 ![GitHub repo size](https://img.shields.io/github/repo-size/DanilaBolshakov1999/CHALLENGE_2_Best_Recipes)  ![GitHub contributors](https://img.shields.io/github/contributors/DanilaBolshakov1999/CHALLENGE_2_Best_Recipes)   ![GitHub last commit](https://img.shields.io/github/last-commit/DanilaBolshakov1999/CHALLENGE_2_Best_Recipes) ![][ios] ![][swift] ![][uikit]  ![][snap]
 
-
+![](https://github.com/DanilaBolshakov1999/CHALLENGE_2_Best_Recipes/blob/development/readmeVideo.gif)
 
 ---
 ### The application was created as part of the Swift Marathon 8.0 project (https://t.me/swiftmarathon).
