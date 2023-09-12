@@ -133,7 +133,6 @@ extension SeeAllViewController {
             }
         }
     }
-    
 }
 
 extension SeeAllViewController: UICollectionViewDataSource {

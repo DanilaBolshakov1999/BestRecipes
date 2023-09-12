@@ -54,11 +54,20 @@ final class SeeAllTrendingCell: UICollectionViewCell {
     }
     
     func configureCollectionCell(with image: UIImage, describtion: String, ingredients: String, cookingTime: Int, rating: Int) {
-//        let formattedRating = String(format: "%.1f", rating)
+        let formattedRating = String(format: "%.1f", rating)
         backGroundDishImage.image = image
         describtionOfDishLabel.text = "How to make yam\n& \(describtion)"
         timeAndIngredientsLabel.text = "\(ingredients) Ingredients | \(cookingTime) min"
         markOfDishLabel.text = String(describing: calculateRating(rating: rating))
+        ratingOfDishStack.addArrangedSubview(starImageView)
+        ratingOfDishStack.addArrangedSubview(markOfDishLabel)
+        
+        setUpCell()
+    }
+    
+    func configureSearchCollectionCell(with image: UIImage, title: String) {
+
+        backGroundDishImage.image = image
         ratingOfDishStack.addArrangedSubview(starImageView)
         ratingOfDishStack.addArrangedSubview(markOfDishLabel)
         

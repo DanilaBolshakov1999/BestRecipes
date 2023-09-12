@@ -27,15 +27,18 @@ enum Section: Int, CaseIterable {
     }
 }
 
-final class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController, UISearchControllerDelegate {
     
     var sections = Section.allCases
     private var trendingNowRecipes: [Recipe] = []
     private var randomRecipes: [Recipe] = []
 	private var typeRecipes: [Resulte] = []
+    private var searchRecipes: [RecipeSearch] = []
     private var collectionView: UICollectionView!
 	private let mealTypes = MealType.allCases
     private let searchController = UISearchController(searchResultsController: nil)
+
+    //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,31 +48,22 @@ final class HomeViewController: UIViewController {
 		
 		print("TYPE RECIPE \(typeRecipes)")
 		print("RANDOOOOOOM: \(randomRecipes)")
+        
+        //MARK: - NavController Home
         title = "Home"
         view.backgroundColor = .cyan
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.backButtonDisplayMode = .minimal
+        
         setupCollectionView()
-        setUpNavBar()
-        //setupSearchController()
+        setupSearchController()
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        searchController.searchBar.delegate = self
         
     }
-    
-    private func setUpNavBar() {
-            let searchBar = UISearchBar()
-            searchBar.delegate = self
-            searchBar.sizeToFit()
-            searchBar.searchBarStyle = .minimal
-            searchBar.placeholder = "Search by username"
-            searchBar.tintColor = UIColor.lightGray
-            searchBar.barTintColor = UIColor.lightGray
-            navigationItem.titleView = searchBar
-            searchBar.isTranslucent = true
-        }
-    
+        
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -83,11 +77,13 @@ final class HomeViewController: UIViewController {
         collectionView.register(HomeViewControllerRecentRecipeCell.self, forCellWithReuseIdentifier: "cellId2")
     }
     
-//    private func setupSearchController() {
-//        searchController.searchResultsUpdater = self
-//        searchController.searchBar.placeholder = "Search recipes"
-//        navigationItem.searchController = searchController
-//    }
+    private func setupSearchController() {
+        //searchController.searchResultsUpdater = self
+        searchController.automaticallyShowsCancelButton = true
+        searchController.searchBar.placeholder = "Search recipes"
+        navigationItem.searchController = searchController
+        
+    }
     
 	private func createCompositionalLayout() -> UICollectionViewLayout {
 		let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
@@ -157,6 +153,8 @@ final class HomeViewController: UIViewController {
 		}
           return header
   }
+    
+    //MARK: - DispatchQueue
 
     private func fetchTrendinRecipes() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -217,17 +215,8 @@ final class HomeViewController: UIViewController {
 	}
 }
 
-// MARK: - SearchResultUpdating
-extension HomeViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        if text != "" {
-            print(text)
-        }
-    }
-}
-
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch sections[section] {
@@ -300,6 +289,8 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 }
 
+//MARK: - UICollectionViewDelegate
+
 extension HomeViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		switch sections[indexPath.section] {
@@ -336,11 +327,18 @@ extension HomeViewController: UICollectionViewDelegate {
 }
 //MARK: - UISearchBarDelegate Transition SearchViewController()
 
-extension HomeViewController: UISearchBarDelegate {
-    
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool { // Этот код будет выполнен, когда пользователь начинает редактировать в поисковой панели
-        let searchViewController = SearchViewController() // Создайте и покажите новый контроллер (UIViewController)
+// MARK: - SearchResultUpdating
+extension HomeViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        let searchViewController = SearchRecipeViewController()
         self.navigationController?.pushViewController(searchViewController, animated: true)
-        return false  // Возвращаем false, чтобы предотвратить появление клавиатуры, если нужно
+        return false
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        if text != "" {
+            print(text)
+        }
     }
 }

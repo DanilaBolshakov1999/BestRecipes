@@ -2,7 +2,7 @@
 //  Contact.swift
 //  CHALLENGE_2_Best_Recipes
 //
-//  Created by iOS - Developer on 27.08.2023.
+//  Created by Danila Bolshakov on 27.08.2023.
 //
 
 import UIKit
@@ -65,6 +65,7 @@ enum Theme {
     static let ingredients = "IngredientsCollectionViewCell"
     static let header = "HeaderSupplementaryView"
     static let trending = "TrendingCollectionViewCell"
+    static let search = "SearchCollectionViewCell"
     static let savedDish = "SavedDishesCollectionView"
     
     //MARK:  UINavBar

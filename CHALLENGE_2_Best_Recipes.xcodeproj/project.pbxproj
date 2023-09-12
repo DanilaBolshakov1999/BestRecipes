@@ -59,6 +59,13 @@
 		44A877F42A9A880300241ED3 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A877F32A9A880300241ED3 /* OnboardingViewController.swift */; };
 		44A877F92A9A880500241ED3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44A877F82A9A880500241ED3 /* Assets.xcassets */; };
 		44A877FC2A9A880500241ED3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44A877FA2A9A880500241ED3 /* LaunchScreen.storyboard */; };
+		44CD41ED2AB0512800E8EF4A /* SearchRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD41EC2AB0512800E8EF4A /* SearchRecipeTableViewCell.swift */; };
+		44CD41F02AB056FD00E8EF4A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 44CD41EF2AB056FD00E8EF4A /* Kingfisher */; };
+		44CD41F32AB05B2200E8EF4A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD41F22AB05B2200E8EF4A /* NetworkManager.swift */; };
+		44CD41F72AB0611800E8EF4A /* SearchRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD41F62AB0611800E8EF4A /* SearchRecipeViewController.swift */; };
+		44CD41F92AB0615600E8EF4A /* URLGenerate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD41F82AB0615600E8EF4A /* URLGenerate.swift */; };
+		44CD41FB2AB064EC00E8EF4A /* SearchRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD41FA2AB064EC00E8EF4A /* SearchRecipe.swift */; };
+		44CD41FD2AB06A3200E8EF4A /* DetailRecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD41FC2AB06A3200E8EF4A /* DetailRecipeModel.swift */; };
 		44CFC7152AA1215B0065717C /* SeeAllTrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7132AA1215B0065717C /* SeeAllTrendingCell.swift */; };
 		44CFC7162AA1215B0065717C /* TrendingNowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7142AA1215B0065717C /* TrendingNowCell.swift */; };
 		44CFC7182AA1225F0065717C /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7172AA1225F0065717C /* UILabel+Extension.swift */; };
@@ -124,6 +131,12 @@
 		44A877F82A9A880500241ED3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44A877FB2A9A880500241ED3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44A877FD2A9A880500241ED3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44CD41EC2AB0512800E8EF4A /* SearchRecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeTableViewCell.swift; sourceTree = "<group>"; };
+		44CD41F22AB05B2200E8EF4A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		44CD41F62AB0611800E8EF4A /* SearchRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeViewController.swift; sourceTree = "<group>"; };
+		44CD41F82AB0615600E8EF4A /* URLGenerate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLGenerate.swift; sourceTree = "<group>"; };
+		44CD41FA2AB064EC00E8EF4A /* SearchRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipe.swift; sourceTree = "<group>"; };
+		44CD41FC2AB06A3200E8EF4A /* DetailRecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecipeModel.swift; sourceTree = "<group>"; };
 		44CFC7132AA1215B0065717C /* SeeAllTrendingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeAllTrendingCell.swift; sourceTree = "<group>"; };
 		44CFC7142AA1215B0065717C /* TrendingNowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingNowCell.swift; sourceTree = "<group>"; };
 		44CFC7172AA1225F0065717C /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -139,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44CD41F02AB056FD00E8EF4A /* Kingfisher in Frameworks */,
 				16D3CF3C2AA9E045004563DA /* SDWebImage in Frameworks */,
 				44CFC7302AA33A720065717C /* SnapKit in Frameworks */,
 			);
@@ -337,6 +351,9 @@
 		443403232AACCBAC0014D604 /* SearchViewController */ = {
 			isa = PBXGroup;
 			children = (
+				44CD41F62AB0611800E8EF4A /* SearchRecipeViewController.swift */,
+				44CD41EC2AB0512800E8EF4A /* SearchRecipeTableViewCell.swift */,
+				44CD41F12AB05ADE00E8EF4A /* Networking */,
 				443403242AACCBD80014D604 /* SearchViewController.swift */,
 			);
 			path = SearchViewController;
@@ -418,6 +435,17 @@
 			path = Launchscreen;
 			sourceTree = "<group>";
 		};
+		44CD41F12AB05ADE00E8EF4A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				44CD41FC2AB06A3200E8EF4A /* DetailRecipeModel.swift */,
+				44CD41F22AB05B2200E8EF4A /* NetworkManager.swift */,
+				44CD41F82AB0615600E8EF4A /* URLGenerate.swift */,
+				44CD41FA2AB064EC00E8EF4A /* SearchRecipe.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		44CFC7252AA1E92F0065717C /* VC */ = {
 			isa = PBXGroup;
 			children = (
@@ -473,6 +501,7 @@
 			packageProductDependencies = (
 				44CFC72F2AA33A720065717C /* SnapKit */,
 				16D3CF3B2AA9E045004563DA /* SDWebImage */,
+				44CD41EF2AB056FD00E8EF4A /* Kingfisher */,
 			);
 			productName = CHALLENGE_2_Best_Recipes;
 			productReference = 44A877EC2A9A880300241ED3 /* CHALLENGE_2_Best_Recipes.app */;
@@ -505,6 +534,7 @@
 			packageReferences = (
 				44CFC72E2AA33A720065717C /* XCRemoteSwiftPackageReference "SnapKit" */,
 				16D3CF3A2AA9E045004563DA /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				44CD41EE2AB056FD00E8EF4A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 44A877ED2A9A880300241ED3 /* Products */;
 			projectDirPath = "";
@@ -556,24 +586,29 @@
 				2FCAFB032AA1B2E50010C61B /* HomeViewControllerTrendingCell.swift in Sources */,
 				37DFC3B72A9BA5E000C4951B /* MainViewController.swift in Sources */,
 				37DFC3C02A9BA6D700C4951B /* BellViewController.swift in Sources */,
+				44CD41F72AB0611800E8EF4A /* SearchRecipeViewController.swift in Sources */,
 				2FCAFAFB2AA1B2940010C61B /* SectionHeader.swift in Sources */,
 				44A877F42A9A880300241ED3 /* OnboardingViewController.swift in Sources */,
 				44CFC7222AA127210065717C /* UIStack + Extension.swift in Sources */,
 				16D3CF402AAB6B09004563DA /* DisplayData.swift in Sources */,
+				44CD41F92AB0615600E8EF4A /* URLGenerate.swift in Sources */,
 				2FCAFAFD2AA1B2CC0010C61B /* HomeViewControllerFilterCell.swift in Sources */,
 				37DFC3C22A9BA6F100C4951B /* FavoriteViewController.swift in Sources */,
 				37DFC3ED2A9BE15100C4951B /* OnboardingScreens.swift in Sources */,
+				44CD41FD2AB06A3200E8EF4A /* DetailRecipeModel.swift in Sources */,
 				44A877F02A9A880300241ED3 /* AppDelegate.swift in Sources */,
 				44A877F22A9A880300241ED3 /* SceneDelegate.swift in Sources */,
 				16FA368D2A9C6DC400C9917C /* SeeAllViewController.swift in Sources */,
 				37DFC3C62A9BAED100C4951B /* UIViewController+Utils.swift in Sources */,
 				2F9FC01B2AAC47A4004E0AE6 /* MealTypeData.swift in Sources */,
+				44CD41ED2AB0512800E8EF4A /* SearchRecipeTableViewCell.swift in Sources */,
 				2FCAFB012AA1B2DD0010C61B /* HomeViewControllerRecentRecipeCell.swift in Sources */,
 				44CFC7152AA1215B0065717C /* SeeAllTrendingCell.swift in Sources */,
 				37DFC3C42A9BA6FD00C4951B /* HomeViewController.swift in Sources */,
 				2FCAFAFF2AA1B2D30010C61B /* HomeViewControllerPopularCell.swift in Sources */,
 				444456E12A9AA042003BA976 /* Theme.swift in Sources */,
 				37DA4BF92AA481B200AB64DC /* CreateRecipeViewController.swift in Sources */,
+				44CD41F32AB05B2200E8EF4A /* NetworkManager.swift in Sources */,
 				16D3CF372AA9DF8A004563DA /* RecipeModel.swift in Sources */,
 				44CFC71D2AA124F50065717C /* RecipeViewControllerScreen.swift in Sources */,
 				37DFC3BE2A9BA6CB00C4951B /* ProfileViewController.swift in Sources */,
@@ -587,6 +622,7 @@
 				37DFC3EF2A9E8FD200C4951B /* InitialOnboardingScreen.swift in Sources */,
 				44E53FCA2A9A91CC00B6BBBE /* UIColor+Extension.swift in Sources */,
 				443403272AACEC9F0014D604 /* SearchModel.swift in Sources */,
+				44CD41FB2AB064EC00E8EF4A /* SearchRecipe.swift in Sources */,
 				44CFC7162AA1215B0065717C /* TrendingNowCell.swift in Sources */,
 				37DA4BF62AA35E5C00AB64DC /* CustomTabBar.swift in Sources */,
 			);
@@ -816,6 +852,14 @@
 				minimumVersion = 5.18.0;
 			};
 		};
+		44CD41EE2AB056FD00E8EF4A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		44CFC72E2AA33A720065717C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -831,6 +875,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 16D3CF3A2AA9E045004563DA /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		44CD41EF2AB056FD00E8EF4A /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44CD41EE2AB056FD00E8EF4A /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		44CFC72F2AA33A720065717C /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

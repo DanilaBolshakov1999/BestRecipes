@@ -12,12 +12,13 @@ final class APIManager {
     static let shared = APIManager()
     
     private init() {}
-    
+
     private let apiKey = "9ad0375acd614e2ebdceb11bddcaf4e6"
     private let baseURL = "https://api.spoonacular.com/recipes/"
+    private let complexEndpoint = "complexSearch"
     private let randomEndpoint = "random"
     private let searchEndpoint = "findByIngredients"
-	private let complexEndpoint = "complexSearch"
+	
     
     func fetchRandomRecipes(numberOfRecipes: Int, completion: @escaping (Result<CookData, Error>) -> Void) {
         let queryString = "number=\(numberOfRecipes)&apiKey=\(apiKey)"
@@ -44,11 +45,9 @@ final class APIManager {
         task.resume()
     }
     
-    //complexSearch?query=pasta
-    
-    func fetchRecipesSearch(ingredients: String, numberOfRecipes: Int, completion: @escaping (Result<CookData, Error>) -> Void) {
-        let queryString = "&apiKey=\(apiKey)"
-        let fullURLString = baseURL + complexEndpoint + "?query=\(ingredients)" + queryString
+    func fetchRecipesSearch(ingredients: String, numberOfRecipes: Int, completion: @escaping (Result<RecipeSearch, Error>) -> Void) {
+        let queryString = "query=\(ingredients)&number=\(numberOfRecipes)&apiKey=\(apiKey)"
+        let fullURLString = baseURL + complexEndpoint + "?" + queryString
         
         guard let url = URL(string: fullURLString) else {
             return
@@ -61,7 +60,8 @@ final class APIManager {
             } else if let data = data {
                 do {
                     let decoder = JSONDecoder()
-                    let cookData = try decoder.decode(CookData.self, from: data)
+                    let cookData = try decoder.decode(RecipeSearch.self, from: data)
+                    print(cookData)
                     completion(.success(cookData))
                 } catch {
                     completion(.failure(error))
