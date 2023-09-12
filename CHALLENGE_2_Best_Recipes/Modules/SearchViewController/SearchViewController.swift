@@ -2,7 +2,7 @@
 //  SearchViewController.swift
 //  CHALLENGE_2_Best_Recipes
 //
-//  Created by iOS - Developer on 09.09.2023.
+//  Created by Danila Bolshakov on 09.09.2023.
 //
 
 import UIKit
@@ -10,17 +10,19 @@ import SnapKit
 
 final class SearchViewController: UIViewController {
     
+    
     //  MARK: - Properties
     
-    private var cookData: [Recipe] = []
+    private var cookData: [RecipeOne] = []
+    private let searchController = UISearchController(searchResultsController: nil)
     
     //  MARK: - UI
     
-    private lazy var trendingCollectoinView: UICollectionView = {
+    private lazy var trendingCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .brown
         return collectionView
     }()
     
@@ -34,6 +36,7 @@ final class SearchViewController: UIViewController {
     // MARK: - UI Setup
     
     private func setupUI() {
+        searchConfig()
         fetchRecipes()
         setupNavigationBar()
         addViews()
@@ -41,19 +44,13 @@ final class SearchViewController: UIViewController {
         registerCells()
         setConstrains()
     }
-    
-//    //MARK: - @objc Private Func
-//    @objc private func backButtonTapped() {
-//        //navigationController?.pushViewController(RecipeViewControllerScreen(), animated: true)
-//    }
-//    @objc private func moreButtonTapped() {
-//        // Need Action
-//    }
 }
 
 extension SearchViewController {
     
     private func setupNavigationBar() {
+        title = "Quick Search"
+
         let navigationAppearance = UINavigationBarAppearance()
         navigationAppearance.titleTextAttributes = [
             .font: UIFont(name: Theme.Fonts.semiBoldFont, size: 25) ?? UIFont.systemFont(ofSize: 25, weight: .bold),
@@ -63,53 +60,53 @@ extension SearchViewController {
 
     }
     
+    private func searchConfig() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
     private func addViews() {
-        view.addSubview(trendingCollectoinView)
+        view.addSubview(trendingCollectionView)
     }
     
     private func setConstrains() {
-        trendingCollectoinView.snp.makeConstraints { make in
+        trendingCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
     
     private func setDelegates() {
-        trendingCollectoinView.dataSource = self
-        trendingCollectoinView.delegate = self
+        trendingCollectionView.dataSource = self
+        trendingCollectionView.delegate = self
     }
     
     private func registerCells() {
-        trendingCollectoinView.register(SeeAllTrendingCell.self, forCellWithReuseIdentifier: Theme.trending)
+        trendingCollectionView.register(SeeAllTrendingCell.self, forCellWithReuseIdentifier: Theme.trending)
     }
     
     private func fetchRecipes() {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            APIManager.shared.fetchRandomRecipes(numberOfRecipes: 2) { result in
+            APIManager.shared.fetchRecipesSearch(ingredients: "pasta", numberOfRecipes: 2) { result in
                 switch result {
-                case .success(let data):
-                    let recipesWithImages = data.recipes.filter { recipe in
-                        guard !recipe.title.isEmpty,
-                              !recipe.extendedIngredients.isEmpty,
-                              recipe.readyInMinutes > 0 else {
-                            return false
-                        }
-                        
-                        return true
-                    }
-                    self?.cookData = recipesWithImages
+                case .success(let cook):
+                    let recipesImages = cook.results
+                    self.cookData = recipesImages
                     DispatchQueue.main.async {
-                        self?.trendingCollectoinView.reloadData()
+                        self.trendingCollectionView.reloadData()
                     }
                 case .failure(let error):
                     print("Error: \(error)")
                 }
             }
-        }
-        print(cookData)
     }
 }
 
+//MARK: - UI Collection View Data Source
+
 extension SearchViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cookData.count
     }
@@ -119,25 +116,31 @@ extension SearchViewController: UICollectionViewDataSource {
         
         let recipe = cookData[indexPath.item]
         
-        DispatchQueue.global(qos: .userInitiated).async {
-            APIManager.shared.fetchRecipeImage(id: recipe.id) { image in
-                if let image = image {
-                    trendingCell.configureCollectionCell(
-                        with: image,
-                        describtion: recipe.title,
-                        ingredients: String(describing: recipe.extendedIngredients.count),
-                        cookingTime: recipe.readyInMinutes,
-                        rating: recipe.healthScore
-                    )
-                }
-            }
-        }
+//        DispatchQueue.global(qos: .userInitiated).async {
+//            APIManager.shared.fetchRecipeImage(id: recipe.id) { image in
+//                if let image = image {
+//                    trendingCell.configureCollectionCell(
+//                        with: image,
+//                        describtion: recipe.title,
+//                        ingredients: String(describing: recipe.extendedIngredients.count),
+//                        cookingTime: recipe.readyInMinutes,
+//                        rating: recipe.healthScore
+//                    )
+//                }
+//            }
+//        }
         return trendingCell
     }
 }
 
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width - 20, height: 200)
+        return CGSize(width: collectionView.frame.width - 20, height: 400)
+    }
+}
+
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        print("Hello")
     }
 }
