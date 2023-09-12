@@ -330,7 +330,7 @@ extension HomeViewController: UICollectionViewDelegate {
 // MARK: - SearchResultUpdating
 extension HomeViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        let searchViewController = SearchViewController()
+        let searchViewController = SearchRecipeViewController()
         self.navigationController?.pushViewController(searchViewController, animated: true)
         return false
     }

@@ -65,6 +65,7 @@
 		44CD41F72AB0611800E8EF4A /* SearchRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD41F62AB0611800E8EF4A /* SearchRecipeViewController.swift */; };
 		44CD41F92AB0615600E8EF4A /* URLGenerate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD41F82AB0615600E8EF4A /* URLGenerate.swift */; };
 		44CD41FB2AB064EC00E8EF4A /* SearchRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD41FA2AB064EC00E8EF4A /* SearchRecipe.swift */; };
+		44CD41FD2AB06A3200E8EF4A /* DetailRecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD41FC2AB06A3200E8EF4A /* DetailRecipeModel.swift */; };
 		44CFC7152AA1215B0065717C /* SeeAllTrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7132AA1215B0065717C /* SeeAllTrendingCell.swift */; };
 		44CFC7162AA1215B0065717C /* TrendingNowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7142AA1215B0065717C /* TrendingNowCell.swift */; };
 		44CFC7182AA1225F0065717C /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFC7172AA1225F0065717C /* UILabel+Extension.swift */; };
@@ -135,6 +136,7 @@
 		44CD41F62AB0611800E8EF4A /* SearchRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeViewController.swift; sourceTree = "<group>"; };
 		44CD41F82AB0615600E8EF4A /* URLGenerate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLGenerate.swift; sourceTree = "<group>"; };
 		44CD41FA2AB064EC00E8EF4A /* SearchRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipe.swift; sourceTree = "<group>"; };
+		44CD41FC2AB06A3200E8EF4A /* DetailRecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecipeModel.swift; sourceTree = "<group>"; };
 		44CFC7132AA1215B0065717C /* SeeAllTrendingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeAllTrendingCell.swift; sourceTree = "<group>"; };
 		44CFC7142AA1215B0065717C /* TrendingNowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingNowCell.swift; sourceTree = "<group>"; };
 		44CFC7172AA1225F0065717C /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 		44CD41F12AB05ADE00E8EF4A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				44CD41FC2AB06A3200E8EF4A /* DetailRecipeModel.swift */,
 				44CD41F22AB05B2200E8EF4A /* NetworkManager.swift */,
 				44CD41F82AB0615600E8EF4A /* URLGenerate.swift */,
 				44CD41FA2AB064EC00E8EF4A /* SearchRecipe.swift */,
@@ -592,6 +595,7 @@
 				2FCAFAFD2AA1B2CC0010C61B /* HomeViewControllerFilterCell.swift in Sources */,
 				37DFC3C22A9BA6F100C4951B /* FavoriteViewController.swift in Sources */,
 				37DFC3ED2A9BE15100C4951B /* OnboardingScreens.swift in Sources */,
+				44CD41FD2AB06A3200E8EF4A /* DetailRecipeModel.swift in Sources */,
 				44A877F02A9A880300241ED3 /* AppDelegate.swift in Sources */,
 				44A877F22A9A880300241ED3 /* SceneDelegate.swift in Sources */,
 				16FA368D2A9C6DC400C9917C /* SeeAllViewController.swift in Sources */,
