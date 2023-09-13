@@ -183,7 +183,7 @@ final class HomeViewController: UIViewController, UISearchControllerDelegate {
     
     private func fetchRandomRecipes() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            APIManager.shared.fetchRandomRecipes(numberOfRecipes: 300) { result in
+            APIManager.shared.fetchRandomRecipes(numberOfRecipes: 2) { result in
                 switch result {
                 case .success(let cookData):
                     self?.randomRecipes = cookData.recipes
@@ -199,7 +199,7 @@ final class HomeViewController: UIViewController, UISearchControllerDelegate {
 	
 	private func fetchMealTypeRecipe(mealType: String) {
 		DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-			APIManager.shared.fetchMealTypeRecipe(numberOfRecipes: 300, mealType: mealType) { result in
+			APIManager.shared.fetchMealTypeRecipe(numberOfRecipes: 2, mealType: mealType) { result in
 				switch result {
 				case .success(let data):
 					self?.typeRecipes = data.results
