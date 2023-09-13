@@ -11,9 +11,9 @@ import UIKit
 class URLGenerate {
     
     //MARK: - Base URL
-    
+
     private let baseURL = "https://api.spoonacular.com/"
-    private let apiKey = "9ad0375acd614e2ebdceb11bddcaf4e6"
+    private let apiKey = "924bbed5c43b42c1bf46d8844b7caf1e"
     
     func request(endpoint: String, queryItems: [URLQueryItem] = []) -> URLRequest? {
         
