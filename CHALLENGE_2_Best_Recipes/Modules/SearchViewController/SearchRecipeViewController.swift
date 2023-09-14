@@ -23,7 +23,8 @@ class SearchRecipeViewController: UIViewController {
         let tableView = UITableView()
         
         //MARK: Register
-        tableView.register(SearchRecipeTableViewCell.self, forCellReuseIdentifier: SearchRecipeTableViewCell.identifier)
+        tableView.register(SearchRecipeTableViewCell.self,
+                           forCellReuseIdentifier: SearchRecipeTableViewCell.identifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = 250
         
@@ -85,8 +86,7 @@ extension SearchRecipeViewController: UITableViewDataSource, UITableViewDelegate
     //MARK: Did Select Row At
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentIndexPath = searchedRecipe[indexPath.row]
-        #warning("BagFix")
-        let detailRecipeModel: DetailRecipeModel = DetailRecipeModel(nameRecipe: currentIndexPath.title, imageRecipe: currentIndexPath.image)
+        let _: DetailRecipeModel = DetailRecipeModel(nameRecipe: currentIndexPath.title, imageRecipe: currentIndexPath.image)
 //        let vc = RecipeDetailViewController(model: detailRecipeModel, id: currentIndexPath.id)
 //        navigationController?.pushViewController(vc, animated: true)
     }
@@ -120,6 +120,6 @@ extension SearchRecipeViewController: UISearchBarDelegate {
             }
         }
         searchWorkItem = workItem
-        2
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: workItem)
     }
 }
