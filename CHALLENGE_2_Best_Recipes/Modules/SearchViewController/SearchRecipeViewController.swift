@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 
 class SearchRecipeViewController: UIViewController {
     
@@ -66,6 +66,13 @@ class SearchRecipeViewController: UIViewController {
             searchRecipesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    private func goToRecipeViewController(title: String, image: UIImage, steps: [AnalyzedInstruction]?) {
+        let destinationVC = RecipeViewControllerScreen()
+        destinationVC.configureImageTitle(image: image, title: title)
+        destinationVC.steps = steps
+        navigationController?.pushViewController(destinationVC, animated: true)
+    }
 }
 
 extension SearchRecipeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -86,9 +93,29 @@ extension SearchRecipeViewController: UITableViewDataSource, UITableViewDelegate
     //MARK: Did Select Row At
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentIndexPath = searchedRecipe[indexPath.row]
-        let _: DetailRecipeModel = DetailRecipeModel(nameRecipe: currentIndexPath.title, imageRecipe: currentIndexPath.image)
-//        let vc = RecipeDetailViewController(model: detailRecipeModel, id: currentIndexPath.id)
-//        navigationController?.pushViewController(vc, animated: true)
+
+        guard let imageUrl = URL(string: currentIndexPath.image) else {
+            return
+        }
+
+        let imageView = UIImageView()
+        imageView.kf.setImage(with: imageUrl) { result in
+            switch result {
+            case .success(let imageResult):
+                let loadedImage = imageResult.image
+                let request = self.urlGenerator.request(endpoint: "recipes/" + "\(currentIndexPath.id)/analyzedInstructions")
+                self.networkManager.request(generator: request) { (result: Swift.Result<[AnalyzedInstruction], Error>) in
+                    switch result {
+                    case .success(let searched):
+                        self.goToRecipeViewController(title: currentIndexPath.title, image: loadedImage, steps: searched)
+                    case .failure(let failure):
+                        print(failure.localizedDescription)
+                    }
+                }
+            case .failure(let error):
+                print("Error loading image: \(error)")
+            }
+        }
     }
 }
 
