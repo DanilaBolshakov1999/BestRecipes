@@ -7,7 +7,16 @@
 
 import UIKit
 
-final class HomeViewControllerTrendingCell: UICollectionViewCell {
+var id: String {
+    get {
+        return UserDefaults.standard.string(forKey: "id") ?? ""
+    } set {
+        UserDefaults.standard.set(newValue, forKey: "id")
+        UserDefaults.standard.synchronize()
+    }
+}
+
+    class HomeViewControllerTrendingCell: UICollectionViewCell {
 	
 	private let trendingImage: UIImageView = {
 		let imageView = UIImageView()
@@ -103,9 +112,13 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 	}
 	
 	@objc private func bookmarkAction(_ sender: UIButton) {
+        if sender.currentImage == UIImage(named: "inactiveBookmark") {
+                sender.setImage(UIImage(named: "activeBookmark"), for: .normal)
+            } else {
+                sender.setImage(UIImage(named: "inactiveBookmark"), for: .normal)
+            }
 		print("BookMark")
 	}
-	
 }
 
 // MARK: - Style and Constraints
@@ -119,6 +132,7 @@ extension HomeViewControllerTrendingCell {
 		addSubview(trendingImage)
 		addSubview(bookmarkButton)
 		addSubview(titleLabel)
+        
 		trendingImage.addSubview(rating)
 		rating.addSubview(stackView)
 		stackView.addArrangedSubview(ratingImage)
@@ -151,5 +165,4 @@ extension HomeViewControllerTrendingCell {
 			stackView.centerYAnchor.constraint(equalTo: rating.centerYAnchor)
 		])
 	}
-    
 }

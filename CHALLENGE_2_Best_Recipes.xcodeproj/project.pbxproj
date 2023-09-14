@@ -164,7 +164,6 @@
 		169564792AA357F200A9F79C /* DiscoverScreen */ = {
 			isa = PBXGroup;
 			children = (
-				1695647C2AA3581400A9F79C /* Model */,
 				1695647B2AA3580E00A9F79C /* View */,
 				1695647A2AA3580600A9F79C /* Controller */,
 			);
@@ -187,16 +186,10 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		1695647C2AA3581400A9F79C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		16D3CF352AA9DF71004563DA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				44CD41F12AB05ADE00E8EF4A /* Networking */,
 				44CD41FE2AB088DA00E8EF4A /* User Defaults */,
 				443403262AACEC9F0014D604 /* SearchModel.swift */,
 				16D3CF362AA9DF8A004563DA /* RecipeModel.swift */,
@@ -266,7 +259,6 @@
 			children = (
 				44A877EF2A9A880300241ED3 /* AppDelegate.swift */,
 				44A877F12A9A880300241ED3 /* SceneDelegate.swift */,
-				44A877FD2A9A880500241ED3 /* Info.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -354,7 +346,6 @@
 			children = (
 				44CD41F62AB0611800E8EF4A /* SearchRecipeViewController.swift */,
 				44CD41EC2AB0512800E8EF4A /* SearchRecipeTableViewCell.swift */,
-				44CD41F12AB05ADE00E8EF4A /* Networking */,
 			);
 			path = SearchViewController;
 			sourceTree = "<group>";
@@ -394,6 +385,7 @@
 				44A878042A9A88F800241ED3 /* Modules */,
 				44E53FC82A9A91BC00B6BBBE /* Extension */,
 				44A878032A9A88D400241ED3 /* Resources */,
+				44A877FD2A9A880500241ED3 /* Info.plist */,
 			);
 			path = CHALLENGE_2_Best_Recipes;
 			sourceTree = "<group>";

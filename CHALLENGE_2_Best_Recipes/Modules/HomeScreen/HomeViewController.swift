@@ -29,6 +29,8 @@ enum Section: Int, CaseIterable {
 
 final class HomeViewController: UIViewController, UISearchControllerDelegate {
     
+    let defaults = UserDefaults.standard
+    
     var sections = Section.allCases
     private var trendingNowRecipes: [Recipe] = []
     private var randomRecipes: [Recipe] = []
@@ -232,9 +234,13 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         switch sections[indexPath.section] {
         case .trending:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! HomeViewControllerTrendingCell
+            
+           defaults.value(forKey: "RecipeID")
+            
             let recipe = trendingNowRecipes[indexPath.item]
             
             DispatchQueue.global(qos: .userInitiated).async {

@@ -13,7 +13,7 @@ class URLGenerate {
     //MARK: - Base URL
 
     private let baseURL = "https://api.spoonacular.com/"
-    private let apiKey = "924bbed5c43b42c1bf46d8844b7caf1e"
+    private let apiKey = "6a434089d2b8440ebd3fc107dc132bc3"
     
     func request(endpoint: String, queryItems: [URLQueryItem] = []) -> URLRequest? {
         
@@ -34,3 +34,5 @@ class URLGenerate {
         return request
     }
 }
+
+
