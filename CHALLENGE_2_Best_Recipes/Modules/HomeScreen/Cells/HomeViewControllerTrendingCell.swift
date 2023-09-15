@@ -8,6 +8,8 @@
 import UIKit
 
 final class HomeViewControllerTrendingCell: UICollectionViewCell {
+    
+    private var recipeId: Int = 0
 	
 	private let trendingImage: UIImageView = {
 		let imageView = UIImageView()
@@ -88,7 +90,8 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-    func configureCell(title: String, imageName: UIImage, rating: Int) {
+    func configureCell(id: Int, title: String, imageName: UIImage, rating: Int) {
+        recipeId = id
 		trendingImage.image = imageName
         titleLabel.text = "How to \(DisplayData.shared.truncateTitle(title))"
         ratingLabel.text = String(describing: DisplayData.shared.calculateRating(rating: rating))
@@ -102,9 +105,25 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 		return trendingImage.image ?? UIImage.init(systemName: "hourglass")!
 	}
 	
-	@objc private func bookmarkAction(_ sender: UIButton) {
-		print("BookMark")
-	}
+    @objc private func bookmarkAction(_ sender: UIButton) {
+        let isBookmarked = !(bookmarkButton.currentImage == UIImage(named: "InactiveBookmark"))
+
+        if isBookmarked {
+            bookmarkButton.setImage(UIImage(named: Theme.savedDish), for: .normal)
+        } else {
+            bookmarkButton.setImage(UIImage(named: "InactiveBookmark"), for: .normal)
+        }
+
+        guard let title = titleLabel.text else { return }
+        guard let rating = ratingLabel.text else { return }
+
+        let recipe = SavedRecipesModel(title: title, id: recipeId, rating: rating)
+
+        SavedRecipes.shared.addRecipe(recipe)
+        for i in SavedRecipes.shared.savedRecipes {
+            print(i.title)
+        }
+    }
 	
 }
 
