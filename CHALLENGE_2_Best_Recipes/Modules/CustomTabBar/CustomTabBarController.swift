@@ -51,7 +51,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         navigationItem.setHidesBackButton(true, animated: false)
         
         let homeVC = HomeViewController()
-        let favoriteVC = FavoriteViewController()
+        let favoriteVC = DiscoverViewContoller()
         let createVC = CreateRecipeViewController()
         let bellVC = BellViewController()
         let profileVC = ProfileViewController()

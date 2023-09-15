@@ -13,7 +13,7 @@ final class APIManager {
     
     private init() {}
 
-    private let apiKey = "924bbed5c43b42c1bf46d8844b7caf1e"
+    private let apiKey = "ca997f4393204a1e82575d9a3284fc8e"
     private let baseURL = "https://api.spoonacular.com/recipes/"
     private let complexEndpoint = "complexSearch"
     private let randomEndpoint = "random"

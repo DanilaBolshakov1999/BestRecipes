@@ -14,7 +14,7 @@ enum Theme {
     static let fishRecipeDetail = "fishRecipeDetail"
     static let videoScreen = "videoScreen"
     static let star = "star"
-    static let favoritesActive = "FavoritesActive"
+    static let favoritesActive = "image2"
     
     //MARK: - cellIdentifier
     static let cellIdentifier = "MessageCell"

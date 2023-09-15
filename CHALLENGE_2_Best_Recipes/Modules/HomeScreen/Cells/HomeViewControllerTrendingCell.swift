@@ -69,7 +69,7 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 	
 	private let bookmarkButton: UIButton = {
 		let button = UIButton()
-		button.setImage(UIImage(named: "InactiveBookmark"), for: .normal)
+		button.setImage(UIImage(named: "image1"), for: .normal)
 		button.backgroundColor = .white
 		button.layer.cornerRadius = 32/2
 		button.translatesAutoresizingMaskIntoConstraints = false
@@ -106,12 +106,10 @@ final class HomeViewControllerTrendingCell: UICollectionViewCell {
 	}
 	
     @objc private func bookmarkAction(_ sender: UIButton) {
-        let isBookmarked = !(bookmarkButton.currentImage == UIImage(named: "InactiveBookmark"))
-
-        if isBookmarked {
-            bookmarkButton.setImage(UIImage(named: Theme.savedDish), for: .normal)
+        if sender.currentImage == UIImage(named: "image1") {
+            sender.setImage(UIImage(named: "image2")?.withRenderingMode(.alwaysOriginal), for: .normal)
         } else {
-            bookmarkButton.setImage(UIImage(named: "InactiveBookmark"), for: .normal)
+            sender.setImage(UIImage(named: "image1")?.withRenderingMode(.alwaysOriginal), for: .normal)
         }
 
         guard let title = titleLabel.text else { return }
