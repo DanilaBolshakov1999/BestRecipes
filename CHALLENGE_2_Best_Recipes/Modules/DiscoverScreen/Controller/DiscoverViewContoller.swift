@@ -10,6 +10,8 @@ import SnapKit
 
 final class DiscoverViewContoller: UIViewController {
     
+    private var recipes: [SavedRecipesModel] = []
+    
     //MARK: - UI
     
     private lazy var savedDishesCollectionView: UICollectionView = {
@@ -36,6 +38,11 @@ final class DiscoverViewContoller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchRecentRecipes()
     }
     
     //  MARK: - Set UI
@@ -90,19 +97,25 @@ extension DiscoverViewContoller {
         savedDishesCollectionView.register(SavedDishCollectionCell.self, forCellWithReuseIdentifier: Theme.savedDish)
     }
     
+    private func fetchRecentRecipes() {
+        recipes = SavedRecipes.shared.savedRecipes
+        savedDishesCollectionView.reloadData()
+    }
 }
 
 extension DiscoverViewContoller: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return recipes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let savedDishCell = collectionView.dequeueReusableCell(withReuseIdentifier: Theme.savedDish, for: indexPath) as? SavedDishCollectionCell else { return UICollectionViewCell() }
-        
-        if let img = UIImage(named: "dishOne") {
-            savedDishCell.configure(with: img, title: "How to make sharwama at home", rating: "5,0")
+                
+        APIManager.shared.fetchRecipeImage(id: recipes[indexPath.row].id) { fetchedImage in
+            if let image = fetchedImage {
+                savedDishCell.configure(with: image, title: self.recipes[indexPath.row].title, rating: self.recipes[indexPath.row].rating)
+            }
         }
         
         return savedDishCell
