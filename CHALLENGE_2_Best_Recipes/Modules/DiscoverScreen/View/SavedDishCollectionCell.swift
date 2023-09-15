@@ -7,7 +7,18 @@
 
 import UIKit
 
+protocol SavedDishCollectionCellDelegate: AnyObject {
+    func didTapSaveButton(at index: Int)
+}
+
+
 final class SavedDishCollectionCell: UICollectionViewCell {
+    
+    weak var delegate: SavedDishCollectionCellDelegate?
+    
+    private var recipePostion: Int = 0
+    
+    //  MARK: - UI
     
     private let dishBackGroundImage: UIImageView = {
         let dishBackGroundImage = UIImageView()
@@ -56,6 +67,7 @@ final class SavedDishCollectionCell: UICollectionViewCell {
         saveButton.clipsToBounds = true
         let image = UIImage(named: Theme.favoritesActive)
         saveButton.setBackgroundImage(image, for: .normal)
+        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return saveButton
     }()
     
@@ -82,7 +94,8 @@ final class SavedDishCollectionCell: UICollectionViewCell {
     }()
     
     
-    func configure(with image: UIImage, title: String, rating: String) {
+    func configure(at position: Int, with image: UIImage, title: String, rating: String) {
+        recipePostion = position
         dishBackGroundImage.image = image
         dishTitle.text = title
         ratingMarkLabel.text = rating
@@ -91,6 +104,10 @@ final class SavedDishCollectionCell: UICollectionViewCell {
     }
     
     //  MARK: - @objc private Func
+    
+    @objc private func saveButtonTapped() {
+        delegate?.didTapSaveButton(at: recipePostion)
+    }
     
     @objc private func moreButtonTapped() {
         print("moreButtonTapped taped")

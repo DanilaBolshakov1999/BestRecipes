@@ -111,10 +111,12 @@ extension DiscoverViewContoller: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let savedDishCell = collectionView.dequeueReusableCell(withReuseIdentifier: Theme.savedDish, for: indexPath) as? SavedDishCollectionCell else { return UICollectionViewCell() }
-                
+        
+        savedDishCell.delegate = self
+        
         APIManager.shared.fetchRecipeImage(id: recipes[indexPath.row].id) { fetchedImage in
             if let image = fetchedImage {
-                savedDishCell.configure(with: image, title: self.recipes[indexPath.row].title, rating: self.recipes[indexPath.row].rating)
+                savedDishCell.configure(at: indexPath.row, with: image, title: self.recipes[indexPath.row].title, rating: self.recipes[indexPath.row].rating)
             }
         }
         
@@ -129,4 +131,12 @@ extension DiscoverViewContoller: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.frame.width - 20, height: 282)
     }
     
+}
+
+extension DiscoverViewContoller: SavedDishCollectionCellDelegate {
+    func didTapSaveButton(at index: Int) {
+        recipes.remove(at: index)
+        SavedRecipes.shared.removeRecipe(at: index)
+        savedDishesCollectionView.reloadData()
+    }
 }
