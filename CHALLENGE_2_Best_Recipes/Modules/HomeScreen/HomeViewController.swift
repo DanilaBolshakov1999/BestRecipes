@@ -240,7 +240,7 @@ extension HomeViewController: UICollectionViewDataSource {
             DispatchQueue.global(qos: .userInitiated).async {
                 APIManager.shared.fetchRecipeImage(id: recipe.id) { image in
                     if let image = image {
-                        cell.configureCell(title: recipe.title, imageName: image, rating: recipe.healthScore)
+                        cell.configureCell(id: recipe.id, title: recipe.title, imageName: image, rating: recipe.healthScore)
                     }
                 }
             }
